@@ -1,0 +1,19 @@
+<%= form_with(url: "/tickets", method: "post", class: "AddTicket") do|form| %>
+    <%= form.text_field "ticket[subject]",class: "", placeholder: "First Name", autofocus: "autofocus"  %>
+    <%= form.select "ticket[source]", ["Phone", "Email", "Portal", "Chat", "Feedback Widget"],class: "" %>
+    <%= form.select "ticket[status]", ["Open", "Pending", "Resolved", "Closed"],class: "" %>
+    <%= form.select "ticket[urgency]", ["Low", "Medium", "High"],class: "" %>
+    <%= form.select "ticket[impact]", ["Low", "Medium", "High"],class: "" %>
+    <%= form.select "ticket[priority]", ["Low", "Medium", "High","Urgent"],class: "" %>
+    <select name="ticket[agent]">
+    <% @user_org.each do |org| %>
+         <optgroup label = "<%= org.org_name %>">
+           <% org.agents.all.each do |agent| %>
+            <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
+           </optgroup>
+         <% end %>
+      <% end %>
+    </select>
+    <%= form.text_area "ticket[description]",class: ""%>
+    <%= form.submit "Continue", class: "signup_Form-submit"%>
+<% end %>

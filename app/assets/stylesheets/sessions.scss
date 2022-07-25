@@ -1,0 +1,96 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.signin_body{
+    size: auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.signin_background_image{
+   position: fixed;
+   margin-top: -175px;
+   width: 1280px;
+   height: 900px;
+}
+.signin_background_box{
+    position: fixed;
+    margin-left: 335px;
+    margin-top: 140px;
+    height: 385px;
+    width: 610px;
+    background-color: #FFFFFF;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    z-index: 999;
+}
+.signin_title{
+    margin-left: 55px;
+    margin-top: 45px;
+    margin-bottom: 27px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.signin_UsersNew{
+    margin-left: 55px;  
+}
+.signin_Form-input{
+    padding: 15px 15px 15px 22px;
+    margin-bottom: 30px;
+    width: 490px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+.signin_Form-input::placeholder{
+    font-weight: 600;
+    color: #bbbbbb;
+}
+.signin_Form-submit{
+    margin-top: 30px;
+    text-align: center;
+    background-color: #FF2E58;
+    color: #FFFFFF;
+    border: none;
+    padding: 15px 0px;
+    width: 490px;
+    border-radius: 6px;
+    font-weight: 800;
+}
+.signin_Form-submit:hover{
+    background-color: #ff486d;
+    cursor: pointer;
+}
+.link_to_register_div{
+    position: fixed;
+    z-index: 999;
+    margin-left: 520px;
+    margin-top: 560px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+}
+.link_to_register{
+    text-decoration: none;
+    color: #FF2E58;
+    font-weight: 700;
+}
+.signin-Flash-error{
+    margin-left: 55px;
+    margin-top: -10px;
+    color: red;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+.forgot-password{
+    font-size: 13px;
+    margin-left: 350px;
+    text-decoration: none;
+    color: #ff486d;
+    z-index: 999;
+    cursor: pointer;
+}
+.forgot-password-div{
+    z-index: 999;
+    margin-top: -15px;
+}
+

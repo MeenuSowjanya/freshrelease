@@ -1,0 +1,21 @@
+<%= content_for :title, "Zupp | Home" %>
+
+<main>
+       <div class="home_vector_image-1"></div>
+       <div class="home_about"></div>
+       <div class="home_signin">
+       <%= link_to new_sessions_path do %>
+        <i class="fa-solid fa-circle-user" style="color: white; font-size: 30px"></i>
+       <% end %>
+       </div>
+       <div class="home_text">
+        <p class="home_title">ZUPP</p>
+        <div class="home_description">
+            <p class="home_description_p">Zupp is a modern agile project management software for 
+                <br>high velocity teams from Freshworks</p>
+        </div>
+        <div class="home_register">
+            <%= button_to "Register", new_user_path, class: "home_register_button", :method => :get %>
+        </div>
+        </div>
+</main>

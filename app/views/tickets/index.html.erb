@@ -1,0 +1,134 @@
+  <%= content_for :title, "Zupp | Tickets" %>
+  <div class="sidebar active">
+    <div class="logo-details">
+      <img class='bx bxl-c-plus-plus' style="height: 30px; width: 40px" src="<%=asset_path('logo.png')%>">
+      <span class="logo_name">Dashboard</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class="fa-solid fa-ticket"></i>
+            <span class="links_name">Tickets</span>
+          </a>
+        </li>
+        
+        <li class="log_out">
+         
+          <%= link_to destroy_session_path, method: :delete do %>
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log out</span>
+          <% end %>
+
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <i class='bx bx-search' ></i>
+      </div>
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name"><%= @user.first_name %></span>
+        <i class="fa-solid fa-circle-user"></i>
+      </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes">
+         <div class="tickets_nav">
+           <div class="select">
+             <span class="select_all"><%= check_box_tag "Select all", class: "check_box" %></span>
+             <span class="select_all_text"><div class="alltext">Select all</div></span>
+           </div>
+          </div>
+          <div class="tickets_nav_sort">
+           <div class="sort">
+              <span class="sort_all"><i class="fa-solid fa-sort"></i></span>
+              <span class="sort_all_text">Sort by</span>
+              <%= form_with(url: "/sort", method: "post", class: "AddTicket") do%>
+              <%= select_tag 'sort', options_for_select(['Date created','Priority','Status'],'Date created'),onchange: "this.form.submit()"%>
+              <% end %>
+              puts <%= @sort %>
+           </div>
+         </div>
+         <% @tickets.each do |ticket| %>
+         <div class="tickets">
+            <div class="background">
+              <img src="<%= asset_path('ticket_background.png') %>" class="background_image">
+            </div>
+            <div class="select_button"><p class="select_text">
+            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+            Select all
+           <div id="dvPassport" style="display: none">
+             Passport Number:
+           <input type="text" id="txtPassportNumber" />
+           </div>
+          </label>
+        <div id="dvPassport" style="display: none">
+            Passport Number:
+            <input type="text" id="txtPassportNumber" />
+        </div></p></div>
+            <div class="ticket_content">
+            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+              <div class="subject_title">SUBJECT</div><div class="subject"><%= ticket.subject %></div>
+            </div>
+            <div class="ticket_content">
+              <div class="requester_title">REQUESTER</div><div class="requester"><%= @user.first_name %></div>
+            </div>
+            <div class="ticket_content">
+              <div class="assigned_to_title">ASSIGNED TO</div><div class="assigned_to">
+              <%= form_with(url: "/tickets/#{ticket.id}", method: "put", class: "AddTicket") do%>
+               <% if @user.role == "admin" %>
+                <select name="agent" onchange="this.form.submit()">
+               <% else %>
+                <select name="agent" onchange="this.form.submit()" disabled>
+               <% end %>
+                  <% @user_org.each do |org| %>
+                       <optgroup label = "<%= org.org_name %>" class="opt_group">
+                         <% org.agents.all.each do |agent| %>
+                          <% if ticket.agent == agent.user.first_name %>
+                          <option value = "<%= agent.user.first_name %>" class="opt" selected="selected" ><%= agent.user.first_name %></option>
+                          <% else %>
+                          <option value = "<%= agent.user.first_name %>" class="opt"><%= agent.user.first_name %></option>
+                          <% end %>
+                         </optgroup>
+                       <% end %>
+                    <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="ticket_content">
+            <div class="status_title">STATUS</div><div class="status">
+            <%= ticket.status %>
+            <% if @user.role == "admin" %>
+            <%= select_tag 'status', options_for_select(['Open','Pending','Resolved','Closed'],ticket.status),onchange: "this.form.submit()"%>
+            <% else %>
+            <%= select_tag 'status', options_for_select(['Open','Pending','Resolved','Closed'],ticket.status),onchange: "this.form.submit()",disabled: true %>
+            <% end %>
+              </div>
+            </div>
+            <div class="ticket_content">
+            <div class="assigned_to_title">PRIORITY</div><div class="assigned_to">
+            <% if @user.role == "admin" %>
+            <%= select_tag 'priority', options_for_select(['Low','Medium','High','Urgent'],ticket.priority),onchange: "this.form.submit()"%>
+            <% else %>
+            <%= select_tag 'priority', options_for_select(['Low','Medium','High','Urgent'],ticket.priority),onchange: "this.form.submit()",disabled: true %>
+            <% end %>
+            </div>
+          </div>
+         </div>
+        
+       </div>
+    <% end %>
+    <% end %>
+    </div>
+    <%= javascript_include_tag 'user' %>
+
+
+

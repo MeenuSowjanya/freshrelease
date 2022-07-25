@@ -1,0 +1,100 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.signup_body{
+    size: auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.signup_background_image{
+   position: fixed;
+   margin-top: -175px;
+   width: 1280px;
+   height: 900px;
+}
+.signup_background_box{
+    position: fixed;
+    margin-left: 335px;
+    margin-top: 40px;
+    height: 525px;
+    width: 610px;
+    background-color: #FFFFFF;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    z-index: 999;
+}
+.signup_title{
+    margin-left: 55px;
+    margin-top: 30px;
+    margin-bottom: 27px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.signup_UsersNew{
+    margin-left: 55px;  
+}
+.signup_Form-input{
+    padding: 12px 15px 12px 22px;
+    margin-bottom: 25px;
+    width: 495px;
+    border-radius: 5px;
+    border: 2px solid rgb(163, 163, 163);
+}
+.signup_Form-input::placeholder{
+    font-weight: 600;
+    color: #bbbbbb;
+}
+.signup_Form-submit{
+    margin-top: 10px;
+    text-align: center;
+    background-color: #FF2E58;
+    color: #FFFFFF;
+    border: none;
+    padding: 15px 0px;
+    width: 495px;
+    border-radius: 6px;
+    font-weight: 800;
+}
+.signup_Form-submit:hover{
+    background-color: #ff486d;
+    cursor: pointer;
+}
+.signup_link_to_login_div{
+    position: fixed;
+    z-index: 999;
+    margin-left: 520px;
+    margin-top: 580px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+}
+.link_to_register{
+    text-decoration: none;
+    color: #FF2E58;
+    font-weight: 700;
+}
+#password-holder{
+    display: flex;
+    flex-wrap: wrap;
+}
+.eye_icon{
+    z-index: 999;
+    margin-left: -45px;
+    margin-top: 16px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    color: rgb(184, 184, 184);
+}
+.signup-Flash-error{
+    margin-left: 55px;
+    margin-top: -20px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: red;
+}

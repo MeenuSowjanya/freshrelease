@@ -1,0 +1,13 @@
+<%= content_for :title, "Zupp | Forgot Password ?" %>
+<div class="fp_body">
+    <div class="fp_box_body">
+        <h1 class="fp_title">Forgot Password ?</h1>
+        <%= form_with url: password_reset_path do |form| %>
+            <%= form.email_field "email", class: "fp_Form-input", placeholder: "Email", autofocus: "autofocus" %>
+            <%= form.submit "Continue", class: "fp_Form-submit"%>
+        <% end %>
+        <%= link_to "Return to sign in", "/signin", class: "fp_link_to_signin" %>
+    </div>
+    <div class="fp_link_to_register_div">Don't have an account? <%= link_to "Sign up", "/users/new", class: "link_to_register" %></div>
+ 
+</div>

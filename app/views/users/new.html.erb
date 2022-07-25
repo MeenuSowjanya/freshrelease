@@ -1,0 +1,48 @@
+<% content_for :title, "Zupp | Signup" %>
+<main>
+<div class="signup_body">
+    
+  <div class="signup_background">
+    <%= image_tag "signup_background.png", class: "signup_background_image" %>
+  </div>
+  <div class="signup_background_box">
+    <p class="signup_title">Sign up</p>
+    <% if flash[:error] %>
+    <p class="signup-Flash-error">
+   <%= flash[:error] %>
+    </p>
+   <% end %>
+    <section class="signup_UsersNew">
+  <%= form_with url: users_path do |form| %>
+   <div class="signup_Form-section">
+     <%= form.text_field "user[first_name]", class: "signup_Form-input", placeholder: "First Name", autofocus: "autofocus"  %>
+   </div>
+  <div class="signup_Form-section">
+     <%= form.text_field "user[last_name]", class: "signup_Form-input", placeholder: "Last Name"%>
+  </div>
+  <div class="signup_Form-section">
+    <%= form.email_field "user[email]", class: "signup_Form-input", placeholder: "Email" %>
+  </div>
+  <div class="signup_Form-section" id="password-holder">
+    <%= form.password_field "user[password]", class: "signup_Form-input", id:"password", placeholder: "Password"%>
+    <span class="eye_icon" onclick="togglePassword('1')">
+       <p class="eye-text" id='1'>	<i class="fa-solid fa-eye"></i></p>
+     </span>
+  </div>
+  <div class="signup_Form-section" id="password-holder">
+    <%= form.password_field "user[password_confirmation]", class: "signup_Form-input", id: "confirm_password",placeholder: "Confirm Password" %>
+    <span class="eye_icon" onclick="togglePassword('2')">
+       <p class="eye-text" id='2'>	<i class="fa-solid fa-eye"></i> </p>
+     </span>
+  </div>
+  <div class ="signup_Form-section">
+    <%= form.submit "Continue", class: "signup_Form-submit"%>
+  </div>
+  <% end %>
+</section>
+  </div>
+  <p class="signup_link_to_login_div">Already have an account? <%= link_to "Sign in", "/signin", class: "link_to_register" %></p>
+</div>
+</main>
+
+<%= javascript_include_tag 'user' %>

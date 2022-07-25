@@ -1,0 +1,38 @@
+<%= content_for :title, "Zupp | Signin" %>
+<div class="signin_body">
+    
+  <div class="signin_background">
+    <%= image_tag "signin_background.png", class: "signin_background_image" %>
+  </div>
+  <div class="signin_background_box">
+    <p class="signin_title">Sign in</p>
+    <% if flash[:error] %>
+    <p class="signin-Flash-error">
+   <%= flash[:error] %>
+    </p>
+   <% end %>
+    <section class="signin_UsersNew">
+      <%= form_with url: sessions_path do |form| %>
+      <div class="signin_Form-section">
+        <%= form.email_field "user[email]", class: "signin_Form-input", placeholder: "Email", autofocus: "autofocus" %>
+      </div>
+      <div class="signin_Form-section" id="password-holder">
+        
+        <%= form.password_field "user[password]", class: "signin_Form-input", id:"password", placeholder: "Password"%>
+    <span class="eye_icon" onclick="togglePassword('1')">
+       <p class="eye-text" id='1'>	<i class="fa-solid fa-eye"></i></p>
+     </span>
+      </span>
+      </div>
+      <div class="forgot-password-div">
+      <%= link_to "Forgot Password ?", password_reset_path, class: "forgot-password" %>
+      </div>
+      <div class ="signin_Form-section">
+        <%= form.submit "Continue", class: "signin_Form-submit"%>
+      </div>
+      <% end %>
+    </section>
+  </div>
+  <p class="link_to_register_div">Don't have an account? <%= link_to "Sign up", "/users/new", class: "link_to_register" %></p>
+</div>
+<%= javascript_include_tag 'user' %>

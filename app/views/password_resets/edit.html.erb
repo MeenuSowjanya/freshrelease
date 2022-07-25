@@ -1,0 +1,30 @@
+<%= content_for :title, "Zupp | Reset Password" %>
+<div class="rp_body">
+    <div class="rp_box_body">
+        <h1 class="rp_title">Reset Password ?</h1>
+        <% if flash[:error] %>
+          <div class="rp-Flash-error">
+          <%= flash[:error] %>
+          </div>
+        <% end %>
+        <%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |form| %>
+        <div class="rp_password_holder">
+        <%= form.password_field "password", class: "rp_Form-input", id:"password", placeholder: "Password"%>
+        <span class="rp_eye_icon" onclick="togglePassword('1')">
+         <p class="rp_eye-text" id='1'>	<i class="fa-solid fa-eye"></i></p>
+        </span>
+        </div>
+        <div class="rp_password_holder">
+        <%= form.password_field "password_confirmation", class: "rp_Form-input", id: "confirm_password",placeholder: "Confirm Password" %>
+        <span class="rp_eye_icon" onclick="togglePassword('2')">
+       <p class="rp_eye-text" id='2'>	<i class="fa-solid fa-eye"></i> </p>
+     </span>
+        </div>
+        
+        <%= form.submit "Continue", class: "rp_Form-submit"%>
+        <% end %>
+    </div>
+ 
+</div>
+
+<%= javascript_include_tag 'user' %>
