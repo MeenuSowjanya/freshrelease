@@ -1,0 +1,66 @@
+<div class="tickets">
+            <br><br>
+            <%@pro = Priority.find(ticket.priority_id)%>
+            <%@sta = Status.find(ticket.status_id)%>
+            <%@requester = User.find(ticket.user_id)%>
+            
+            <%= form_with(url: "/tickets/update/#{ticket.id}", method: "post") do |form| %>
+            
+            <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: (array_returned.include? ticket.id) ?true:false}, 1, 0 %>
+            Select
+            <% end %>
+            <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none; color:black;">SUBJECT : <%= ticket.subject %></a>
+            <%= form_with(url: "/tickets/#{ticket.id}", method: "put", class: "AddTicket") do |form|%>
+              <span><i class="fa-solid fa-pen" id="toggle_edit_text" onclick="showHideForm('edit_subject<%= count %>')" ></i> </span>
+                 <div id = "edit_subject<%= count %>" style="display: none">
+                    <%= form.text_field "subject", placeholder: ticket.subject,value: ticket.subject,autofocus: "autofocus"  %>
+                    <%= form.submit "Continue"%>
+                 </div>
+                
+            <br>
+                 REQUESTER : <%= @requester.first_name %>
+            <br>
+                 ASSIGNED TO : 
+               <% if @user.role == "admin" %>
+                <select name="agent" onchange="this.form.submit()">
+               <% else %>
+                <select name="agent" onchange="this.form.submit()" disabled>
+               <% end %>
+                  <% @user_org.each do |org| %>
+                      <optgroup label = "<%= org.org_name %>">
+                          <% org.agents.all.each do |agent| %>
+                            <% if ticket.agent == agent.user.first_name %>
+                              <option value = "<%= agent.user.first_name %>" selected="selected" ><%= agent.user.first_name %></option>
+                            <% else %>
+                              <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
+                            <% end %>
+                      </optgroup>
+                          <% end %>
+                  <% end %>
+                </select>
+            <br>
+              STATUS :
+                <% if @user.role == "admin" %>
+                  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()"%>
+                <% else %>
+                  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()",disabled: true%>
+                <% end %>
+            <br>
+              PRIORITY :
+                <% if @user.role == "admin" %>
+                  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),onchange: "this.form.submit()"%>
+                <% else %>
+                  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),onchange: "this.form.submit()",disabled: true %>
+                <% end %>
+            <br>
+              DESCRIPTION : <%= ticket.description %> <i class="fa-solid fa-pen" id="toggle_edit_text" onclick="showHideForm('edit_description<%= count %>')" ></i>
+                <div id = "edit_description<%= count %>" style="display: none">
+                  <%= form.text_field "description", placeholder: ticket.description,value: ticket.description,autofocus: "autofocus"  %>
+                  <%= form.submit "Continue"%>
+                <br>
+               
+                
+                </div>
+                </div>
+                
+                <% end %>
