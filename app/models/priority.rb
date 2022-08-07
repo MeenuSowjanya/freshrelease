@@ -1,0 +1,3 @@
+class Priority < ApplicationRecord
+    
+end

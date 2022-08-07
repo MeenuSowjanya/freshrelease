@@ -11,13 +11,14 @@
 .signin_background_image{
    position: fixed;
    margin-top: -175px;
+   margin-left: -100px;
    width: 1280px;
    height: 900px;
 }
 .signin_background_box{
     position: fixed;
-    margin-left: 335px;
-    margin-top: 140px;
+    margin-left: 245px;
+    margin-top: 70px;
     height: 385px;
     width: 610px;
     background-color: #FFFFFF;
@@ -64,8 +65,8 @@
 .link_to_register_div{
     position: fixed;
     z-index: 999;
-    margin-left: 520px;
-    margin-top: 560px;
+    margin-left: 430px;
+    margin-top: 490px;
     letter-spacing: 0.3px;
     font-weight: 500;
 }

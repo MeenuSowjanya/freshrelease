@@ -14,13 +14,14 @@
 .signup_background_image{
    position: fixed;
    margin-top: -175px;
+   margin-left: -100px;
    width: 1280px;
    height: 900px;
 }
 .signup_background_box{
     position: fixed;
-    margin-left: 335px;
-    margin-top: 40px;
+    margin-left: 255px;
+    margin-top: -35px;
     height: 525px;
     width: 610px;
     background-color: #FFFFFF;
@@ -67,8 +68,8 @@
 .signup_link_to_login_div{
     position: fixed;
     z-index: 999;
-    margin-left: 520px;
-    margin-top: 580px;
+    margin-left: 400px;
+    margin-top: 510px;
     letter-spacing: 0.3px;
     font-weight: 500;
 }

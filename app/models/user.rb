@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :tickets  #Corresponding association with todos table
+    has_many :notes
+    has_many :canned_responses
     VALID_NAME_REGEX = /\A[^0-9`!@#\$%\^&*+_=]+\z/.freeze
     VALID_EMAIL_REGEX = /\A(.+)@(.+)$\z/.freeze
     validates :first_name, presence: true, length: { minimum: 3, maximum: 25 },format: { with: VALID_NAME_REGEX }
@@ -17,5 +19,4 @@ class User < ApplicationRecord
     def to_s 
         return "name => #{self.full_name}, email=> #{self.email}"
     end
-
 end

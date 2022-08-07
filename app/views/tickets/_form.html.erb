@@ -1,19 +1,170 @@
-<%= form_with(url: "/tickets", method: "post", class: "AddTicket") do|form| %>
-    <%= form.text_field "ticket[subject]",class: "", placeholder: "First Name", autofocus: "autofocus"  %>
-    <%= form.select "ticket[source]", ["Phone", "Email", "Portal", "Chat", "Feedback Widget"],class: "" %>
-    <%= form.select "ticket[status]", ["Open", "Pending", "Resolved", "Closed"],class: "" %>
-    <%= form.select "ticket[urgency]", ["Low", "Medium", "High"],class: "" %>
-    <%= form.select "ticket[impact]", ["Low", "Medium", "High"],class: "" %>
-    <%= form.select "ticket[priority]", ["Low", "Medium", "High","Urgent"],class: "" %>
-    <select name="ticket[agent]">
-    <% @user_org.each do |org| %>
-         <optgroup label = "<%= org.org_name %>">
-           <% org.agents.all.each do |agent| %>
-            <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
-           </optgroup>
-         <% end %>
-      <% end %>
-    </select>
-    <%= form.text_area "ticket[description]",class: ""%>
-    <%= form.submit "Continue", class: "signup_Form-submit"%>
-<% end %>
+<body id="body-pd">
+  <header class="header" id="header">
+
+    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    <p class="ticket_title">My tickets</p>
+    <a href="">
+      <%= image_tag "magnifier.png" , class: "search_icon" %>
+    </a>
+    <input type="text" class="indexlayout_search">
+    <%= image_tag "add.png" , class: "plus_icon" %>
+      <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+  </header>
+  <div class="l-navbar" id="nav-bar">
+
+    <nav class="nav">
+      <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+            class="nav_logo-name">Zupp</span> </a>
+        <div class="nav_list"> <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
+              class="nav_name">Dashboard</span> </a> <a href="#" class="nav_link"> <i
+              class="fa-solid fa-triangle-exclamation"></i> <span class="nav_name">High Priority Tickets</span> </a> <a
+            href="#" class="nav_link"> <i class="fa-solid fa-ticket"></i> <span class="nav_name">Open Tickets</span>
+          </a> <a href="#" class="nav_link"> <i class="fa-solid fa-calendar-xmark"></i> <span class="nav_name">Due
+              Tickets</span> </a> <a href="#" class="nav_link"> </div>
+      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+      </a>
+    </nav>
+  </div>
+  <!--Container Main start-->
+  <div class="height-100 bg-light">
+    <!-- <h4>Main Components</h4> -->
+
+  </div>
+  <div class="form_form1">
+
+    <div class="circle1">
+
+    </div>
+    <div class="circle2">
+
+    </div>
+      <div class="fname">
+        <!-- <p class="fname_name">First Name</p> -->
+        <input type="text" class="fname_input" placeholder="User Name">
+      </div>
+  
+      <div class="mobile">
+        <!-- <p class="mobile_num">Mobile</p> -->
+        <input type="text" class="mobile_input" placeholder="Mobile No.">
+      </div>
+  
+      <div class="open">
+        <!-- <p class="open_name">Open</p> -->
+        <select name="Open" id="" class="open_input" aria-placeholder="Open">
+          <option value="">Open</option>
+          <option value="">Close</option>
+        </select>
+      </div>
+  
+      <div class="status1">
+        <!-- <p class="status1_name">Status</p> -->
+        <select name="Status" id="" class="status1_input" aria-placeholder="Status">
+          <option value="" class="option1st">Status</option>
+          <option value="">Low</option>
+          <option value="">Close</option>
+        </select>
+      </div>
+  
+  
+      <div class="priority1">
+        <!-- <p class="priority1_name">Priority</p> -->
+        <select name="" id="" class="priority1_input">
+          <option value="">Priority</option>
+          <option value="">Low</option>
+          <option value="">Close</option>
+        </select>
+      </div>
+  
+  
+      <div class="impact">
+        <!-- <p class="impact_name">Impact</p> -->
+        <select name="" id="" class="impact_input">
+          <option value="">Impact</option>
+          <option value="">Low</option>
+          <option value="">Close</option>
+        </select>
+      </div>
+  
+      <div class="assigned">
+        <!-- <p class="assigned_name">Assigned To</p> -->
+        <select name="" id="" class="assigned_input">
+          <option value="">Assigned To</option>
+          <option value="">Admin</option>
+          <option value="">Close</option>
+        </select>
+      </div>
+  
+      
+  
+      <div class="file"> 
+        
+          <div class="screenshots_div">
+            <label for="input" class="screenshots">Screenshots</label>
+          </div>
+    
+          <div class="files">
+            <input type="file" name="file" id="" class="my_file">
+          </div>
+          <button class="button-30" role="button">Continue</button>
+        
+      </div>
+
+      <div class="description2">
+        <!-- <p class="des2_name">Description</p> -->
+        <textarea name="" id="" class="form_description" cols="30" rows="10" placeholder="Description"></textarea>
+      </div>
+      
+   
+  </div>
+  
+
+  <!--Container Main end-->
+  <%= render "index_layout" %>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+          const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId),
+            bodypd = document.getElementById(bodyId),
+            headerpd = document.getElementById(headerId)
+
+          // Validate that all variables exist
+          if (toggle && nav && bodypd && headerpd) {
+            toggle.addEventListener('click', () => {
+              // show navbar
+              nav.classList.toggle('show')
+              // change icon
+              toggle.classList.toggle('bx-x')
+              // add padding to body
+              bodypd.classList.toggle('body-pd')
+              // add padding to header
+              headerpd.classList.toggle('body-pd')
+            })
+          }
+        }
+
+        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+        /*===== LINK ACTIVE =====*/
+        const linkColor = document.querySelectorAll('.nav_link')
+
+        function colorLink() {
+          if (linkColor) {
+            linkColor.forEach(l => l.classList.remove('active'))
+            this.classList.add('active')
+          }
+        }
+        linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+        // Your code to run since DOM is loaded and ready
+      });
+    </script>
+
+
+
+
+
+

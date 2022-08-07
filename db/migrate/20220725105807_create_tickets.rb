@@ -6,10 +6,11 @@ class CreateTickets < ActiveRecord::Migration[6.1]
       t.string :status
       t.string :impact
       t.string :urgency
-      t.string :priority
+      t.integer :priority
       t.string :description
+      t.string :agent
       t.references :user, null: false, foreign_key: true
-
+      t.references :priority, null: false, foreign_key: true
       t.timestamps
     end
   end

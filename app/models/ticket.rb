@@ -1,7 +1,7 @@
 class Ticket < ApplicationRecord
-  belongs_to :user
-  validates :subject, presence: true
-  validates :status, presence: true
-  validates :priority, presence: true
-  validates :description, presence: true
+    belongs_to :user
+    belongs_to :priority
+    belongs_to :status
+    has_many_attached :screenshots
+    has_many :notes
 end

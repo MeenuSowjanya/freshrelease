@@ -1,134 +1,204 @@
-  <%= content_for :title, "Zupp | Tickets" %>
-  <div class="sidebar active">
-    <div class="logo-details">
-      <img class='bx bxl-c-plus-plus' style="height: 30px; width: 40px" src="<%=asset_path('logo.png')%>">
-      <span class="logo_name">Dashboard</span>
-    </div>
-      <ul class="nav-links">
-        <li>
-          <a href="#" class="active">
-            <i class="fa-solid fa-ticket"></i>
-            <span class="links_name">Tickets</span>
-          </a>
-        </li>
-        
-        <li class="log_out">
-         
-          <%= link_to destroy_session_path, method: :delete do %>
-            <i class="bx bx-log-out"></i>
-            <span class="links_name">Log out</span>
-          <% end %>
+<body id="body-pd">
+  <header class="header" id="header">
 
-          </a>
-        </li>
-      </ul>
-  </div>
-  <section class="home-section">
-    <nav>
-      <div class="sidebar-button">
-        <i class='bx bx-menu sidebarBtn'></i>
-      </div>
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <i class='bx bx-search' ></i>
-      </div>
-      <div class="profile-details">
-        <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name"><%= @user.first_name %></span>
-        <i class="fa-solid fa-circle-user"></i>
-      </div>
+    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    <p class="ticket_title">My tickets</p>
+    <a href="">
+      <%= image_tag "magnifier.png" , class: "search_icon" %>
+    </a>
+    <input type="text" class="indexlayout_search">
+    <%= image_tag "add.png" , class: "plus_icon" %>
+      <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+  </header>
+  <div class="l-navbar" id="nav-bar">
+
+    <nav class="nav">
+      <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+            class="nav_logo-name">Zupp</span> </a>
+        <div class="nav_list"> <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
+              class="nav_name">Dashboard</span> </a> <a href="#" class="nav_link"> <i
+              class="fa-solid fa-triangle-exclamation"></i> <span class="nav_name">High Priority Tickets</span> </a> <a
+            href="#" class="nav_link"> <i class="fa-solid fa-ticket"></i> <span class="nav_name">Open Tickets</span>
+          </a> <a href="#" class="nav_link"> <i class="fa-solid fa-calendar-xmark"></i> <span class="nav_name">Due
+              Tickets</span> </a> <a href="#" class="nav_link"> </div>
+      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+      </a>
     </nav>
+  </div>
+  <!--Container Main start-->
+  <div class="height-100 bg-light">
+    <!-- <h4>Main Components</h4> -->
 
-    <div class="home-content">
-      <div class="overview-boxes">
-         <div class="tickets_nav">
-           <div class="select">
-             <span class="select_all"><%= check_box_tag "Select all", class: "check_box" %></span>
-             <span class="select_all_text"><div class="alltext">Select all</div></span>
-           </div>
-          </div>
-          <div class="tickets_nav_sort">
-           <div class="sort">
-              <span class="sort_all"><i class="fa-solid fa-sort"></i></span>
-              <span class="sort_all_text">Sort by</span>
-              <%= form_with(url: "/sort", method: "post", class: "AddTicket") do%>
-              <%= select_tag 'sort', options_for_select(['Date created','Priority','Status'],'Date created'),onchange: "this.form.submit()"%>
-              <% end %>
-              puts <%= @sort %>
-           </div>
-         </div>
-         <% @tickets.each do |ticket| %>
-         <div class="tickets">
-            <div class="background">
-              <img src="<%= asset_path('ticket_background.png') %>" class="background_image">
-            </div>
-            <div class="select_button"><p class="select_text">
-            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
-            Select all
-           <div id="dvPassport" style="display: none">
-             Passport Number:
-           <input type="text" id="txtPassportNumber" />
-           </div>
-          </label>
-        <div id="dvPassport" style="display: none">
-            Passport Number:
-            <input type="text" id="txtPassportNumber" />
-        </div></p></div>
-            <div class="ticket_content">
-            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
-              <div class="subject_title">SUBJECT</div><div class="subject"><%= ticket.subject %></div>
-            </div>
-            <div class="ticket_content">
-              <div class="requester_title">REQUESTER</div><div class="requester"><%= @user.first_name %></div>
-            </div>
-            <div class="ticket_content">
-              <div class="assigned_to_title">ASSIGNED TO</div><div class="assigned_to">
-              <%= form_with(url: "/tickets/#{ticket.id}", method: "put", class: "AddTicket") do%>
-               <% if @user.role == "admin" %>
-                <select name="agent" onchange="this.form.submit()">
-               <% else %>
-                <select name="agent" onchange="this.form.submit()" disabled>
-               <% end %>
-                  <% @user_org.each do |org| %>
-                       <optgroup label = "<%= org.org_name %>" class="opt_group">
-                         <% org.agents.all.each do |agent| %>
-                          <% if ticket.agent == agent.user.first_name %>
-                          <option value = "<%= agent.user.first_name %>" class="opt" selected="selected" ><%= agent.user.first_name %></option>
-                          <% else %>
-                          <option value = "<%= agent.user.first_name %>" class="opt"><%= agent.user.first_name %></option>
-                          <% end %>
-                         </optgroup>
-                       <% end %>
-                    <% end %>
-                </select>
-              </div>
-            </div>
-            <div class="ticket_content">
-            <div class="status_title">STATUS</div><div class="status">
-            <%= ticket.status %>
-            <% if @user.role == "admin" %>
-            <%= select_tag 'status', options_for_select(['Open','Pending','Resolved','Closed'],ticket.status),onchange: "this.form.submit()"%>
-            <% else %>
-            <%= select_tag 'status', options_for_select(['Open','Pending','Resolved','Closed'],ticket.status),onchange: "this.form.submit()",disabled: true %>
-            <% end %>
-              </div>
-            </div>
-            <div class="ticket_content">
-            <div class="assigned_to_title">PRIORITY</div><div class="assigned_to">
-            <% if @user.role == "admin" %>
-            <%= select_tag 'priority', options_for_select(['Low','Medium','High','Urgent'],ticket.priority),onchange: "this.form.submit()"%>
-            <% else %>
-            <%= select_tag 'priority', options_for_select(['Low','Medium','High','Urgent'],ticket.priority),onchange: "this.form.submit()",disabled: true %>
-            <% end %>
-            </div>
-          </div>
-         </div>
-        
-       </div>
-    <% end %>
-    <% end %>
+  </div>
+  <div class="div2">
+    <input type="checkbox" name="Select All" id="" class="select_all">
+    <p class="select">Select All</p>
+    <p class="sortby">SortBy</p>
+    <div class="dropdown">
+
+      <button class="dropbtn"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+      <div class="dropdown-content">
+        <a href="#">ODD</a>
+        <a href="#">EVEN</a>
+        <a href="#">Normal</a>
+      </div>
     </div>
-    <%= javascript_include_tag 'user' %>
+    <div class="dropdown1">
+      <button class="dropbtn1"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+      <div class="dropdown-content">
+        <a href="#">1</a>
+        <a href="#">EVEN</a>
+        <a href="#">Normal</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="div3">
+    <p class="select">You Have Permission To Edit</p>
+  </div>
+  <div class="div5">
+    <button class="button-29" role="button">Pick Up</button>
+    <div class="top_div">
+      <p class="assign_to">Assign To :</p>
+      <select name="admin" class="admin_to">
+        <option value="notning">---</option>
+        <option value="Admin">Admin</option>
+        <option value="Student">Student</option>
+        <option value="Coach">Coach</option>
+      </select>
+    </div>
+    <button class="button-29" role="button">Delete All</button>
+  </div>
+  <div class="circle">
+    <input type="checkbox" name="" id="" class="radio1">
+  </div>
 
 
 
+  <div class="div4">
+
+    <div class="ticket_1st_line">
+      <div class="ticket_1st_line_subject">
+        <span class="subject_div" id="subject_div">
+          <span>
+            <input type="text" class="subject_edit" placeholder="Edit Here">
+          </span>
+          <span>
+            <button class="button-79" role="button">Edit</button>
+          </span>
+        </span>
+        <span>
+         <a  onclck="editsubject()"> <%= image_tag "pencil.png" , class: "pencil"  %></a>
+        </span>
+        <p class="subject">Subjet</p>:
+        <span class="subject-holder">
+          <p class="subject1">Logitech wireless mouse</p> <span class="dots">...</span>
+        </span>
+      </div>
+      <div class="ticket_1st_line_requested">
+        <p class="reg">Requester</p>:
+        <p class="reg1">Meenu</p>
+      </div>
+      <div class="ticket_1st_line_assign">
+        <p class="assign">Assigned To</p>:
+        <select name="admin" class="admin">
+          <option value="notning">---</option>
+          <option value="Admin">Admin</option>
+          <option value="Student">Student</option>
+          <option value="Coach">Coach</option>
+        </select>
+      </div>
+    </div>
+    <!-- <div>
+      <%= image_tag "tag.png" , class: "tag_icon" %>
+    </div> -->
+    <div class="ticket_2nd_line">
+      <div class="ticket_2nd_line_status">
+        <p class="status">Status </p>:
+        <select name="admin" class="option1">
+          <option value="notning">---</option>
+          <option value="Admin">Open</option>
+          <option value="Student">Close</option>
+          <option value="Coach">Coach</option>
+        </select>
+      </div>
+      <div class="ticket_2nd_line_priority">
+
+        <p class="priority">Priority </p>:
+        <select name="admin" class="option2">
+          <option value="notning">---</option>
+          <option value="Admin">Open</option>
+          <option value="Student">Close</option>
+          <option value="Coach">Coach</option>
+        </select>
+      </div>
+      <div class="ticket_2nd_line_desc">
+
+        <p class="desc">Description </p>:
+        <p class="desc_text">Logitech</p>
+      </div>
+    </div>
+
+    <div class="mini_div">
+      <div class="subject :">
+        
+      </div>
+    </div>
+    <!-- <%= image_tag "tag.png" , class: "tag" %> -->
+
+  </div>
+
+
+
+  <!--Container Main end-->
+  <%= render "index_layout" %>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+          const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId),
+            bodypd = document.getElementById(bodyId),
+            headerpd = document.getElementById(headerId)
+
+          // Validate that all variables exist
+          if (toggle && nav && bodypd && headerpd) {
+            toggle.addEventListener('click', () => {
+              // show navbar
+              nav.classList.toggle('show')
+              // change icon
+              toggle.classList.toggle('bx-x')
+              // add padding to body
+              bodypd.classList.toggle('body-pd')
+              // add padding to header
+              headerpd.classList.toggle('body-pd')
+            })
+          }
+        }
+
+        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+        /*===== LINK ACTIVE =====*/
+        const linkColor = document.querySelectorAll('.nav_link')
+
+        function colorLink() {
+          if (linkColor) {
+            linkColor.forEach(l => l.classList.remove('active'))
+            this.classList.add('active')
+          }
+        }
+        linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+        // Your code to run since DOM is loaded and ready
+      });
+
+
+      function editsubject(){
+            document.getElementById("subject_div").style.display("block");
+      }
+
+
+    </script>

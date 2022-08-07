@@ -1,0 +1,109 @@
+<%= content_for :title, "Zupp | Ticket -> #{@id}" %>
+<%@pro = Priority.find(@ticket.priority_id)%>
+<%@sta = Status.find(@ticket.status_id)%>
+<% @requester = User.find(@ticket.user_id) %>
+<%= @ticket.subject %><br>
+<%= @requester.first_name %><br>
+<%= @ticket.description %><br><br><br>
+<% @notes.each do |note| %>
+  <% @count += 1 %>
+  <%= note.note %><i class="fa-solid fa-pen" id="toggle_edit_text" onclick="showHideForm('edit_subject<%= @count %>')" ></i>
+  <span><%= link_to "/notes/#{note.id}",method: :delete,data: {confirm: 'Are you sure?'}  do %>
+    <i class="fa-solid fa-trash-can"></i>
+   <% end %>
+   </span>
+   <% if flash[:error] %>
+    <p class="signin-Flash-error">
+   <%= flash[:error] %>
+    </p>
+   <% end %>
+  <div id = "edit_subject<%= @count %>" style="display: none">
+  <%= form_with(url: "/notes/#{note.id}", method: "put", class: "AddTicket") do |form|%>
+    <%= form.text_field "note", placeholder: note.note,value: note.note,autofocus: "autofocus"  %>
+    <%= form.submit "Continue"%>
+  <% end %>
+ </div>
+  
+  <br>
+<% end %>
+
+<% if @notes.last != nil %>
+<%= (User.find(@notes.last.user_id)).first_name %> added the note <%= @notes.last.created_at.strftime("%d-%m-%Y, %H:%M") %>
+<% end %>
+
+<%= button_tag 'Add note', type: 'button',onclick: "show_add_note_form(1)",id: "add_note_button" %>
+
+<div id="add_note_form" style="display:none;">
+<%= form_with(url: "/notes", method: "post") do|form| %>
+    <%= form.text_area "note[note]",placeholder: "Type your note here", autofocus: "autofocus"  %>
+    <%= form.submit "Add note" %>
+    <%= button_tag "Cancel", type: :button, onclick: "show_add_note_form(0)" %>
+<% end %>
+</div>
+
+<div>
+<%= form_with(url: "/notes/tickets/#{@ticket.id}", method: "put", class: "AddTicket") do |form|%>
+              
+STATUS :
+<% if @user.role == "admin" %>
+  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,@ticket.status_id]),onchange: "this.form.submit()"%>
+<% else %>
+  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,@ticket.status_id]),onchange: "this.form.submit()",disabled: true%>
+<% end %>
+<br>
+PRIORITY :
+<% if @user.role == "admin" %>
+  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,@ticket.priority_id]),onchange: "this.form.submit()"%>
+<% else %>
+  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,@ticket.priority_id]),onchange: "this.form.submit()",disabled: true %>
+<% end %>
+<br>
+                 AGENT : 
+               <% if @user.role == "admin" %>
+                <select name="agent" onchange="this.form.submit()">
+               <% else %>
+                <select name="agent" onchange="this.form.submit()" disabled>
+               <% end %>
+                  <% @user_org.each do |org| %>
+                      <optgroup label = "<%= org.org_name %>">
+                          <% org.agents.all.each do |agent| %>
+                            <% if @ticket.agent == agent.user.first_name %>
+                              <option value = "<%= agent.user.first_name %>" selected="selected" ><%= agent.user.first_name %></option>
+                            <% else %>
+                              <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
+                            <% end %>
+                      </optgroup>
+                          <% end %>
+                  <% end %>
+                </select>
+            <br>
+              
+              
+</div>
+<% end %>
+
+<br>
+
+<%= button_tag 'Add canned response', type: 'button',onclick: "show_add_canned_form(1)",id: "add_canned_button" %>
+
+<div id="add_canned_form" style="display:none;">
+<% @canned_responses.each do |canned_response| %>
+<%= form_with(url: "/notes/response/#{canned_response.id}", method: "post") do|form| %>
+    <%= canned_response.subject %>
+    <%= canned_response.description %>
+    <%= form.submit "Add response" %>
+    <%= button_tag "Cancel", type: :button, onclick: "show_add_note_form(0)" %>
+<% end %>
+
+<br>
+<% end %>
+</div>
+<%= button_to "Delete ticket", "/tickets/#{@ticket.id}",method: :delete %>
+<%= button_to "Close ticket", "/notes/tickets/close/#{@ticket.id}",method: :put %>
+
+
+
+
+
+<%= javascript_include_tag 'ticket' %>
+<%= javascript_include_tag 'note' %>
