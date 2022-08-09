@@ -1,30 +1,68 @@
-<div class="tickets">
-            <br><br>
-            <%@pro = Priority.find(ticket.priority_id)%>
-            <%@sta = Status.find(ticket.status_id)%>
-            <%@requester = User.find(ticket.user_id)%>
-            
-            <%= form_with(url: "/tickets/update/#{ticket.id}", method: "post") do |form| %>
-            
-            <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: (array_returned.include? ticket.id) ?true:false}, 1, 0 %>
-            Select
+<%= javascript_include_tag 'ticket' %>
+<%@pro = Priority.find(ticket.priority_id)%>
+<%@sta = Status.find(ticket.status_id)%>
+<%@requester = User.find(ticket.user_id)%>
+<% if ticket.notes.last != nil %>
+<%@note = ticket.notes.last %>
+<% @user_note = User.find(@note.user_id)%>
+<% end %>
+<div class="circle">
+    <%= form_with(url: "/tickets/update/#{ticket.id}", method: "post") do |form| %>
+            <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: (array_returned.include? ticket.id) ?true:false,class: "radio1"}, 1, 0 %>
+    <% end %>
+</div>
+  <% if array_returned.length == 0 %>
+    <div class="div4" style="top: -522px;">
+  <% else %>
+  <div class="div4" style="top: -522px;">
+  <% end %>
+
+
+  <%= form_with(url: "/tickets/#{ticket.id}", method: "put") do |form|%>
+    <div class="ticket_1st_line">
+      <div class="ticket_1st_line_subject">
+        <span class="subject_div" id = "edit_subject<%= count %>" style="display: none;">
+          <span>
+          <%= form.text_field "subject", placeholder: ticket.subject,value: ticket.subject,autofocus: "autofocus",class: "subject_edit"  %>
+          </span>
+          <span>
+           <%= form.submit "Edit", class: "button-79"%>
+          </span>
+        </span>
+        <span style="color: black;">
+        <a  onclick="showHideForm('edit_subject<%= count %>')"> <%= image_tag "pencil.png" , class: "pencil"  %></a>
+        </span>
+        <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+        <p class="subject">Subject :</p>
+        </a>
+        <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+        <span class="subject-holder">
+          <% @subject_string = (ticket.subject).split %>
+          <% @subject_array = [] %>
+          <% if @subject_string.length >= 3 %>
+              <% for i in 0...2 %>
+                 <%@subject_array.push(@subject_string[i])%>
+              <% end %>
+          <% else %>
+          <% for i in 0...@subject_string.length %>
+            <%@subject_array.push(@subject_string[i])%>
             <% end %>
-            <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none; color:black;">SUBJECT : <%= ticket.subject %></a>
-            <%= form_with(url: "/tickets/#{ticket.id}", method: "put", class: "AddTicket") do |form|%>
-              <span><i class="fa-solid fa-pen" id="toggle_edit_text" onclick="showHideForm('edit_subject<%= count %>')" ></i> </span>
-                 <div id = "edit_subject<%= count %>" style="display: none">
-                    <%= form.text_field "subject", placeholder: ticket.subject,value: ticket.subject,autofocus: "autofocus"  %>
-                    <%= form.submit "Continue"%>
-                 </div>
-                
-            <br>
-                 REQUESTER : <%= @requester.first_name %>
-            <br>
-                 ASSIGNED TO : 
-               <% if @user.role == "admin" %>
-                <select name="agent" onchange="this.form.submit()">
+          <% end %>
+          <p class="subject1"><%= @subject_array.join(" ") %></p> <span class="dots">...</span>
+        </span>
+        </a>
+      </div>
+      <div class="ticket_1st_line_requested">
+        <p class="reg">Requester</p>:
+        <p class="reg1"><%= @requester.first_name %></p>
+      </div>
+      <div class="ticket_1st_line_assign">
+        <p class="assign">Assigned To</p>:
+        
+        <% if @user.role == "admin" %>
+                <select name="agent" onchange="this.form.submit()" class="admin">
                <% else %>
-                <select name="agent" onchange="this.form.submit()" disabled>
+                <select name="agent" onchange="this.form.submit()" disabled class="admin">
                <% end %>
                   <% @user_org.each do |org| %>
                       <optgroup label = "<%= org.org_name %>">
@@ -37,30 +75,72 @@
                       </optgroup>
                           <% end %>
                   <% end %>
-                </select>
-            <br>
-              STATUS :
-                <% if @user.role == "admin" %>
-                  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()"%>
-                <% else %>
-                  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()",disabled: true%>
-                <% end %>
-            <br>
-              PRIORITY :
-                <% if @user.role == "admin" %>
-                  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),onchange: "this.form.submit()"%>
-                <% else %>
-                  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),onchange: "this.form.submit()",disabled: true %>
-                <% end %>
-            <br>
-              DESCRIPTION : <%= ticket.description %> <i class="fa-solid fa-pen" id="toggle_edit_text" onclick="showHideForm('edit_description<%= count %>')" ></i>
-                <div id = "edit_description<%= count %>" style="display: none">
-                  <%= form.text_field "description", placeholder: ticket.description,value: ticket.description,autofocus: "autofocus"  %>
-                  <%= form.submit "Continue"%>
-                <br>
-               
-                
-                </div>
-                </div>
-                
-                <% end %>
+          </select>
+        
+      </div>
+    </div>
+    <div class="ticket_2nd_line">
+      <div class="ticket_2nd_line_status">
+        <p class="status">Status :</p>
+        <% if @user.role == "admin" %>
+                  
+                  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),{onchange: "this.form.submit()",class: "option1"}%>
+        <% else %>
+                  <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),{onchange: "this.form.submit()",class: "option1",disabled: true}%>
+        <% end %>
+        
+      </div>
+      <div class="ticket_2nd_line_priority">
+
+        <p class="priority">Priority </p>:
+
+        <% if @user.role == "admin" %>
+                  
+                  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),{onchange: "this.form.submit()",class: "option2"}%>
+        <% else %>
+                  <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),{onchange: "this.form.submit()",class: "option2",disabled: true}%>
+        <% end %>
+      </div>
+      <div class="ticket_2nd_line_desc">
+
+        <p class="desc">Description </p>:
+        <% @desc_string = (ticket.description).split %>
+          <% @desc_array = [] %>
+          <% if @desc_string.length >= 3 %>
+              <% for i in 0...1 %>
+                 <%@desc_array.push(@desc_string[i])%>
+              <% end %>
+          <% else %>
+          <% for i in 0...@desc_string.length %>
+            <%@desc_array.push(@desc_string[i])%>
+            <% end %>
+          <% end %>
+          <p class="desc_text"><%= @desc_array.join(" ") %></p> <span class="dots1">...</span>
+      </div>
+    </div>
+
+    <% if @note != nil%>
+
+    <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+    <div class="mini_div" id="mini_div">
+      <div class="subject">
+           <%= @user_note.first_name %> added a public note
+           <%= @note.created_at.strftime('%a , %d %b %Y at %I:%M %p')  %>
+           <%= @note.note %>
+           <br>
+           <% @date = ((Date.today - Date.parse(@note.created_at.strftime("%F"))).to_s).split("")[0] %>
+           
+           <%= date(@date)%>
+      </div>
+    </div>
+    </a>
+    </div>
+    <% end %>
+
+    
+    
+  <% end %>
+  </div>
+ 
+
+ 

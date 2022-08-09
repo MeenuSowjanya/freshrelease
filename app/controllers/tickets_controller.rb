@@ -1,30 +1,43 @@
 class TicketsController < ApplicationController
 
   before_action :ensure_user_logged_in
-  @@sort = "Date created"
-  @@order = "Ascending"
-  @@ids_array = []
+  @@sort,@@order,@@ids_array,@@length,@@searched,@@searched_array,@@filter,@@filtered,@@selected_all,@@all,@@priority,@@open,@@resolved = "Date created","Ascending",[],nil,false,[],"all",false,false,true,false,false,false
+ 
+
   def index
      current_user
      @count = 0
-     @length = false
      @sort_order = sort_by
      @sorting_order = order_by
-     if current_user.role == "admin"
-      @tickets_list = Ticket.all
-      @tickets = tickets_sort(@tickets_list,@sort_order,@sorting_order)
-     else
-      @tickets_list = current_user.tickets
-      @tickets = tickets_sort(@tickets_list,@sort_order,@sorting_order)
-     end
+     @filter = filter_returner
+     @filtered = filtered_returner
+     @selected_all = selected_all_returner
+     @tickets_list = tickets_list_returner(searched_returner)
      @user = User.find(current_user.id)
      @user_org = Organisation.all
      @array_returned = update_array_return
+     if @filtered == true
+          @filtered_array = filtered_tickets(@tickets_list,@filter)
+          @title = title(@filter)
+     else
+        @filtered_array = @tickets_list
+        @title = "All tickets"
+     end 
+     @tickets = tickets_sort(@filtered_array,@sort_order,@sorting_order)
+    
      if @array_returned.length == @tickets.length
        @length = true
      else
        @length = false
      end
+     
+     @@searched = false
+     @@searched_array = []
+     @@length = false
+     @@filtered = false
+     @@filter = "all"
+     @@selected_all = false
+     
   end
   
   def new
@@ -44,7 +57,7 @@ class TicketsController < ApplicationController
       puts ticket
       if ticket.save
         redirect_to tickets_path
-      elsec
+      else
         # flash[:error] = ticket.errors.full_messages.first 
         # redirect_to tickets_path
         render plain: "False"
@@ -54,7 +67,7 @@ class TicketsController < ApplicationController
   def update 
       id = params[:id]
       ticket = Ticket.find(id)
-      ticket.update(subject: params[:subject], agent: params[:agent], status_id: params[:status_id], priority_id: params[:priority_id], description: params[:description])
+      ticket.update(subject: params[:subject], agent: params[:agent], status_id: params[:status_id], priority_id: params[:priority_id])
     if ticket.save
       redirect_to tickets_path
     else
@@ -71,6 +84,32 @@ class TicketsController < ApplicationController
       redirect_to tickets_path
   end
 
+  def title(filter)
+    if filter == "all"
+      return "All tickets"
+    elsif filter == "priority"
+      return "High priority tickets"
+    elsif filter == "open"
+      return "Open tickets"
+    elsif filter == "resolved"
+      return "Resolved tickets"
+    end
+  end
+
+  def bulk_delete
+    current_user
+    update_array_return.each do |id|
+      puts "-------------"
+      puts id
+      ticket = Ticket.find(id)
+      ticket.destroy
+      ticket.save
+    end
+    @@ids_array=[]
+    
+    redirect_to tickets_path
+  end
+
   def delete_array
     @@ids_array = []
     render plain: "Success"
@@ -80,6 +119,63 @@ class TicketsController < ApplicationController
     @@sort = params[:sort]
     @@order = params[:order]
     redirect_to tickets_path
+  end
+
+  def tickets_filter
+    @@filter = params[:option]
+    @@filtered = true
+    redirect_to tickets_path
+  end
+
+  def filter_returner
+    return @@filter
+  end
+
+  def filtered_returner
+    return @@filtered
+  end
+
+  def length_returner
+     return @@length
+  end
+
+  def searched_returner
+    return @@searched
+  end
+
+  def searched_array_returner
+    return @@searched_array
+  end
+
+  def tickets_list_returner(searched_returner_value)
+    if searched_returner_value == false
+      if current_user.role == "admin"
+         @tickets_list = Ticket.all
+     else
+         @tickets_list = current_user.tickets
+     end
+      
+    else
+     @tickets_list = searched_array_returner
+    end
+  end
+
+
+  def filtered_tickets(tickets,filter)
+    if filter == "all"
+      @filtered_array = tickets
+      @all = true
+    elsif filter == "priority"
+      @filtered_array = tickets.where(priority_id: 3)
+      @priority = true
+    elsif filter == "open"
+      @filtered_array = tickets.where(status_id: 1)
+      @open = true
+    elsif filter == "resolved"
+      @filtered_array = tickets.where(status_id: 4)
+      @resolved = true
+    end
+    return @filtered_array
   end
 
   def option
@@ -117,13 +213,13 @@ class TicketsController < ApplicationController
     end
     @search_text = params[:search]
     @tickets_search = @tickets_list.where("subject LIKE ?", "%" + @search_text + "%").or(Ticket.where("description LIKE ?", "%" + params[:search] + "%"))
-    @user = User.find(current_user.id)
-    @user_org = Organisation.all
-    @array_returned = update_array_return
-    render "search"
-  end
-  def array
-  
+    @@searched_array = @tickets_search
+    @@searched = true
+    # @user = User.find(current_user.id)
+    # @user_org = Organisation.all
+    # @array_returned = update_array_return
+    # render "search"
+    redirect_to tickets_path
   end
   def select_all
     current_user
@@ -141,8 +237,14 @@ class TicketsController < ApplicationController
         @@ids_array.delete(ticket.id)
         end
      end
+     @@selected_all = true
      redirect_to tickets_path
   end
+
+  def selected_all_returner
+    return @@selected_all
+  end
+
   def update_array
    if params[:selected][:result] == "1"
     @@ids_array << (params[:id]).to_i

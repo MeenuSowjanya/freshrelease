@@ -1,8 +1,0 @@
-<%= content_for :title, "Zupp | Tickets -> #{@search_text}" %>
-<h1>Search results</h1>
-<%= @tickets_search.length %> matching results found
-<% @tickets_search.each do |ticket| %>
-    <% @count+=1 %>
-    <%= render "index_layout",title: "search", ticket: ticket, count: @count,array_returned: @array_returned %>
-<% end %>
-<%= javascript_include_tag 'ticket' %>

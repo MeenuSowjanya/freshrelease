@@ -53,6 +53,7 @@ body {
     -webkit-box-shadow: 2px 2px 23px -7px rgba(38, 38, 38, 1);
     -moz-box-shadow: 2px 2px 23px -7px rgba(38, 38, 38, 1);
     box-shadow: 2px 2px 23px -7px rgba(38, 38, 38, 1);
+    top: 20%;
 
 }
 
@@ -229,6 +230,13 @@ a {
     width: 50%;
     font-family: 'Varela Round', sans-serif;
 }
+.select_div{
+    margin-right: 600px;
+    // background-color: yellow;
+    position: relative;
+    width: 50%;
+    font-family: 'Varela Round', sans-serif;
+}
 .sortby{
     // background-color: yellow;
     z-index: 999;
@@ -245,7 +253,9 @@ a {
     width: 200%;
     border: none;
     // overflow: hidden;
+    top: 10px;
     left: -62px;
+
   }
   .dropbtn1 {
     position: relative;
@@ -256,7 +266,8 @@ a {
     width: 200%;
     border: none;
     // overflow: hidden;
-    left: -38px;
+    left: -18px;
+    top: -10px;
   }
   
   .dropdown {
@@ -273,9 +284,11 @@ a {
     width: 260px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 100;
+    left: -30px;
+    top: 30px;
   }
   
-  .dropdown-content a {
+  .dropdown-content select {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -283,25 +296,28 @@ a {
     z-index: 999;
   }
   
-  .dropdown-content a:hover {background-color: #ddd;}
+  .dropdown-content select:hover {background-color: #ddd;}
   
   .dropdown:hover .dropdown-content {display: block;}
 
+  .dropdown1:hover .dropdown-content1 {display: block;}
   .dropdown1 {
     position: relative;
     display: inline-block;
   }
   
-  .dropdown-content {
+  .dropdown-content1 {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     width: 260px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 999;
+    left: -30px;
+    top: 12px;
   }
   
-  .dropdown-content a {
+  .dropdown-content1 select {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -309,7 +325,7 @@ a {
     z-index: 999;
   }
   
-  .dropdown-content a:hover {background-color: #ddd;}
+  .dropdown-content1 select:hover {background-color: #ddd;}
   
   .dropdown1:hover .dropdown-content {display: block;}
 //   .dropdown:hover .dropbtn {background-color: #3e8e41;}
@@ -319,7 +335,7 @@ a {
 }
 
 .div3 {
-    width: 88%;
+    width: 138%;
     position: relative;
     height: 38px;
     top: -632px;
@@ -336,10 +352,14 @@ a {
     // -moz-box-shadow: 10px 10px 29px -15px rgba(0, 0, 0, 0.75);
     // box-shadow: 10px 10px 29px -15px rgba(0, 0, 0, 0.75);
 }
+.div6{
+    background-color: green($color: #000000);
+    margin-top: -600px;
+}
 .div5 {
     width: 51%;
     position: relative;
-    visibility: hidden;
+    // visibility: hidden;
     height: 60px;
     top: -545px;
     left: 254px;
@@ -364,7 +384,7 @@ button{
     width: 88%;
     position: relative;
     height: 112px;
-    top: -622px;
+    // top: -422px;
     left: 62px;
     border: 6px solid black;
     display: flex;
@@ -374,15 +394,17 @@ button{
     justify-content: space-between;
     padding: 0 1rem;
     background-color: #f1f1f1;
-    transition: all 0.5s ease-in-out;
+    // transition: all 0.5s ease-in-out;
+    transition-delay: 5s;
     // z-index: var(--z-fixed);
-    // transition: .5s;
+    transition: .5s;
     -webkit-box-shadow: 10px 10px 29px -15px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 29px -15px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -15px rgba(0, 0, 0, 0.75);
 }
+
 .circle{
-    top: -548px;
+    top: -448px;
     height: 35px;
     width: 35px;
     border-radius: 50%;
@@ -404,6 +426,7 @@ button{
 .ticket_1st_line {
     position: absolute;
     left: 50px;
+    top: 20%;
     // background-color: #FF2E58;
     display: flex;
     // justify-content: space-between;
@@ -419,7 +442,7 @@ button{
     display: flex;
     position: relative;
     width: 300px;
-    top: 20px;
+    top: 16px;
     // background-color: #F7F6FB;
 }
 
@@ -427,19 +450,26 @@ button{
     display: flex;
     position: relative;
     width: 300px;
-    top: 20px;
+    top: 16px;
     // background-color: #F7F6FB;
+}
+.ticket_1st_line_requested select{
+    background-color: #000000;
 }
 
 .dots{
     position: relative;
     left: -14%;
 }
+.dots1{
+    position: relative;
+    left: 4%;  
+}
 .ticket_1st_line_assign {
     display: flex;
     position: relative;
     width: 300px;
-    top: 20px;
+    top: 16px;
     // background-color: #F7F6FB;
 }
 .ticket_2nd_line_status {
@@ -515,8 +545,10 @@ button{
     // top: -20px;
 }
 .admin{
+    z-index: 0;
     font-family: 'Varela Round', sans-serif;
     background-color: #f1f1f1;
+    cursor: pointer;
     // font-weight: bold;
     // position: relative;
     width: 90px;
@@ -524,7 +556,12 @@ button{
     // // left: -198px;
     border: none;
     font-size: 16px;
-    // top: -20px;
+    top: -2px;
+    position: relative;
+    left: -5px;
+    background-color: #f1f1f1;
+    border: none;
+    
 }
 .status{
     font-family: 'Varela Round', sans-serif;
@@ -548,7 +585,7 @@ button{
     width: 90px;
     background-color: #f1f1f1;
     // font-weight: bold;
-    margin-left: 10px;
+    margin-left: -10px;
     // // position: relative;
     // // left: -198px;
     border: none;
@@ -606,10 +643,10 @@ button{
     top: -4px;
 }
 .div4:hover .mini_div{
-    // visibility: visible;
-    opacity: 1;
-    // transition: 5s;
-    transition: opacity 0.3s ease-in-out;
+    visibility: visible;
+    // opacity: 1;
+    transition: 5s;
+    // transition: opacity 0.3s ease-in-out;
 
     transition-delay: 5s;
 }
@@ -668,10 +705,60 @@ button{
     box-shadow: #FF2E58 0 3px 7px inset;
     transform: translateY(2px);
   }
+  .button-27 {
+    align-items: center;
+    appearance: none;
+    background-color: #FF2E58;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    // font-family: "JetBrains Mono",monospace;
+    height: 34px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    left: 47%;
+    margin-top: -40px;
+  }
+  
+  .button-27:focus {
+    box-shadow: #FF2E58 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #FF2E58 0 -3px 0 inset;
+  }
+  
+  .button-27:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #FF2E58 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+  .button-27:active {
+    box-shadow: #FF2E58 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+  .assign_to_form{
+    left: -40%;
+  }
 .mini_div{
     background-color: white;
-    // visibility: hidden;
-    opacity: 0;
+    visibility: hidden;
+    // transition-delay: 5s;
+    // opacity: 0;
     height: 109px;
     -webkit-box-shadow: 0px 6px 11px 1px rgba(0, 0 ,0, 0.75);
     -moz-box-shadow: 0px 6px 11px 1px rgba(0, 0, 0, 0.75);
@@ -688,15 +775,48 @@ button{
     position: relative;
     left: -55px;
     font-weight: bold;
-    top: 8px;
+    top: 2px;
+    
 }
 
 .admin_to{
     position: relative;
-    left: 65px;
+    left: -125px;
     background-color: #f1f1f1;
     border: none;
-    top: -10px;
+    cursor: pointer;
+    font-size: 1rem;
+    top: 15px;
+    padding-left: 20px;
+    font-family: 'Varela Round', sans-serif;
+    position: relative;
+    font-weight: bold;
+    border-radius: 10px;
+    max-width: 699%;
+    width: 65%;
+    height: 56%;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.admin_to_ticket{
+    position: relative;
+    left: 10px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    top: -3px;
+    padding-left: 20px;
+    font-family: 'Varela Round', sans-serif;
+    position: relative;
+    font-weight: bold;
+    border-radius: 10px;
+    max-width: 699%;
+    width: 65%;
+    height: 56%;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .subject{
@@ -736,8 +856,6 @@ button{
     position: absolute;
     width: 486px;
     height: 47px;
-    display: block;
-    visibility: hidden;
     transition: all 0.3s ease-in-out;
     background-color: white;
     z-index: 5;
@@ -796,7 +914,7 @@ height: 480px;
     height: 20%;
     position: relative;
     top: 15%;
-    left: -8%;
+    left: -6%;
 }
 
 .fname_name{
@@ -852,16 +970,18 @@ height: 480px;
 }
 
 .mobile_input{
-    left: 403%;
+    cursor: pointer;
+    font-size: 1rem;
+    left: 402%;
     padding-left: 20px;
     font-family: 'Varela Round', sans-serif;
     position: relative;
-    font-size: 1rem;
     font-weight: bold;
     border-radius: 10px;
     top: 22%;
-    width: 362%;
-    /* max-width: 243%; */
+    max-width: 700%;
+    width: 642%;
+    /* width: 236%; */
     height: 46%;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -932,6 +1052,9 @@ height: 480px;
   .button-79:not(:disabled):active {
     transform: translateY(.125rem);
   }
+  .delete_all_form{
+    top: -6%;
+  }
   
 .open{
     height: 20%;
@@ -950,8 +1073,9 @@ height: 480px;
 }
 
 .open_input{
+    cursor: pointer;
     font-size: 1rem;
-    left: -492%;
+    left: -372%;
     padding-left: 20px;
     font-family: 'Varela Round', sans-serif;
     position: relative;
@@ -984,8 +1108,9 @@ height: 480px;
 }
 
 .status1_input{
+    cursor: pointer;
     font-size: 1rem;
-    left: 622%;
+    left: 642%;
     padding-left: 20px;
     font-family: 'Varela Round', sans-serif;
     position: relative;
@@ -1021,16 +1146,17 @@ height: 480px;
 }
 
 .priority1_input{
+    cursor: pointer;
     font-size: 1rem;
-    left: 1660%;
+    left: 1670%;
     padding-left: 20px;
     font-family: 'Varela Round', sans-serif;
     position: relative;
     font-weight: bold;
     border-radius: 10px;
     top: -9%;
-    max-width: 689%;
-    width: 438%;
+    max-width: 699%;
+    width: 512%;
     height: 46%;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -1054,6 +1180,7 @@ height: 480px;
 }
 
 .impact_input{
+    cursor: pointer;
     font-size: 1rem;
     left: 517%;
     padding-left: 20px;
@@ -1062,8 +1189,8 @@ height: 480px;
     font-weight: bold;
     border-radius: 10px;
     top: -9%;
-    max-width: 443%;
-    width: 448%;
+    max-width: 488%;
+    width: 488%;
     height: 46%;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -1092,8 +1219,9 @@ height: 480px;
 // }
 
 .assigned_input{
+    cursor: pointer;
     font-size: 1rem;
-    left: 1631%;
+    left: 1917%;
     padding-left: 20px;
     /* padding-top: 20px; */
     /* text-decoration: none; */
@@ -1102,9 +1230,9 @@ height: 480px;
     position: relative;
     font-weight: bold;
     border-radius: 10px;
-    top: -25%;
-    max-width: 642%;
-    width: 643%;
+    top: -35%;
+    max-width: 872%;
+    width: 863%;
     height: 46%;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -1115,7 +1243,7 @@ height: 480px;
     position: relative;
     top: 53%;
     /* width: 49px; */
-    left: -32%;
+    left: -20%;
 }
 
 .des2_name{
@@ -1124,7 +1252,11 @@ height: 480px;
     // background: skyblue;
     font-size: 1.1rem;
     font-weight: bold;
-    top: 10px;
+    top: 0px;
+}
+
+.form_description{
+    padding: 60px 20px 60px 20px;
 }
 
 // .des1_input{
@@ -1150,11 +1282,13 @@ height: 480px;
     position: relative;
     font-family: 'Varela Round', sans-serif;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    left: 5%;
+    top: -5%;
 }
 
 .description{
     font-size: 1rem;
-    left: -153%;
+    left: -140%;
     padding-left: 20px;
     padding-top: 20px;
     /* text-decoration: none; */
@@ -1164,7 +1298,7 @@ height: 480px;
     font-weight: bold;
     border-radius: 10px;
     top: -39%;
-    width: 723%;
+    width: 777%;
     height: 132%;
     border: none;
     
@@ -1181,10 +1315,10 @@ height: 480px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     // box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
     max-width: 415%;
-    width: 121%;
+    width: 147%;
     height: 9%;
     top: 67%;
-    left: -163%;
+    left: -148%;
     padding-top: 12px;
     padding-left: 20px;
     border-radius: 10px;
@@ -1192,21 +1326,23 @@ height: 480px;
 }
 
 .my_file{
+    cursor: pointer;
     position: relative;
     left: -227px;
 }
 .files{
+    cursor: pointer;
     font-family: 'Varela Round', sans-serif;
     position: relative;
     // background-color: #FF2E58;
     font-size: 15px;
     top: 60%;
-    left: -25%;
+    left: 6%;
 }
 
 .button-30 {
-    top: 47%;
-    left: 86%;
+    top: 72%;
+    left: -25%;
     align-items: center;
     appearance: none;
     background-color: #FF2E58;

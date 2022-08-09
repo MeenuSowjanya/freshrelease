@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   resources :tickets
   resources :notes
   post "/sort", to: "tickets#sort"
+  post "/tickets/filter/:option", to: "tickets#tickets_filter"
   post "/tickets/update/:id", to: "tickets#update_array"
   get "/tickets/update/delete/delete_array", to: "tickets#delete_array"
+  delete "/delete/bulk", to: "tickets#bulk_delete"
+  delete "/tickets/select/bulk/assigned_to", to: "tickets#bulk_delete"
   put "/tickets/select/bulk/:option", to: "tickets#option"
   post "/tickets/update/all/select", to: "tickets#select_all"
   put "/notes/tickets/:id", to: "notes#update_ticket"
