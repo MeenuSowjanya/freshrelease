@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Ticket < ApplicationRecord
-    belongs_to :user
-    belongs_to :priority
-    belongs_to :status
-    has_many_attached :screenshots
-    has_many :notes
+  belongs_to :user
+  belongs_to :priority
+  belongs_to :status
+  has_many_attached :screenshots
+  has_many :notes
 end

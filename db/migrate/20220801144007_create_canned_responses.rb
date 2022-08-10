@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCannedResponses < ActiveRecord::Migration[6.1]
   def change
     create_table :canned_responses do |t|
