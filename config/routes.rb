@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users 
   resources :tickets
   resources :notes
+  get "/ticket", to: "tickets#ticket"
   post "/sort", to: "tickets#sort"
   post "/tickets/filter/:option", to: "tickets#tickets_filter"
   post "/tickets/update/:id", to: "tickets#update_array"

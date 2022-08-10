@@ -1,169 +1,198 @@
+
 <%= content_for :title, "Zupp | Tickets" %>
 <%= javascript_include_tag 'ticket' %>
+
+
 <body id="body-pd">
-  <header class="header" id="header">
+    <header class="header" id="header">
 
-    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-    <p class="ticket_title" style="left: -14%;"><%= @title %></p>
-    <%= form_with(url: "/search", method: "get") do%>
-      <input type="text" name="search" class="indexlayout_search">
-      <%= image_submit_tag "magnifier.png" , class: "search_icon" %>
-    <% end %>
-    <%= link_to "/tickets/new" do %>
-      <%= image_tag "add.png" , class: "plus_icon" %>
-    <% end %>
-    
-      <div class="header_img"> <%= image_tag "profile.png" %> </div>
-  </header>
-  <div class="l-navbar" id="nav-bar">
+      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+      <p class="ticket_title" style="left: -14%;">
+        <%= @title %>
+      </p>
+      <%= form_with(url: "/search" , method: "get" ) do%>
+        <input type="text" name="search" class="indexlayout_search">
+        <%= image_submit_tag "magnifier.png" , class: "search_icon" %>
+          <% end %>
+            <%= link_to "/tickets/new" do %>
+              <%= image_tag "add.png" , class: "plus_icon" %>
+                <% end %>
 
-    <nav class="nav">
-      <div> <a href="/tickets" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
-            class="nav_logo-name">Zupp</span> </a>
-        <div class="nav_list"> <a href="/tickets/filter/all" data-method="post" class="nav_link <%= @all? 'active' : nil%>"> <i class='bx bx-grid-alt nav_icon'></i> <span
-              class="nav_name">Dashboard</span> </a> <a href="/tickets/filter/priority" data-method="post" class="nav_link <%= @priority? 'active' : nil%>"> <i
-              class="fa-solid fa-triangle-exclamation"></i> <span class="nav_name">High Priority Tickets</span> </a> <a
-            href="/tickets/filter/open" data-method="post" class="nav_link <%= @open? 'active' : nil%>"> <i class="fa-solid fa-ticket"></i> <span class="nav_name">Open Tickets</span>
-          </a> <a href="/tickets/filter/resolved" data-method="post" class="nav_link <%= @resolved? 'active' : nil%>"> <i class="fa-solid fa-calendar-xmark"></i> <span class="nav_name">Resolved
-              Tickets</span> </a> <a href="#" class="nav_link"> </div>
-      </div> <%= link_to destroy_session_path, method: :delete,class: "nav_link",:data => {:confirm => 'Are you sure? Do you want to logout ?'} do %>
-      <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
-    <% end %>
-    </nav>
-  </div>
-  <!--Container Main start-->
-  <div class="height-100 bg-light">
-    <!-- <h4>Main Components</h4> -->
+                  <div class="header_img">
+                    <%= image_tag "profile.png" %>
+                  </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
 
-  </div>
-  <div class="div2">
-    <% if @length == nil %>
-    <%= form_with(url: "/tickets/update/all/select", method: "post") do |form| %>
-            <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: false,class: "select_all" }, 1, 0 %>
-    <% end %>
-    <% else %>
-    <% if @tickets.length != 0 %>
-    <%= form_with(url: "/tickets/update/all/select", method: "post") do |form| %>
-            <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: (@length)?true:false,class: "select_all" }, 1, 0 %>
-    <% end %>
-    <% else %>
-    <%= form_with(url: "/tickets/update/all/select", method: "post") do |form| %>
-    <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: false,class: "select_all" }, 1, 0 %>
-    <% end %>
-    <% end %>
-    <% end %>
-    <p class="select">Select All</p>
-    <p class="sortby">SortBy</p>
-    <%= form_with(url: "/sort", method: "post") do%>
-    <div class="dropdown">
-      
-      <button class="dropbtn"><i class="fa-solid fa-arrow-down-a-z"></i></button>
-      <div class="dropdown-content">
-        <%= select_tag 'sort', options_for_select(['Date created','Priority',"Status","Last Modified"],@sort_order),onchange: "this.form.submit()"%>
-        
-      </div>
+      <nav class="nav">
+        <div> <a href="/tickets" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+              class="nav_logo-name">Zupp</span> </a>
+          <div class="nav_list"> <a href="/tickets/filter/all" data-method="post"
+              class="nav_link <%= @all? 'active' : nil%>"> <i class='bx bx-grid-alt nav_icon'></i> <span
+                class="nav_name">Dashboard</span> </a> <a href="/tickets/filter/priority" data-method="post"
+              class="nav_link <%= @priority? 'active' : nil%>"> <i class="fa-solid fa-triangle-exclamation"></i> <span
+                class="nav_name">High Priority Tickets</span> </a> <a href="/tickets/filter/open" data-method="post"
+              class="nav_link <%= @open? 'active' : nil%>"> <i class="fa-solid fa-ticket"></i> <span
+                class="nav_name">Open Tickets</span>
+            </a> <a href="/tickets/filter/resolved" data-method="post"
+              class="nav_link <%= @resolved? 'active' : nil%>"> <i class="fa-solid fa-calendar-xmark"></i> <span
+                class="nav_name">Resolved
+                Tickets</span> </a> <a href="#" class="nav_link"> </div>
+        </div>
+        <%= link_to destroy_session_path, method: :delete,class: "nav_link" ,:data=> {:confirm => 'Are you sure? Do
+          you want to logout ?'} do %>
+          <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+          <% end %>
+      </nav>
     </div>
-    <div class="dropdown1">
-      <button class="dropbtn1"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
-      <div class="dropdown-content1">
-        <%= select_tag 'order', options_for_select(['Ascending','Descending'],@sorting_order),onchange: "this.form.submit()"%>
-        
-      </div>
-    </div>
-   <% end %>
-  </div>
-  
+    <!--Container Main start-->
+    <div class="height-100 bg-light">
+      <!-- <h4>Main Components</h4> -->
 
-  <div class="div3">
-    <% if @user.role == "admin" %>
-    <p class="select_div">Hello Admin ! You Have Access to - ( Tickets : Create,Edit,Delete,Pickup,Assign to agents )</p>
-    <% else %>
-    <p class="select_div">Hello Agent ! You Have Access to - ( Tickets : Create,Edit,Pickup,Assign to other agents )</p>
-    <% end %>
-  </div>
-  
-  <% if @array_returned.length != 0 %>
-  <div class="div5">
-    <%= form_with(url: "/tickets/select/bulk/pickup", method: "put") do |form|%>
-            <%= form.submit "Pickup",class: "button-29" %>
-    <% end %>
-    <p class="assign_to">Assign To :</p>
-    <div class="top_div">
-      <%= form_with(url: "/tickets/select/bulk/assigned_to", method: "put",class: "assigned_to_form") do |form|%>
-            <% if @user.role == "admin" %>
-              <select name="agent" onchange="this.form.submit()" class="admin_to">
-            <% else %>
-              <select name="agent" onchange="this.form.submit()" disabled class="admin_to">
+    </div>
+    <div class="div2">
+      <% if @length==nil %>
+        <%= form_with(url: "/tickets/update/all/select" , method: "post" ) do |form| %>
+          <%= check_box 'selected' , 'result' , {onclick: "this.form.submit()" , checked: false,class: "select_all" },
+            1, 0 %>
             <% end %>
-                  <% @user_org.each do |org| %>
-                       <optgroup label = "<%= org.org_name %>">
-                         <% org.agents.all.each do |agent| %>
-                          <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
-                         </optgroup>
-                       <% end %>
-                  <% end %>
-          
-        <% end %>
+              <% else %>
+                <% if @tickets.length !=0 %>
+                  <%= form_with(url: "/tickets/update/all/select" , method: "post" ) do |form| %>
+                    <%= check_box 'selected' , 'result' , {onclick: "this.form.submit()" , checked:
+                      (@length)?true:false,class: "select_all" }, 1, 0 %>
+                      <% end %>
+                        <% else %>
+                          <%= form_with(url: "/tickets/update/all/select" , method: "post" ) do |form| %>
+                            <%= check_box 'selected' , 'result' , {onclick: "this.form.submit()" , checked:
+                              false,class: "select_all" }, 1, 0 %>
+                              <% end %>
+                                <% end %>
+                                  <% end %>
+                                    <p class="select">Select All</p>
+                                    <p class="sortby">SortBy</p>
+                                    <%= form_with(url: "/sort" , method: "post" ) do%>
+                                      <div class="dropdown">
+
+                                        <button class="dropbtn"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+                                        <div class="dropdown-content">
+                                          <%= select_tag 'sort' , options_for_select(['Date
+                                            created','Priority',"Status","Last
+                                            Modified"],@sort_order),onchange: "this.form.submit()" %>
+
+                                        </div>
+                                      </div>
+                                      <div class="dropdown1">
+                                        <button class="dropbtn1"><i
+                                            class="fa-solid fa-arrow-down-wide-short"></i></button>
+                                        <div class="dropdown-content1">
+                                          <%= select_tag 'order' ,
+                                            options_for_select(['Ascending','Descending'],@sorting_order),onchange: "this.form.submit()"
+                                            %>
+
+                                        </div>
+                                      </div>
+                                      <% end %>
+    </div>
+
+
+    <div class="div3">
+      <% if @user.role=="admin" %>
+        <p class="select_div">Hello Admin ! You Have Access to - ( Tickets : Create,Edit,Delete,Pickup,Assign to
+          agents )</p>
+        <% else %>
+          <p class="select_div">Hello Agent ! You Have Access to - ( Tickets : Create,Edit,Pickup,Assign to other
+            agents )</p>
+          <% end %>
+    </div>
+
+    <% if @array_returned.length !=0 %>
+      <div class="div5">
+        <%= form_with(url: "/tickets/select/bulk/pickup" , method: "put" ) do |form|%>
+          <%= form.submit "Pickup" ,class: "button-29" %>
+            <% end %>
+              <p class="assign_to">Assign To :</p>
+              <div class="top_div">
+                <%= form_with(url: "/tickets/select/bulk/assigned_to" , method: "put" ,class: "assigned_to_form" ) do
+                  |form|%>
+                  <% if @user.role=="admin" %>
+                    <select name="agent" onchange="this.form.submit()" class="admin_to">
+                      <% else %>
+                        <select name="agent" onchange="this.form.submit()" disabled class="admin_to">
+                          <% end %>
+                            <% @user_org.each do |org| %>
+                              <optgroup label="<%= org.org_name %>">
+                                <% org.agents.all.each do |agent| %>
+                                  <option value="<%= agent.user.first_name %>">
+                                    <%= agent.user.first_name %>
+                                  </option>
+                              </optgroup>
+                              <% end %>
+                                <% end %>
+
+                                  <% end %>
+              </div>
+              <%= button_to "Delete all" , delete_bulk_path ,method: :delete,class: "button-27" %>
+
       </div>
-      <%= button_to "Delete all", delete_bulk_path ,method: :delete,class: "button-27" %>
-     
-  </div>
-  <% end %>
-</div>
-
-<div class="overflow" style="overflow-y: visible;">
-<% @tickets.each do |ticket| %>
-<% @count+=1 %>
-<%= render "index_layout", title: "index",ticket: ticket, count: @count, array_returned: @array_returned %>
-<% end %>
-</div>
-</body>
-
-  
+      <% end %>
+        </div>
+        
+        
+        <div class="overflow">
+        <% @tickets.each do |ticket| %>
+            <% @count+=1 %>
+              <%= render "index_layout" , title: "index" ,ticket: ticket, count: @count, array_returned:
+                @array_returned %>
+                <% end %>
+              </div>
+  </body>
 
 
 
-  
-<%= javascript_include_tag 'ticket' %>
-<script>
-document.addEventListener("DOMContentLoaded", function (event) {
-
-  const showNavbar = (toggleId, navId, bodyId, headerId) => {
-    const toggle = document.getElementById(toggleId),
-      nav = document.getElementById(navId),
-      bodypd = document.getElementById(bodyId),
-      headerpd = document.getElementById(headerId)
-
-    // Validate that all variables exist
-    if (toggle && nav && bodypd && headerpd) {
-      toggle.addEventListener('click', () => {
-        // show navbar
-        nav.classList.toggle('show')
-        // change icon
-        toggle.classList.toggle('bx-x')
-        // add padding to body
-        bodypd.classList.toggle('body-pd')
-        // add padding to header
-        headerpd.classList.toggle('body-pd')
-      })
-    }
-  }
-
-  showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
-
-  /*===== LINK ACTIVE =====*/
-  const linkColor = document.querySelectorAll('.nav_link')
-
-  function colorLink() {
-    if (linkColor) {
-      linkColor.forEach(l => l.classList.remove('active'))
-      this.classList.add('active')
-    }
-  }
-  linkColor.forEach(l => l.addEventListener('click', colorLink))
-
-  // Your code to run since DOM is loaded and ready
-});
-</script>
 
 
+  <%= javascript_include_tag 'ticket' %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+          const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId),
+            bodypd = document.getElementById(bodyId),
+            headerpd = document.getElementById(headerId)
+
+          // Validate that all variables exist
+          if (toggle && nav && bodypd && headerpd) {
+            toggle.addEventListener('click', () => {
+              // show navbar
+              nav.classList.toggle('show')
+              // change icon
+              toggle.classList.toggle('bx-x')
+              // add padding to body
+              bodypd.classList.toggle('body-pd')
+              // add padding to header
+              headerpd.classList.toggle('body-pd')
+            })
+          }
+        }
+
+        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+        /*===== LINK ACTIVE =====*/
+        const linkColor = document.querySelectorAll('.nav_link')
+
+        function colorLink() {
+          if (linkColor) {
+            linkColor.forEach(l => l.classList.remove('active'))
+            this.classList.add('active')
+          }
+        }
+        linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+        // Your code to run since DOM is loaded and ready
+      });
+
+
+      
+    </script>

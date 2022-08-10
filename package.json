@@ -14,5 +14,9 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "3"
+  },
+  "scripts": {
+    "lint": "bundle exec rubocop -A",
+    "format:fix": "bundle exec rubocop --fix-layout"
   }
 }

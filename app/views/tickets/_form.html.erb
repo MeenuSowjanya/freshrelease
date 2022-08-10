@@ -36,20 +36,17 @@
   </div>
   <div class="form_form1">
 
-    <div class="circle1">
-
-    </div>
-    <div class="circle2">
-
-    </div>
-      <div class="fname">
-        <!-- <p class="fname_name">First Name</p> -->
-        <%= form.text_field "ticket[subject]",class: "fname_input", placeholder: "Subject"%>
-      </div>
-  
-      <div class="mobile">
-        <!-- <p class="mobile_num">Mobile</p> -->
-        <%= form.select("ticket[source]", ["Phone", "Email", "Portal", "Chat", "Feedback Widget"], {selected: "", disabled: "", prompt: "Source"}, { :class => 'mobile_input' }) %>
+    
+      <div class="name_mobile">
+        <div class="fname">
+          <!-- <p class="fname_name">First Name</p> -->
+          <%= form.text_field "ticket[subject]",class: "fname_input", placeholder: "Subject"%>
+        </div>
+    
+        <div class="mobile">
+          <!-- <p class="mobile_num">Mobile</p> -->
+          <%= form.select("ticket[source]", ["Phone", "Email", "Portal", "Chat", "Feedback Widget"], {selected: "", disabled: "", prompt: "Source"}, { :class => 'mobile_input' }) %>
+        </div>
       </div>
   
       <div class="open">

@@ -5,39 +5,18 @@ class TicketsController < ApplicationController
  
 
   def index
-     current_user
-     @count = 0
-     @sort_order = sort_by
-     @sorting_order = order_by
-     @filter = filter_returner
-     @filtered = filtered_returner
-     @selected_all = selected_all_returner
+     current_user #logged in user method
+     @count,@sort_order,@sorting_order,@filter,@filtered,@selected_all = 0,sort_by,order_by,filter_returner,filtered_returner,selected_all_returner ##local variables 
+     ##model data
      @tickets_list = tickets_list_returner(searched_returner)
      @user = User.find(current_user.id)
      @user_org = Organisation.all
      @array_returned = update_array_return
-     if @filtered == true
-          @filtered_array = filtered_tickets(@tickets_list,@filter)
-          @title = title(@filter)
-     else
-        @filtered_array = @tickets_list
-        @title = "All tickets"
-     end 
+     @filtered_array = ((@filtered == true) ? filtered_tickets(@tickets_list,@filter) : @tickets_list)
+     @title = ((@filtered == true)? title(@filter) : "All tickets")
      @tickets = tickets_sort(@filtered_array,@sort_order,@sorting_order)
-    
-     if @array_returned.length == @tickets.length
-       @length = true
-     else
-       @length = false
-     end
-     
-     @@searched = false
-     @@searched_array = []
-     @@length = false
-     @@filtered = false
-     @@filter = "all"
-     @@selected_all = false
-     
+     @length =  ((@array_returned.length == @tickets.length) ?true:false)
+     reset()
   end
   
   def new
@@ -147,6 +126,15 @@ class TicketsController < ApplicationController
     return @@searched_array
   end
 
+  def reset()
+    @@searched = false
+     @@searched_array = []
+     @@length = false
+     @@filtered = false
+     @@filter = "all"
+     @@selected_all = false
+  end
+
   def tickets_list_returner(searched_returner_value)
     if searched_returner_value == false
       if current_user.role == "admin"
@@ -215,10 +203,6 @@ class TicketsController < ApplicationController
     @tickets_search = @tickets_list.where("subject LIKE ?", "%" + @search_text + "%").or(Ticket.where("description LIKE ?", "%" + params[:search] + "%"))
     @@searched_array = @tickets_search
     @@searched = true
-    # @user = User.find(current_user.id)
-    # @user_org = Organisation.all
-    # @array_returned = update_array_return
-    # render "search"
     redirect_to tickets_path
   end
   def select_all
