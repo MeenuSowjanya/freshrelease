@@ -49,61 +49,67 @@
         </div>
       </div>
   
-      <div class="open">
-        <!-- <p class="open_name">Open</p> -->
-        <%= form.select("ticket[urgency]", ["Low", "Medium", "High"], {selected: "", disabled: "", prompt: "Urgency"}, { :class => 'open_input' }) %>
-      </div>
-      
-      <div class="status1">
-        <!-- <p class="status1_name">Status</p> -->
-        <%= form.select("ticket[status_id]", [["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]], {selected: "", disabled: "", prompt: "Status"}, { :class => 'status1_input' }) %>
-      </div>
-  
-  
-      <div class="priority1">
-        <!-- <p class="priority1_name">Priority</p> -->
-        <%= form.select("ticket[priority_id]", [["Low",1], ["Medium",2], ["High",3], ["Urgent",4]], {selected: "", disabled: "", prompt: "Priority"}, { :class => 'priority1_input' }) %>
-      </div>
-  
-  
-      <div class="impact">
-        <!-- <p class="impact_name">Impact</p> -->
-        <%= form.select("ticket[impact]", ["Low", "Medium", "High"], {selected: "", disabled: "", prompt: "Impact"}, { :class => 'impact_input' }) %>
-      </div>
-  
-      <div class="assigned">
-        <!-- <p class="assigned_name">Assigned To</p> -->
-        <select name="ticket[agent]" class="assigned_input">
-          <option value="" disabled selected>Assign to --</option>
-          <% @user_org.each do |org| %>
-               <optgroup label = "<%= org.org_name %>">
-                 <% org.agents.all.each do |agent| %>
-                  <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
-                 </optgroup>
-               <% end %>
-            <% end %>
-          </select>
-      </div>
-  
-      
-  
-      <div class="file"> 
+      <div class="open_status">
+        <div class="open">
+          <!-- <p class="open_name">Open</p> -->
+          <%= form.select("ticket[urgency]", ["Low", "Medium", "High"], {selected: "", disabled: "", prompt: "Urgency"}, { :class => 'open_input' }) %>
+        </div>
         
-          <div class="screenshots_div">
-            <label for="input" class="screenshots">Add Screenshots</label>
-          </div>
+        <div class="status1">
+          <!-- <p class="status1_name">Status</p> -->
+          <%= form.select("ticket[status_id]", [["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]], {selected: "", disabled: "", prompt: "Status"}, { :class => 'status1_input' }) %>
+        </div>
     
-          <div class="files">
-            <%= form.file_field "ticket[screenshots]",multiple: true,class: "my_file"%>
-          </div>
-          <%= form.submit "Create ticket", class: "button-30"%>
-        
+    
+        <div class="priority1">
+          <!-- <p class="priority1_name">Priority</p> -->
+          <%= form.select("ticket[priority_id]", [["Low",1], ["Medium",2], ["High",3], ["Urgent",4]], {selected: "", disabled: "", prompt: "Priority"}, { :class => 'priority1_input' }) %>
+        </div>
+    
+    
+        <div class="impact">
+          <!-- <p class="impact_name">Impact</p> -->
+          <%= form.select("ticket[impact]", ["Low", "Medium", "High"], {selected: "", disabled: "", prompt: "Impact"}, { :class => 'impact_input' }) %>
+        </div>
       </div>
-
-      <div class="description2">
-        <!-- <p class="des2_name">Description</p> -->
-        <%= form.text_area "ticket[description]",class: "form_description",cols: "30",rows: "10",placeholder: "Add Description"%>
-        <!-- <textarea name="" id="" class="form_description" cols="30" rows="10" placeholder="Description"></textarea> -->
+  
+     
+        <div class="assigned">
+          <!-- <p class="assigned_name">Assigned To</p> -->
+          <select name="ticket[agent]" class="assigned_input">
+            <option value="" disabled selected>Assign to --</option>
+            <% @user_org.each do |org| %>
+                 <optgroup label = "<%= org.org_name %>">
+                   <% org.agents.all.each do |agent| %>
+                    <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
+                   </optgroup>
+                 <% end %>
+              <% end %>
+            </select>
+        </div>
+    
+        
+    
+        <div class="file"> 
+          
+            <div class="screenshots_div">
+              <label for="input" class="screenshots">Add Screenshots</label>
+            </div>
+      
+            <div class="files">
+              <%= form.file_field "ticket[screenshots]",multiple: true,class: "my_file"%>
+            </div>
+            <%= form.submit "Create ticket", class: "button-30"%>
+          
+        </div>
+  
+      
+      <div class="de2">
+        <div class="description2">
+          <!-- <p class="des2_name">Description</p> -->
+          <%= form.text_area "ticket[description]",class: "form_description",cols: "30",rows: "10",placeholder: "Add Description"%>
+          <!-- <textarea name="" id="" class="form_description" cols="30" rows="10" placeholder="Description"></textarea> -->
+        </div>
       </div>
       
       
