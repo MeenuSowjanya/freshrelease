@@ -16,6 +16,7 @@ class NotesController < ApplicationController
   def create
     current_user
     note = Note.new(ticket_id: @@id, user_id: current_user.id, note: note_params[:note])
+    note.images.attach(note_params[:images])
     if note.save
     else
       flash[:error] = 'Failed to add your not.Something went wrong'
@@ -69,6 +70,6 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:note)
+    params.require(:note).permit(:note, images: [])
   end
 end

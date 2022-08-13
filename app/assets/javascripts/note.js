@@ -19,3 +19,9 @@ function show_add_note_form(boolean){
    }
     
  }
+ function bot_div(cur_id_no,nxt_id_no){
+   cur_id_string = `bot-icon${cur_id_no}`;
+   nxt_id_string = `bot-icon${nxt_id_no}`;
+   document.getElementById(cur_id_string).style.display = "none";
+   document.getElementById(nxt_id_string).style.display = "block";
+ }

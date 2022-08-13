@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TicketsController < ApplicationController
+  include Pagy::Backend
   before_action :ensure_user_logged_in
   @@sort = 'Date created'
   @@order = 'Ascending'
@@ -11,10 +12,6 @@ class TicketsController < ApplicationController
   @@filter = 'all'
   @@filtered = false
   @@selected_all = false
-  @@all = true
-  @@priority = false
-  @@open = false
-  @@resolved = false
 
   def index
     current_user # logged in user method
@@ -31,8 +28,8 @@ class TicketsController < ApplicationController
     @array_returned = update_array_return
     @filtered_array = (@filtered == true ? filtered_tickets(@tickets_list, @filter) : @tickets_list)
     @title = (@filtered == true ? title(@filter) : 'All tickets')
-    @tickets = tickets_sort(@filtered_array, @sort_order, @sorting_order)
-    @length =  (@array_returned.length == @tickets.length)
+    @pagy, @tickets = pagy(tickets_sort(@filtered_array, @sort_order, @sorting_order), items: 2)
+    @length = (@array_returned.length == @tickets.length)
     reset
   end
 
@@ -55,9 +52,9 @@ class TicketsController < ApplicationController
     if ticket.save
       redirect_to tickets_path
     else
-      # flash[:error] = ticket.errors.full_messages.first
-      # redirect_to tickets_path
-      render plain: 'False'
+      flash.now[:error] = ticket.errors.full_messages.first
+      puts flash.now[:error]
+      render '/tickets/new'
     end
   end
 
@@ -235,6 +232,7 @@ class TicketsController < ApplicationController
                     else
                       current_user.tickets
                     end
+    puts true
     case params[:selected][:result]
     when '1'
       @tickets_list.each do |ticket|

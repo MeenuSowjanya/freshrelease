@@ -1,3 +1,355 @@
 // Place all the styles related to the notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.flex-holder-div{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.notes-holder{
+    width: 60%;
+    background-color: #fff;
+    height: 31rem;
+    overflow:unset;
+    padding: 20px 30px;
+    margin: 0px 0px 0px 10px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.requester_name{
+    font-size: smaller;
+    color: #e05260;
+    letter-spacing: 0.3px;
+    font-weight: bolder;
+}
+.user-details{
+    border: #e05260 solid 2px;
+    border-radius: 4px;
+    padding: 10px;
+    position: sticky;
+    background: rgb(247, 228, 228);
+    z-index: 999;
+}
+.time-holder-ticket{
+    color: #98454d;
+    font-size: x-small;
+    margin-top: 3px;
+    padding-bottom: 4px;
+    border-bottom: #e05260 1px solid;
+}
+.subject_note_ticket{
+    margin-top: 10px;
+}
+.subject-ticket-title{
+    font-size: small;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    color: #e05260
+}
+.ticket_subject{
+    margin-top: 5px;
+    font-size: x-small;
+    color: #98454d;
+    padding-bottom: 4px;
+    border-bottom: #e05260 1px solid;
+}
+.add_note_div{
+    z-index: 999;
+    width: 100%;
+    background: rgb(247, 228, 228);
+    margin-top: -20px;
+    position: sticky;
+    border: #e05260 solid 2px;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.note-description{
+    width: 85%;
+    height: 3rem;
+    padding: 6px;
+    border: none;
+    border-bottom: #e87d88 3px solid;
+    font-size: smaller;
+    margin-top: 5px;
+    background: none;
+    overflow-y: scroll;
+}
+.note-description::placeholder{
+    color: #e05260;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+}
+.note-description:focus{
+    outline: none;
+    font-size: bold;
+    font-size: 13px;
+    padding-bottom: 10px;
+ }
+ .note-description::-webkit-scrollbar{
+    width: 0px;
+ }
+ .submit-form{
+    background: none;
+    border: none;
+    color: #e05260;
+    font-weight: bold;
+    font-size: 20px;
+ }
+ .chats{
+    height: 350px;
+    margin-top: -100px;
+    padding-top: 100px;
+    overflow: unset;
+    overflow-y: scroll;
+ }
+ .chats::-webkit-scrollbar{
+    width: 0px;
+ }
+ .file-field-note{
+    width: 2px;
+ }
+ .label-note{
+    color: #e05260;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+ }
+ .recent_note{
+    z-index: 600;
+    background-color: #e87d88;
+    margin-top: -50px;
+    height: 80px;
+    position: unset;
+    position: fixed;
+    color: white;
+    padding-top: 55px;
+    padding-left: 10px;
+    padding-right: 12px;
+    text-align: left;
+    font-size: smaller;
+    font-weight: bold;
+ }
+ .notes_div{
+    margin-top: 50px;
+    width: 100%;
+  }
+  .note-container{
+    background: rgb(245, 223, 214);
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0px 40px 0px;
+  }
+ .note-flex{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: right;
+    text-align: right;
+    border-bottom: 2px solid #ec3358;
+    padding-bottom: 10px;
+ }
+ .note-delete{
+    margin-left: 97%;
+ }
+ .note-delete a{
+    text-decoration: none;
+    color: #ec3358;
+    font-weight: bold;
+ }
+ .note-edit{
+    color: #ad3c53;
+    font-weight: bold;
+    margin-left: 94%;
+ }
+ .note-edit i{
+    cursor: pointer;
+    margin-left: 92%;
+    margin-bottom: 12px;
+ }
+ .edit_note_form{
+    margin-top: -51px;
+    margin-left: 50%;
+ }
+ .edit-note-note{
+    background: none;
+    color: #e05260;
+    border: hidden;
+    border-bottom: #ec3358 2px solid;
+    padding: 3px 20px 1px 3px;
+    font-size: small;
+ }
+ .edit-note-note:focus{
+    outline: none;
+    border: none;
+    border-bottom: #ec3358 2px solid;
+    padding: 4px 30px 2px 3px;
+    font-size: smaller;
+ }
+ .submit-edit-form{
+    border: 2px solid #e05260;
+    color: #e05260;
+    font-weight: bold;
+    font-size: x-small;
+    padding: 2px 5px;
+    margin-top: 3px;
+ }
+ .note_creator{
+    color: #98454d;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    font-size: 15px;
+ }
+ .date-created{
+    margin-left: -170px;
+    margin-top: 20px;
+    color: #e87d88;
+    font-weight: bold;
+ }
+ .note-note{
+    margin-top: 10px;
+    font-size: smaller;
+    text-align: left;
+    color: #f34165;
+ }
+ .image-div{
+    margin-top: 10px;
+    height: 30%;
+    width: 30%;
+ }
+ .bot-holder{
+    width: 36%;
+    background-color: #fff;
+    height: 31rem;
+    overflow:unset;
+    padding: 20px;
+    margin: 0px 0px 0px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.ticket-properties{
+    height: 43%;
+    padding: 10px;
+    background: rgb(247, 228, 228);
+    overflow-y: scroll;
+    border: 2px solid #e05260;
+    border-radius: 4px;
+}
+.ticket-properties::-webkit-scrollbar{
+    width: 0px;
+}
+.ticket-field-1{
+    margin-bottom: 20px;
+}
+.ticket-field-1-title{
+    font-size: small;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    color: #e05260
+}
+.ticket_field-1-subject{
+    margin-top: 7px;
+    font-size: smaller;
+    color: #98454d;
+    padding-bottom: 4px;
+    border-bottom: #e05260 2px solid;
+}
+.ticket_field-1-subject select{
+    border: none;
+    border-top: 2px solid#e87d88;
+    width: 100%;
+    background: none;
+    padding-top: 5px;
+    color: #98454d;
+    cursor: pointer;
+}
+.ticket_field-1-subject select:focus{
+    outline: none;
+    border: none;
+    border-top: 2px solid#e87d88;
+    color: #98454d;
+    cursor: pointer;
+    font-size: smaller;
+}
+.bot-icon-holder{
+    z-index: 999;
+    height: 57%;
+    margin-top: 0%;
+    // background-color: rgb(255, 163, 163);
+    border-radius: 4px;
+    border: 2px dashed #e05260;
+}
+.bot-image-gif{
+    width: 360px;
+    height: 282px;
+    background: none;
+}
+#bot-icon1{
+    cursor: pointer;
+   
+}
+.bot-icon{
+    margin-left: -2%;
+}
+.div-2-container{
+    width: 100%;
+}
+.right-bot-div-2{
+    z-index: 999;
+    margin-left: 20%;
+    margin-top: -250px;
+}
+.left-bot-div-2{
+    padding: 20px 40px 20px 20px;
+    width: 80%;
+    height: 230px;
+    overflow-y: scroll;
+}
+.left-bot-div-2::-webkit-scrollbar{
+    width: 0px;
+}
+.welcome-bot{
+    color: #d73656;
+    font-weight: bold;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 2px solid #e05260;
+    padding-bottom: 10px;
+}
+.question{
+    margin-top: 10px;
+    font-size: small;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    color: #f04769;
+    line-height: 17px;
+}
+.definition{
+    margin-top: 5px;
+    color: #98454d;
+    font-size: 12px;
+    line-height: 12px;
+}
+.confirmation{
+    margin-top: 10px;
+    font-size: small;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    color: #f04769;
+    line-height: 17px; 
+}
+.confirm-link{
+    text-decoration: underline;font-size: small;
+    color: #d73656;
+    font-size: 17px;
+}
+.confirm-link:hover{
+    cursor: pointer;
+    color: #e87d88;
+}
+.topic1{
+    margin-bottom: 15px;
+}

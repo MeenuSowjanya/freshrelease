@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :ensure_user_logged_in
 
   def ensure_user_logged_in
