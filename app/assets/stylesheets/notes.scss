@@ -353,3 +353,138 @@
 .topic1{
     margin-bottom: 15px;
 }
+.alert_box_close{
+    border: 2px solid #f34165;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 7%;
+    height: 200px;
+    padding: 30px;
+    border-radius: 4px;
+}
+.confirm2_text{
+    color: #c73f5a;
+    line-height: 20px;
+    font-size: small;
+    font-weight: bold;
+}
+.confirm-buttons-div{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20%;
+}
+.yes_button_click{
+   border: 2px solid #FF2E58;
+   color: #FF2E58;
+   padding: 3px 20px;
+   font-size: small;
+   font-weight: bold;
+   border-radius: 2px;
+   margin-right: 5px;
+}
+.yes_button_click:hover{
+    color: #e05260;
+    cursor: pointer;
+    background-color: #fff;
+}
+.no_button_click{
+    border: 2px solid #FF2E58;
+   color: #FF2E58;
+   padding: 3px 20px;
+   font-size: small;
+   font-weight: bold;
+   border-radius: 2px;
+   margin-right: 5px;
+   margin-left: 15px;
+}
+.no_button_click:hover{
+    color: #e05260;
+    cursor: pointer;
+    background-color: #fff;
+}
+.bot-icon4{
+    height: 100%;
+    padding: 30px;
+    overflow: unset;
+    overflow-y: scroll;
+}
+.bot-icon4::-webkit-scrollbar{
+  width: 0px;
+}
+.subject_holder_canned_response{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cr_subject{
+    color: #c73f5a;
+    font-weight: bold;
+    font-size: smaller;
+    letter-spacing: 0.4px;
+}
+.arrow{
+    color: #FF2E58;
+    font-weight: bold;
+    font-size: smaller;
+    margin-left: 10px;
+}
+.add_cr_button{
+    border: none;
+    border-bottom: 2px solid #FF2E58;
+    color: #e05260;
+    background: none;
+    padding-bottom: 2px;
+}
+.add_cr_hidden_button{
+    border: 2px solid #FF2E58;
+    color: #e05260;
+    background: none;
+    padding-bottom: 2px 12px;
+    margin-top: 10px;
+}
+.add_cr{
+    margin-left: 50px;
+    margin-top: -5px;
+}
+.add_cr_button:hover,.add_cr_hidden_button:hover{
+    opacity: 0.7;
+}
+.each_cr{
+    margin-bottom: 30px;
+}
+.description_holder_canned_response{
+    background-color: rgb(255, 238, 238);
+    margin-top: 10px;
+    padding: 10px;
+}
+.cr_desc{
+    font-size: smaller;
+    letter-spacing: 0.4px;
+    color: #d73656;
+}
+.back_button{
+    cursor: pointer;
+    border: none;
+    border-bottom: 2px solid #e05260;
+    color: #e05260;
+    background: none;
+    padding-bottom: 2px;
+    font-size: small;
+    margin-bottom: 30px;
+    margin-left: 190px;
+}
+.back_button:hover{
+    opacity: 0.7;
+}
+.back_button2{
+    cursor: pointer;
+    border: none;
+    border-bottom: 2px solid #e05260;
+    color: #e05260;
+    background: none;
+    padding-bottom: 2px;
+    font-size: small;
+    margin-bottom: 30px;
+    
+}

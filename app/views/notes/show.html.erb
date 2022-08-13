@@ -44,7 +44,7 @@
     <% end %>
   </div>
   <div class="notes_div">
-  <% @notes.each do |note| %>
+  <% @notes.order("id DESC").each do |note| %>
   <% @count += 1 %>
    <div class="note-container">
     <div class="note-flex">
@@ -149,10 +149,10 @@
       
     </div>
     <div class="bot-icon-holder">
-      <div class="bot-icon" id="bot-icon1" style="display: none;" onclick="bot_div(1,2)">
+      <div class="bot-icon" id="bot-icon1" style="display: block;" onclick="bot_div(1,2)">
         <%= image_tag "faky.gif",class: "bot-image-gif"%>
       </div>
-      <div class="bot-icon" id="bot-icon2" style="display: block;">
+      <div class="bot-icon" id="bot-icon2" style="display: none;">
         <div class="div-2-container">
           <div class="left-bot-div-2">
             <p class="welcome-bot">
@@ -162,18 +162,20 @@
               <div class="topic1">
                  <p class="question">1. Do you want to close this ticket ?</p> 
                  <p class="definition"> On performing this event ' the status of the ticket will be turned as "CLOSED"</p>
-                 <p class="confirmation"> <a href="#" class="confirm-link">YES</a></p>
+                 <p class="confirmation"> <p class="confirm-link" onclick="bot_div(2,3)">YES</p>
               </div>
               <div class="topic1">
                 <p class="question">2. Do you want to delete this ticket ?</p> 
                 <p class="definition"> On performing this event , ticket will be "DELETED"</p>
-                <p class="confirmation"> <a href="#" class="confirm-link">YES</a></p>
+                <p class="confirmation"> <p class="confirm-link" onclick="bot_div(2,4)">YES</p>
              </div>
              <div class="topic1">
               <p class="question">3. Do you want to use canned responses as a note ?</p> 
               <p class="definition"> On performing this event , the default list of canned responses will be open for adding as a note</p>
-              <p class="confirmation"> <a href="#" class="confirm-link">YES</a></p>
+              <p class="confirmation"> <p class="confirm-link" onclick="bot_div(2,5)">YES</p></p>
            </div>
+           <hr style="color: #e05260; font-weight: bold;margin-bottom: 15px;">
+           <%= button_tag "Back",class: "back_button2",onclick: "bot_div(2,1)" %>
             </div>
           </div>
           
@@ -182,7 +184,54 @@
           </div>
        </div>
       </div>
+       <div class="bot-icon3" id="bot-icon3" style="display: none;">
+          <div class="alert_box_close">
+              <p class="confirm2_text">Are you sure ? <br>Do you want to close this ticket ?</p>
+              <div class="confirm-buttons-div">
+                <div class="yes_button">
+                  <%= button_to "Yes", "/notes/tickets/close/#{@ticket.id}",method: :put,class: "yes_button_click" %>
+                </div>
+                <div class="no_button">
+                 
+                  <%= button_tag "No",class: "no_button_click",onclick: "bot_div(3,2)"%>
+                </div>
+            </div>
+          </div>
+         </div>
+       <div class="bot-icon3" id="bot-icon4" style="display: none;">
+        <div class="alert_box_close">
+            <p class="confirm2_text">Are you sure ? <br>Do you want to delete this ticket ?</p>
+            <div class="confirm-buttons-div">
+              <div class="yes_button">
+                <%= button_to "Yes", "/notes/tickets/close/#{@ticket.id}",method: :put,class: "yes_button_click" %>
+              </div>
+              <div class="no_button">
+                <%= button_tag "No",class: "no_button_click",onclick: "bot_div(4,2)"%>
+              </div>
+          </div>
+        </div>
+       </div>
+     <div class="bot-icon4" id="bot-icon5" style="display: none;">
+      <%= button_tag "Back",class: "back_button",onclick: "bot_div(5,2)" %>
+      <% @canned_response_count = 0 %>
+      <% @canned_responses.each do |canned_response| %>
+      <% @canned_response_count += 1 %>
+      <%= form_with(url: "/notes/response/#{canned_response.id}", method: "post") do|form| %>
+      <div class="each_cr">
+      <div class="subject_holder_canned_response">
+        <p class="cr_subject"><%= @canned_response_count %>. <%= canned_response.subject %></p>
+        <p class="arrow" id="arrow<%=@canned_response_count%>" style="cursor: pointer;"><i class="fa-solid fa-angle-down" onclick="show_add_note_form(<%=@canned_response_count%>,1)"></i></p>
+        <p class="add_cr" id="add_note_button<%=@canned_response_count%>"><%= form.submit "Add",class: "add_cr_button" %></p>
+      </div>
+      <div class="description_holder_canned_response" id="crd<%=@canned_response_count%>" style="display:none;">
+        <p class="cr_desc"><%= canned_response.description %></p>
+        <%= form.submit "Add",class: "add_cr_hidden_button" %>
+      </div>
+    </div>
       
+      <% end %>
+      <% end %>
+     </div>
     </div>
   </div>
 </div>
