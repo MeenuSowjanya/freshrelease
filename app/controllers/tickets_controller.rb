@@ -46,22 +46,25 @@ class TicketsController < ApplicationController
     @user_org = Organisation.all
     puts @user_org
     ticket = Ticket.new(subject: ticket_params[:subject], source: ticket_params[:source],
-                        status_id: ticket_params[:status_id], urgency: ticket_params[:urgency], impact: ticket_params[:impact], priority_id: ticket_params[:priority_id], description: ticket_params[:description], agent: ticket_params[:agent], user_id: current_user.id)
+                        status_id: ticket_params[:status_id], urgency: ticket_params[:urgency],
+                        impact: ticket_params[:impact], priority_id: ticket_params[:priority_id],
+                        description: ticket_params[:description], agent: ticket_params[:agent],
+                        user_id: current_user.id)
     ticket.screenshots.attach(ticket_params[:screenshots])
     if ticket.save
-      activity = Activity.new(user_id: current_user.id, action_id: 1,activity_model_id: 1)
+      activity = Activity.new(user_id: current_user.id, action_id: 1, activity_model_id: 1)
       if activity.save
-       activity_id = activity.id
-       puts activity_id
-       puts ticket.id
-       ticket_cd_activity = TicketCdActivity.new(activity_id: activity_id,ticket_id: ticket.id)
-       if ticket_cd_activity.save
-        redirect_to tickets_path
-       else
-         render plain: "False in cd activity"
-       end
-      else 
-        render plain: "False in activity"
+        activity_id = activity.id
+        puts activity_id
+        puts ticket.id
+        ticket_cd_activity = TicketCdActivity.new(activity_id: activity_id, ticket_id: ticket.id)
+        if ticket_cd_activity.save
+          redirect_to tickets_path
+        else
+          render plain: 'False in cd activity'
+        end
+      else
+        render plain: 'False in activity'
       end
     else
       flash.now[:error] = ticket.errors.full_messages.first
@@ -75,22 +78,31 @@ class TicketsController < ApplicationController
     id = params[:id]
     @ticket = Ticket.find(id)
     ticket = @ticket
-    before_update = {subject: ticket.subject,source: ticket.source,impact: ticket.impact,urgency: ticket.urgency,description: ticket.description,agent: ticket.agent,user_id: ticket.user_id,priority_id: ticket.priority_id,status_id: ticket.status_id}
+    before_update = { subject: ticket.subject, source: ticket.source,
+                      impact: ticket.impact, urgency: ticket.urgency,
+                      description: ticket.description, agent: ticket.agent,
+
+                      user_id: ticket.user_id, priority_id: ticket.priority_id, status_id: ticket.status_id }
     @ticket.update(subject: params[:subject], agent: params[:agent], status_id: params[:status_id],
-                  priority_id: params[:priority_id])
+                   priority_id: params[:priority_id])
     if @ticket.save
-      after_update = {subject: @ticket.subject,source: @ticket.source,impact: @ticket.impact,urgency: @ticket.urgency,description: @ticket.description,agent: @ticket.agent,user_id: @ticket.user_id,priority_id: @ticket.priority_id,status_id: @ticket.status_id}
-      activity = Activity.new(user_id: current_user.id, action_id: 2,activity_model_id: 1)
+      after_update = { subject: @ticket.subject, source: @ticket.source, impact: @ticket.impact,
+                       urgency: @ticket.urgency,
+                       description: @ticket.description, agent: @ticket.agent,
+                       user_id: @ticket.user_id, priority_id: @ticket.priority_id,
+                       status_id: @ticket.status_id }
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
       if activity.save
         puts activity.id
-        ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id,ticket_id: ticket.id,before_update: before_update,after_update: after_update)
+        ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
+                                                          before_update: before_update, after_update: after_update)
         if ticket_update_activity.save
-         redirect_to tickets_path
-        else 
-          render plain: "False in update activity"
+          redirect_to tickets_path
+        else
+          render plain: 'False in update activity'
         end
       else
-        render plain: "False in activity"
+        render plain: 'False in activity'
       end
     else
       render plain: 'Fail'
@@ -102,10 +114,10 @@ class TicketsController < ApplicationController
     id = params[:id]
     ticket = Ticket.find(id)
     if ticket.destroy
-      activity = Activity.new(user_id: current_user.id, action_id: 3,activity_model_id: 1)
+      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1)
       if activity.save
-        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id,ticket_id: id)
-        puts "Success"
+        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
+        puts 'Success'
       end
     end
     redirect_to tickets_path
@@ -128,13 +140,13 @@ class TicketsController < ApplicationController
     current_user
     update_array_return.each do |id|
       ticket = Ticket.find(id)
-     if ticket.destroy
-      activity = Activity.new(user_id: current_user.id, action_id: 3,activity_model_id: 1)
+      next unless ticket.destroy
+
+      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1)
       if activity.save
-        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id,ticket_id: id)
-        puts "Success"
+        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
+        puts 'Success'
       end
-    end
     end
     @@ids_array = []
 
@@ -222,25 +234,31 @@ class TicketsController < ApplicationController
     current_user
     @user_org = Organisation.all
     @user = User.find(current_user.id)
-    @agent = (params[:option] == "pickup")? (current_user.first_name):(params[:agent])
+    @agent = params[:option] == 'pickup' ? current_user.first_name : params[:agent]
     puts @agent
-      update_array_return.each do |id|
-        @ticket = Ticket.find(id)
-        ticket = @ticket
-        before_update = {subject: ticket.subject,source: ticket.source,impact: ticket.impact,urgency: ticket.urgency,description: ticket.description,agent: ticket.agent,user_id: ticket.user_id,priority_id: ticket.priority_id,status_id: ticket.status_id}
-        @ticket.update(agent: @agent)
-       if @ticket.save
-        after_update = {subject: @ticket.subject,source: @ticket.source,impact: @ticket.impact,urgency: @ticket.urgency,description: @ticket.description,agent: @ticket.agent,user_id: @ticket.user_id,priority_id: @ticket.priority_id,status_id: @ticket.status_id}
-        activity = Activity.new(user_id: current_user.id, action_id: 2,activity_model_id: 1)
-        if activity.save
-          puts activity.id
-          ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id,ticket_id: ticket.id,before_update: before_update,after_update: after_update)
-          if ticket_update_activity.save
-            @@ids_array = []
-          
-          end
-        end
-      end
+    update_array_return.each do |id|
+      @ticket = Ticket.find(id)
+      ticket = @ticket
+      before_update = { subject: ticket.subject, source: ticket.source,
+                        impact: ticket.impact, urgency: ticket.urgency,
+                        description: ticket.description, agent: ticket.agent,
+                        user_id: ticket.user_id, priority_id: ticket.priority_id,
+                        status_id: ticket.status_id }
+      @ticket.update(agent: @agent)
+      next unless @ticket.save
+
+      after_update = { subject: @ticket.subject, source: @ticket.source,
+                       impact: @ticket.impact, urgency: @ticket.urgency,
+                       description: @ticket.description, agent: @ticket.agent,
+                       user_id: @ticket.user_id, priority_id: @ticket.priority_id,
+                       status_id: @ticket.status_id }
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
+      next unless activity.save
+
+      puts activity.id
+      ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
+                                                        before_update: before_update, after_update: after_update)
+      @@ids_array = [] if ticket_update_activity.save
     end
     redirect_to tickets_path
   end
@@ -305,7 +323,8 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:subject, :source, :status_id, :urgency, :impact, :priority_id, :agent, :description,
+    params.require(:ticket).permit(:subject, :source, :status_id,
+                                   :urgency, :impact, :priority_id, :agent, :description,
                                    screenshots: [])
   end
 
