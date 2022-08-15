@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :activities
   get '/ticket', to: 'tickets#ticket'
   post '/sort', to: 'tickets#sort'
-  post '/tickets/filter/:option', to: 'tickets#tickets_filter'
+  get '/tickets/filter/:option', to: 'tickets#tickets_filter'
   post '/tickets/update/:id', to: 'tickets#update_array'
   get '/tickets/update/delete/delete_array', to: 'tickets#delete_array'
   delete '/delete/bulk', to: 'tickets#bulk_delete'
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get '/search', to: 'tickets#search', as: :search
   get '/signin', to: 'sessions#new', as: :new_sessions
   post '/signin', to: 'sessions#create', as: :sessions
-  delete '/signout', to: 'sessions#destroy', as: :destroy_session
+  get '/signout', to: 'sessions#destroy', as: :destroy_session
   get 'password/reset', to: 'password_resets#new'
   post 'password/reset', to: 'password_resets#create'
   get 'password/reset/edit', to: 'password_resets#edit', as: :password_reset_edit
