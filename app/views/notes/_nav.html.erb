@@ -2,10 +2,12 @@
 <%= content_for :title, "#{title(page)}" %>
 <% end %>
 <div class="sidebar">
+  <a href="/tickets/filter/all" class="logo-details-a">
     <div class="logo-details">
       <i class='bx bx-rocket'></i>
       <span class="logo_name">ZUPP</span>
     </div>
+    </a>
       <ul class="nav-links">
         <li>
           <a href="/tickets/filter/all" class="<%= (all or (filtered == false))? 'active':nil%>">

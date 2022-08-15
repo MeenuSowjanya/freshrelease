@@ -27,16 +27,17 @@ module ApplicationHelper
   end
 
   def length_of_subject(subject)
-    array = subject.split(' ')
+    array = subject.split('')
     return_array = []
-    if array.length <= 2
-      return_subject = subject
+    if array.length <= 50
+      return_array = array
     else
-      return_array << array[0]
-      return_array << array[1]
-      return_subject = return_array.join(' ')
+      (0..50).each do |i|
+        return_array << array[i]
+      end
+      return_array << '...'
     end
-    return_subject
+    return_subject = return_array.join('')
   end
 
   def note(ticket)

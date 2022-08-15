@@ -27,8 +27,8 @@ class TicketsController < ApplicationController
     @user_org = Organisation.all
     @array_returned = update_array_return
     @filtered_array = (@filtered == true ? filtered_tickets(@tickets_list, @filter) : @tickets_list)
-    @title = (@filtered == true ? title(@filter) : 'All tickets')
-    @pagy, @tickets = pagy(tickets_sort(@filtered_array, @sort_order, @sorting_order), items: 2)
+    @title = (@filtered == true ? title(@filter) : 'All Tickets')
+    @pagy, @tickets = pagy(tickets_sort(@filtered_array, @sort_order, @sorting_order), items: 6)
     @length = (@array_returned.length == @tickets.length)
     reset
   end
@@ -126,13 +126,13 @@ class TicketsController < ApplicationController
   def title(filter)
     case filter
     when 'all'
-      'All tickets'
+      'All Tickets'
     when 'priority'
-      'High priority tickets'
+      'High Priority Tickets'
     when 'open'
-      'Open tickets'
+      'Open Tickets'
     when 'resolved'
-      'Resolved tickets'
+      'Resolved Tickets'
     end
   end
 
