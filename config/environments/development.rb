@@ -81,7 +81,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
     user_name: 'zuppticketingapp@gmail.com',
     password: 'gxkibmtbxumosznt',
-    domain: 'https://zupp-ticket-app-meenu.herokuapp.com/'
+    domain: 'https://zupp-ticket-app-meenu.herokuapp.com/',
     address: 'smtp.gmail.com',
     port: 587,
     authentication: :plain,
