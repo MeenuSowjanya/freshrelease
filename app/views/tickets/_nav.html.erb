@@ -8,32 +8,32 @@
     </div>
       <ul class="nav-links">
         <li>
-          <a href="/tickets/filter/all" data-method="post" class="<%= (all or (filtered == false))? 'active':nil%>">
+          <a href="/tickets/filter/all" class="<%= (all or (filtered == false))? 'active':nil%>">
             <i class="fa fa-th-list" aria-hidden="true"></i>
             <span class="links_name">All tickets</span>
           </a>
         </li>
         <li>
-          <a href="/tickets/filter/priority" data-method="post" class="<%= (priority)? 'active':nil%>">
+          <a href="/tickets/filter/priority" class="<%= (priority)? 'active':nil%>">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <span class="links_name">High priority tickets</span>
           </a>
         </li>
         <li>
-          <a href="/tickets/filter/open" data-method="post" class="<%= (open)? 'active':nil%>">
+          <a href="/tickets/filter/open" class="<%= (open)? 'active':nil%>">
             <i class="fa fa-folder-open" aria-hidden="true"></i>
             <span class="links_name">Open tickets</span>
           </a>
         </li>
         <li>
-          <a href="/tickets/filter/resolved" data-method="post" class="<%= (resolved)? 'active':nil%>">
+          <a href="/tickets/filter/resolved" class="<%= (resolved)? 'active':nil%>">
             <i class="fa fa-check-square" aria-hidden="true"></i>
             <span class="links_name">Resolved tickets</span>
           </a>
         </li>
         
         <li class="log_out">
-          <%= link_to destroy_session_path, method: :delete ,:data=> {:confirm => 'Are you sure? Do you want to logout ?'} do %>
+          <%= link_to destroy_session_path, method: :get ,:data=> {:confirm => 'Are you sure? Do you want to logout ?'} do %>
             <i class='bx bx-log-out'></i>
             <span class="links_name">Log out</span>
           <% end %>
