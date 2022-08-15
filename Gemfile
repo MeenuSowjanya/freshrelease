@@ -15,9 +15,10 @@ gem 'puma', '~> 5.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'sass-rails', '>= 6'
 
-gem 'font-awesome-sass', '~> 6.1.1'
+gem 'font-awesome-sass', '~> 6.1', '>= 6.1.2'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
+# gem 'tailwindcss', '~> 1.0.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -44,7 +45,10 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
+
+  # mini profiler gem which is diplayed in webpage and shows spped of page
+
+  # gem 'rack-mini-profiler', '~> 2.0'
 end
 
 group :test do
@@ -58,4 +62,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'mail_form'
+gem 'pagy'
 gem 'rubocop', require: false

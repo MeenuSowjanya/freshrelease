@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TicketsController < ApplicationController
+  include Pagy::Backend
   before_action :ensure_user_logged_in
   @@sort = 'Date created'
   @@order = 'Ascending'
@@ -11,10 +12,6 @@ class TicketsController < ApplicationController
   @@filter = 'all'
   @@filtered = false
   @@selected_all = false
-  @@all = true
-  @@priority = false
-  @@open = false
-  @@resolved = false
 
   def index
     current_user # logged in user method
@@ -31,8 +28,8 @@ class TicketsController < ApplicationController
     @array_returned = update_array_return
     @filtered_array = (@filtered == true ? filtered_tickets(@tickets_list, @filter) : @tickets_list)
     @title = (@filtered == true ? title(@filter) : 'All tickets')
-    @tickets = tickets_sort(@filtered_array, @sort_order, @sorting_order)
-    @length =  (@array_returned.length == @tickets.length)
+    @pagy, @tickets = pagy(tickets_sort(@filtered_array, @sort_order, @sorting_order), items: 2)
+    @length = (@array_returned.length == @tickets.length)
     reset
   end
 
@@ -49,25 +46,64 @@ class TicketsController < ApplicationController
     @user_org = Organisation.all
     puts @user_org
     ticket = Ticket.new(subject: ticket_params[:subject], source: ticket_params[:source],
-                        status_id: ticket_params[:status_id], urgency: ticket_params[:urgency], impact: ticket_params[:impact], priority_id: ticket_params[:priority_id], description: ticket_params[:description], agent: ticket_params[:agent], user_id: current_user.id)
+                        status_id: ticket_params[:status_id], urgency: ticket_params[:urgency],
+                        impact: ticket_params[:impact], priority_id: ticket_params[:priority_id],
+                        description: ticket_params[:description], agent: ticket_params[:agent],
+                        user_id: current_user.id)
     ticket.screenshots.attach(ticket_params[:screenshots])
-    puts ticket
     if ticket.save
-      redirect_to tickets_path
+      activity = Activity.new(user_id: current_user.id, action_id: 1, activity_model_id: 1)
+      if activity.save
+        activity_id = activity.id
+        puts activity_id
+        puts ticket.id
+        ticket_cd_activity = TicketCdActivity.new(activity_id: activity_id, ticket_id: ticket.id)
+        if ticket_cd_activity.save
+          redirect_to tickets_path
+        else
+          render plain: 'False in cd activity'
+        end
+      else
+        render plain: 'False in activity'
+      end
     else
-      # flash[:error] = ticket.errors.full_messages.first
-      # redirect_to tickets_path
-      render plain: 'False'
+      flash.now[:error] = ticket.errors.full_messages.first
+      puts flash.now[:error]
+      render '/tickets/new'
     end
   end
 
   def update
+    current_user
     id = params[:id]
-    ticket = Ticket.find(id)
-    ticket.update(subject: params[:subject], agent: params[:agent], status_id: params[:status_id],
-                  priority_id: params[:priority_id])
-    if ticket.save
-      redirect_to tickets_path
+    @ticket = Ticket.find(id)
+    ticket = @ticket
+    before_update = { subject: ticket.subject, source: ticket.source,
+                      impact: ticket.impact, urgency: ticket.urgency,
+                      description: ticket.description, agent: ticket.agent,
+
+                      user_id: ticket.user_id, priority_id: ticket.priority_id, status_id: ticket.status_id }
+    @ticket.update(subject: params[:subject], agent: params[:agent], status_id: params[:status_id],
+                   priority_id: params[:priority_id])
+    if @ticket.save
+      after_update = { subject: @ticket.subject, source: @ticket.source, impact: @ticket.impact,
+                       urgency: @ticket.urgency,
+                       description: @ticket.description, agent: @ticket.agent,
+                       user_id: @ticket.user_id, priority_id: @ticket.priority_id,
+                       status_id: @ticket.status_id }
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
+      if activity.save
+        puts activity.id
+        ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
+                                                          before_update: before_update, after_update: after_update)
+        if ticket_update_activity.save
+          redirect_to tickets_path
+        else
+          render plain: 'False in update activity'
+        end
+      else
+        render plain: 'False in activity'
+      end
     else
       render plain: 'Fail'
     end
@@ -77,8 +113,13 @@ class TicketsController < ApplicationController
     current_user
     id = params[:id]
     ticket = Ticket.find(id)
-    ticket.destroy
-    ticket.save
+    if ticket.destroy
+      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1)
+      if activity.save
+        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
+        puts 'Success'
+      end
+    end
     redirect_to tickets_path
   end
 
@@ -98,11 +139,14 @@ class TicketsController < ApplicationController
   def bulk_delete
     current_user
     update_array_return.each do |id|
-      puts '-------------'
-      puts id
       ticket = Ticket.find(id)
-      ticket.destroy
-      ticket.save
+      next unless ticket.destroy
+
+      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1)
+      if activity.save
+        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
+        puts 'Success'
+      end
     end
     @@ids_array = []
 
@@ -190,23 +234,31 @@ class TicketsController < ApplicationController
     current_user
     @user_org = Organisation.all
     @user = User.find(current_user.id)
-    case params[:option]
-    when 'pickup'
-      update_array_return.each do |id|
-        ticket = Ticket.find(id)
-        ticket.update(agent: current_user.first_name)
-        ticket.save
-        @@ids_array = []
-      end
+    @agent = params[:option] == 'pickup' ? current_user.first_name : params[:agent]
+    puts @agent
+    update_array_return.each do |id|
+      @ticket = Ticket.find(id)
+      ticket = @ticket
+      before_update = { subject: ticket.subject, source: ticket.source,
+                        impact: ticket.impact, urgency: ticket.urgency,
+                        description: ticket.description, agent: ticket.agent,
+                        user_id: ticket.user_id, priority_id: ticket.priority_id,
+                        status_id: ticket.status_id }
+      @ticket.update(agent: @agent)
+      next unless @ticket.save
 
-    when 'assigned_to'
-      update_array_return.each do |id|
-        ticket = Ticket.find(id)
-        ticket.update(agent: params[:agent])
-        ticket.save
-        @@ids_array = []
-      end
+      after_update = { subject: @ticket.subject, source: @ticket.source,
+                       impact: @ticket.impact, urgency: @ticket.urgency,
+                       description: @ticket.description, agent: @ticket.agent,
+                       user_id: @ticket.user_id, priority_id: @ticket.priority_id,
+                       status_id: @ticket.status_id }
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
+      next unless activity.save
 
+      puts activity.id
+      ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
+                                                        before_update: before_update, after_update: after_update)
+      @@ids_array = [] if ticket_update_activity.save
     end
     redirect_to tickets_path
   end
@@ -235,6 +287,7 @@ class TicketsController < ApplicationController
                     else
                       current_user.tickets
                     end
+    puts true
     case params[:selected][:result]
     when '1'
       @tickets_list.each do |ticket|
@@ -270,7 +323,8 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:subject, :source, :status_id, :urgency, :impact, :priority_id, :agent, :description,
+    params.require(:ticket).permit(:subject, :source, :status_id,
+                                   :urgency, :impact, :priority_id, :agent, :description,
                                    screenshots: [])
   end
 

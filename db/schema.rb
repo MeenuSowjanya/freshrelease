@@ -12,7 +12,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_803_071_829) do
+ActiveRecord::Schema.define(version: 20_220_814_154_551) do
+  create_table 'actions', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'action'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'active_storage_attachments', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -43,6 +49,23 @@ ActiveRecord::Schema.define(version: 20_220_803_071_829) do
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
+  create_table 'activities', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.bigint 'action_id', null: false
+    t.bigint 'activity_model_id', null: false
+    t.index ['action_id'], name: 'index_activities_on_action_id'
+    t.index ['activity_model_id'], name: 'index_activities_on_activity_model_id'
+    t.index ['user_id'], name: 'index_activities_on_user_id'
+  end
+
+  create_table 'activity_models', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'model'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'agents', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.bigint 'user_id', null: false
     t.bigint 'organisation_id', null: false
@@ -67,6 +90,7 @@ ActiveRecord::Schema.define(version: 20_220_803_071_829) do
     t.bigint 'ticket_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.binary 'images'
     t.index ['ticket_id'], name: 'index_notes_on_ticket_id'
     t.index ['user_id'], name: 'index_notes_on_user_id'
   end
@@ -87,6 +111,26 @@ ActiveRecord::Schema.define(version: 20_220_803_071_829) do
     t.string 'status'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'ticket_cd_activities', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.bigint 'activity_id', null: false
+    t.bigint 'ticket_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['activity_id'], name: 'index_ticket_cd_activities_on_activity_id'
+    t.index ['ticket_id'], name: 'index_ticket_cd_activities_on_ticket_id'
+  end
+
+  create_table 'ticket_update_activities', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.bigint 'activity_id', null: false
+    t.bigint 'ticket_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.json 'before_update'
+    t.json 'after_update'
+    t.index ['activity_id'], name: 'index_ticket_update_activities_on_activity_id'
+    t.index ['ticket_id'], name: 'index_ticket_update_activities_on_ticket_id'
   end
 
   create_table 'tickets', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
@@ -119,11 +163,18 @@ ActiveRecord::Schema.define(version: 20_220_803_071_829) do
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'activities', 'actions'
+  add_foreign_key 'activities', 'activity_models'
+  add_foreign_key 'activities', 'users'
   add_foreign_key 'agents', 'organisations', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'agents', 'users', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'canned_responses', 'users', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'notes', 'tickets', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'notes', 'users', on_update: :cascade, on_delete: :cascade
+  add_foreign_key 'ticket_cd_activities', 'activities'
+  add_foreign_key 'ticket_cd_activities', 'tickets', on_update: :cascade, on_delete: :cascade
+  add_foreign_key 'ticket_update_activities', 'activities'
+  add_foreign_key 'ticket_update_activities', 'tickets', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'tickets', 'priorities', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'tickets', 'statuses', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'tickets', 'users', on_update: :cascade, on_delete: :cascade
