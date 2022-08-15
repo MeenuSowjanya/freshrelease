@@ -101,17 +101,15 @@ class NotesController < ApplicationController
 
   def clone_ticket
     current_user
-    ticket = Ticket.find(params[:ticket_id])
-    puts '---------------------------------'
-    puts ticket.subject
-    clone_subject = "Clone of #{ticket.subject}"
-    puts clone_subject
-    ticket_clone = Ticket.new(subject: clone_subject, source: ticket.source, impact: ticket.impact,
-                              urgency: ticket.urgency, priority_id: ticket.priority_id,
-                              status_id: ticket.status_id, user_id: ticket.user_id,
-                              description: ticket.description, agent: ticket.agent)
-    ticket_clone.screenshots.attach(ticket.screenshots)
+    @ticket = Ticket.find(params[:ticket_id])
+    clone_subject = "Clone of #{@ticket.subject}"
+    ticket_clone = Ticket.new(subject: clone_subject, source: @ticket.source, impact: @ticket.impact,
+                              urgency: @ticket.urgency, priority_id: @ticket.priority_id,
+                              status_id: @ticket.status_id, user_id: @ticket.user_id,
+                              description: @ticket.description, agent: @ticket.agent)
+    ticket_clone.screenshots.attach(@ticket.screenshots.blobs)
     if ticket_clone.save
+      puts ticket_clone.screenshots.attached?
       activity = Activity.new(user_id: current_user.id, action_id: 4, activity_model_id: 1)
       if activity.save
         activity_id = activity.id
