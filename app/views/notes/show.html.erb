@@ -1,12 +1,17 @@
 
+<!-- Title for the page -->
 <%= content_for :title, "Zupp | Notes" %>
+<!-- Navbar content for the page -->
 <%= render "nav" ,all: false ,priority: false, open: false, resolved: false, title: "Notes",user: @user,filtered: @filtered,page: "notes" %>
+<!-- Fetching mapped data for a ticket and note  -->
 <%@pro = Priority.find(@ticket.priority_id)%>
 <%@sta = Status.find(@ticket.status_id)%>
 <% @requester = User.find(@ticket.user_id) %>
 
+<!-- Main div starts -->
 <div class="flex-holder-div">
 <div class="notes-holder">
+<!-- Container - details about ticket creation and creator  -->
 <div class="user-details">
   <p class="requester_name">
     <%= @requester.first_name %> <%= @requester.last_name %>
@@ -33,8 +38,9 @@
 </div>
 
 
-
+<!-- Main container - Notes listing  -->
 <div class="chats">
+  <!-- Container - Details about recently added note and creator  -->
    <div class="recent_note">
     <% if @notes.last != nil %>
     <% @date = ((Date.today - Date.parse(@notes.last.created_at.strftime("%F"))).to_s).split("")[0] %>
@@ -43,6 +49,7 @@
     <p class="recent_note_text">No recent notes</p>
     <% end %>
   </div>
+  <!-- Container - Notes Listing  -->
   <div class="notes_div">
   <% @notes.order("id DESC").each do |note| %>
   <% @count += 1 %>
@@ -63,11 +70,9 @@
         <% end %>
        </div>
     </div>
-   
-    <p class="note-note">
+   <p class="note-note">
       <%= note.note %>
     </p>
-    
     <% if note.images.attached? %>
     <% note.images.each do|image| %>
       <%= image_tag image,class: "image-div" %>
@@ -78,18 +83,11 @@
      <%= flash[:error] %>
       </p>
      <% end %>
-    
-  </div>
+    </div>
     <% end %>
-  
   </div>
-  
 </div>
-
-
-
-
-
+<!-- Container - Create note form  -->
 <div class="add_form">
   <div class="add_note_div">
   <%= form_with(url: "/notes", method: "post") do|form| %>
@@ -104,7 +102,9 @@
   </div>
 </div>
 
+<!-- Main Container - Bot  -->
 <div class="bot-holder">
+    <!-- Container - Current ticket Properties with Edit Options  -->
     <div class="ticket-properties">
       <div class="ticket-field-1">
         <p class="ticket-field-1-title">Subject</p>
@@ -138,7 +138,11 @@
             <% @user_org.each do |org| %>
             <optgroup label = "<%= org.org_name %>">
                 <% org.agents.all.each do |agent| %>
-                    <option value = "<%= agent.user.first_name %>" selected= <%= (@ticket.agent == agent.user.first_name)?"selected":nil %> ><%= agent.user.first_name %></option>
+                <% if @ticket.agent == agent.user.first_name %>
+                <option value = "<%= agent.user.first_name %>" selected="selected" ><%= agent.user.first_name %></option>
+              <% else %>
+                <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
+              <% end %>
             </optgroup>
                 <% end %>
                 <% end %>
@@ -146,12 +150,14 @@
         </p>
       </div>
       <% end %>
-      
     </div>
+    <!-- Container - Bot  -->
     <div class="bot-icon-holder">
+      <!-- Container - Bot Call Event  -->
       <div class="bot-icon" id="bot-icon1" style="display: block;" onclick="bot_div(1,2)">
         <%= image_tag "faky.gif",class: "bot-image-gif"%>
       </div>
+      <!-- Container - Bot Definitions and Redirection Links  -->
       <div class="bot-icon" id="bot-icon2" style="display: none;">
         <div class="div-2-container">
           <div class="left-bot-div-2">
@@ -174,16 +180,19 @@
               <p class="definition"> On performing this event , the default list of canned responses will be open for adding as a note</p>
               <p class="confirmation"> <p class="confirm-link" onclick="bot_div(2,5)">YES</p></p>
            </div>
+           <div class="topic1">
+            <p class="question">4. Do you want to clone this ticket ?</p> 
+            <p class="definition"> On performing this event , the current ticket is cloned and a new ticket clone is created</p>
+            <p class="confirmation"> <p class="confirm-link" onclick="bot_div(2,6)">YES</p></p>
+         </div>
            <hr style="color: #e05260; font-weight: bold;margin-bottom: 15px;">
            <%= button_tag "Back",class: "back_button2",onclick: "bot_div(2,1)" %>
             </div>
           </div>
-          
-          <div class="right-bot-div-2" id="div-2-flexes"><%= image_tag "bot-2.gif",class: "bot-image-gif2"%> 
-          
-          </div>
+          <div class="right-bot-div-2" id="div-2-flexes"><%= image_tag "bot-2.gif",class: "bot-image-gif2"%></div>
        </div>
       </div>
+      <!-- Container - Close ticket Confirmation  -->
        <div class="bot-icon3" id="bot-icon3" style="display: none;">
           <div class="alert_box_close">
               <p class="confirm2_text">Are you sure ? <br>Do you want to close this ticket ?</p>
@@ -192,18 +201,18 @@
                   <%= button_to "Yes", "/notes/tickets/close/#{@ticket.id}",method: :put,class: "yes_button_click" %>
                 </div>
                 <div class="no_button">
-                 
                   <%= button_tag "No",class: "no_button_click",onclick: "bot_div(3,2)"%>
                 </div>
             </div>
           </div>
          </div>
+        <!-- Container - Delete Ticket Confirmation  -->
        <div class="bot-icon3" id="bot-icon4" style="display: none;">
         <div class="alert_box_close">
             <p class="confirm2_text">Are you sure ? <br>Do you want to delete this ticket ?</p>
             <div class="confirm-buttons-div">
               <div class="yes_button">
-                <%= button_to "Yes", "/notes/tickets/close/#{@ticket.id}",method: :put,class: "yes_button_click" %>
+                <%= button_to "Yes", "/tickets/#{@ticket.id}",method: :delete,class: "yes_button_click" %>
               </div>
               <div class="no_button">
                 <%= button_tag "No",class: "no_button_click",onclick: "bot_div(4,2)"%>
@@ -211,6 +220,20 @@
           </div>
         </div>
        </div>
+       <div class="bot-icon3" id="bot-icon6" style="display: none;">
+        <div class="alert_box_close">
+            <p class="confirm2_text">Are you sure ? <br>Do you want to clone this ticket ?</p>
+            <div class="confirm-buttons-div">
+              <div class="yes_button">
+                <%= button_to "Yes", "/tickets/clone/#{@ticket.id}",method: :post,class: "yes_button_click" %>
+              </div>
+              <div class="no_button">
+                <%= button_tag "No",class: "no_button_click",onclick: "bot_div(6,2)"%>
+              </div>
+          </div>
+        </div>
+       </div>
+       <!-- Container - Canned responses list and Add as a note option  -->
      <div class="bot-icon4" id="bot-icon5" style="display: none;">
       <%= button_tag "Back",class: "back_button",onclick: "bot_div(5,2)" %>
       <% @canned_response_count = 0 %>
@@ -228,9 +251,8 @@
         <%= form.submit "Add",class: "add_cr_hidden_button" %>
       </div>
     </div>
-      
-      <% end %>
-      <% end %>
+    <% end %>
+    <% end %>
      </div>
     </div>
   </div>
@@ -238,6 +260,6 @@
 </div>
 </section>
 
-
+<!-- Javascript files used  -->
 <%= javascript_include_tag 'ticket' %>
 <%= javascript_include_tag 'note' %>

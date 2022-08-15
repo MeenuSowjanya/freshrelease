@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'activities/index'
   get 'notes/index'
   # get 'users/new'
   # get 'home/index'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
   resources :tickets
   resources :notes
+  resources :activities
   get '/ticket', to: 'tickets#ticket'
   post '/sort', to: 'tickets#sort'
   post '/tickets/filter/:option', to: 'tickets#tickets_filter'
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   put '/tickets/select/bulk/:option', to: 'tickets#option'
   post '/tickets/update/all/select', to: 'tickets#select_all'
   put '/notes/tickets/:id', to: 'notes#update_ticket'
+  post '/tickets/clone/:ticket_id', to: 'notes#clone_ticket'
   post '/notes/response/:id', to: 'notes#add_response'
   put '/notes/tickets/close/:id', to: 'notes#close_ticket'
   get '/search', to: 'tickets#search', as: :search

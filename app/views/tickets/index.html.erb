@@ -10,14 +10,16 @@
         </div>
         <div class="title"><%= @title %></div>
         <div class="bulk_update">
-        <div class = "select_all_div"
+        <div class = "select_all_div">
+        <%= form_with(url: "/tickets/update/all/select" , method: "post" ) do |form| %>
         <% if @length==nil or @tickets.length==0%>
-        <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: false}, 1, 0 %>
+        <%= check_box 'selected', 'result', {onclick: "this.form.submit();", checked: false}, 1, 0 %>
         <% elsif @tickets.length!=0 %>
         <% puts @tickets.length %>
         <% puts @length %>
-        <%= check_box 'selected', 'result', {onclick: 'this.form.submit();', checked: (@length) ?true:false}, 1, 0 %>
+        <%= check_box 'selected', 'result', {onclick: "this.form.submit();", checked: (@length) ?true:false}, 1, 0 %>
         <% end %>
+        <%end%>
           <p class="select_all_text">Select All</p>
         </div>
        <% if @array_returned.length !=0 %>

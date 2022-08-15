@@ -1,0 +1,8 @@
+<% @activities.each do |activity| %>
+  <%= Action.find(activity.action_id).action %>
+  <% if TicketUpdateActivity.find_by(activity_id: activity.id) != nil %>
+     <%= TicketUpdateActivity.find_by(activity_id: activity.id).before_update["subject"] %>
+  <% end %>
+  <br>
+<% end %>
+

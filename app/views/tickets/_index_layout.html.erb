@@ -30,7 +30,11 @@
             <% @user_org.each do |org| %>
             <optgroup label = "<%= org.org_name %>">
                 <% org.agents.all.each do |agent| %>
-                <option value = "<%= agent.user.first_name %>" selected= <%= (ticket.agent == agent.user.first_name)?"selected":nil %> ><%= agent.user.first_name %></option>
+                              <% if ticket.agent == agent.user.first_name %>
+                                <option value = "<%= agent.user.first_name %>" selected="selected" ><%= agent.user.first_name %></option>
+                              <% else %>
+                                <option value = "<%= agent.user.first_name %>"><%= agent.user.first_name %></option>
+                              <% end %>
             </optgroup>
                 <% end %>
                 <% end %>

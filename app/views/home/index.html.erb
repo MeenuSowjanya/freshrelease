@@ -3,11 +3,6 @@
 <main>
        <div class="home_vector_image-1"></div>
        <div class="home_about"></div>
-       <div class="home_signin">
-       <%= link_to new_sessions_path, class: "signin_user_icon" do %>
-        <%= image_tag("user (2).png", class: "home_user_icon") %>
-       <% end %>
-       </div>
        <h1 class="title">
         <span >ZUPP</span>
     </h1>
@@ -24,16 +19,12 @@
         <div class="animation">
                 <span class="first1">For</span>
                 <span class="slide">
-                    <span class="second">high velocity teams from <span>"Freshworks"</span>.</span>
+                    <span class="second">high velocity teams from <span>"Freshworks"
                 </span>
         </div>
    </div>
-        <!-- <div class="home_description">
-            <p class="home_description_p">Zupp is a modern agile project management software for 
-                <br>high velocity teams from Freshworks</p>
-        </div> -->
         <div class="home_register">
-            <%= button_to "Sign up", new_user_path, class: "home_register_button", :method => :get %>
+            <%= button_to "Get Started", new_sessions_path, class: "home_register_button", :method => :get %>
         </div>
         </div>
 
