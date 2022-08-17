@@ -20,68 +20,85 @@
 
 .requester_name{
     font-size: smaller;
-    color: #e05260;
+    color: #FF2E58;
     letter-spacing: 0.3px;
     font-weight: bolder;
 }
 .user-details{
-    border: #e05260 solid 2px;
+    border: #FF2E58 solid 2px;
     border-radius: 4px;
     padding: 10px;
     position: sticky;
-    background: rgb(247, 228, 228);
+    background: #fff;
     z-index: 999;
 }
+.description-user-holder{
+    margin-top: 20px;
+    height: 45px;
+    overflow-y: scroll;
+    font-size: small;
+}
+.description-user-holder::-webkit-scrollbar{
+    width: 0px;
+}
 .time-holder-ticket{
-    color: #98454d;
-    font-size: x-small;
-    margin-top: 3px;
-    padding-bottom: 4px;
-    border-bottom: #e05260 1px solid;
+    color: black;
+    margin-left: 7px;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 400;
 }
 .subject_note_ticket{
-    margin-top: 10px;
-}
-.subject-ticket-title{
-    font-size: small;
+    margin-top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    color: #FF2E58;
+    font-weight: bold;
     letter-spacing: 0.3px;
-    font-weight: 600;
-    color: #e05260
+    font-size: medium;
+    height: 100%;
+    overflow-y: scroll;
+}
+.subject_note_ticket::-webkit-scrollbar{
+    width: 0px;
 }
 .ticket_subject{
-    margin-top: 5px;
-    font-size: x-small;
-    color: #98454d;
-    padding-bottom: 4px;
-    border-bottom: #e05260 1px solid;
+   margin-left: 7px;
+   margin-top: 7px;
+   font-size: large;
+}
+.subject_note_ticket i{
+    font-size: 40px;
+    margin-right: 10px;
 }
 .add_note_div{
     z-index: 999;
     width: 100%;
-    background: rgb(247, 228, 228);
+    background: #fb9bae;
     margin-top: -20px;
     position: sticky;
-    border: #e05260 solid 2px;
+    border: #FF2E58 solid 2px;
     border-radius: 4px;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+    color: #fff;
 }
 .note-description{
     width: 85%;
     height: 3rem;
     padding: 6px;
     border: none;
-    border-bottom: #e87d88 3px solid;
     font-size: smaller;
     margin-top: 5px;
     background: none;
     overflow-y: scroll;
 }
 .note-description::placeholder{
-    color: #e05260;
+    color: #fff;
     font-weight: bold;
     letter-spacing: 0.4px;
+    cursor: crosshair;
 }
 .note-description:focus{
     outline: none;
@@ -95,7 +112,7 @@
  .submit-form{
     background: none;
     border: none;
-    color: #e05260;
+    color: #fff;
     font-weight: bold;
     font-size: 20px;
  }
@@ -110,17 +127,17 @@
     width: 0px;
  }
  .file-field-note{
-    width: 2px;
+    display: none;
  }
  .label-note{
-    color: #e05260;
+    color: #FF2E58;
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
  }
  .recent_note{
     z-index: 600;
-    background-color: #e87d88;
+    background-color: #FF2E58;
     margin-top: -50px;
     height: 80px;
     position: unset;
@@ -138,10 +155,11 @@
     width: 100%;
   }
   .note-container{
-    background: rgb(245, 223, 214);
+    background: #fff;
     width: 100%;
     padding: 20px;
     margin: 20px 0px 40px 0px;
+    border: 2px solid #FF2E58;
   }
  .note-flex{
     width: 100%;
@@ -149,34 +167,38 @@
     flex-wrap: wrap;
     align-items: right;
     text-align: right;
-    border-bottom: 2px solid #ec3358;
+    padding-bottom: 10px;
+ }
+ .activity{
+    text-align: left;
     padding-bottom: 10px;
  }
  .note-delete{
     margin-left: 97%;
+    margin-top: -51px;
  }
  .note-delete a{
     text-decoration: none;
-    color: #ec3358;
+    color: #FF2E58;
     font-weight: bold;
  }
  .note-edit{
-    color: #ad3c53;
+    color: #FF2E58;
     font-weight: bold;
-    margin-left: 94%;
+    margin-left: 70%;
+    margin-top: -10px;
  }
  .note-edit i{
     cursor: pointer;
-    margin-left: 92%;
     margin-bottom: 12px;
  }
  .edit_note_form{
     margin-top: -51px;
-    margin-left: 50%;
+    margin-left: 40%;
  }
  .edit-note-note{
     background: none;
-    color: #e05260;
+    color: #FF2E58;
     border: hidden;
     border-bottom: #ec3358 2px solid;
     padding: 3px 20px 1px 3px;
@@ -190,35 +212,37 @@
     font-size: smaller;
  }
  .submit-edit-form{
-    border: 2px solid #e05260;
-    color: #e05260;
+    border: 2px solid #FF2E58;
+    color: #FF2E58;
     font-weight: bold;
     font-size: x-small;
     padding: 2px 5px;
     margin-top: 3px;
  }
  .note_creator{
-    color: #98454d;
+    color: #FF2E58;
     font-weight: bold;
     letter-spacing: 0.3px;
-    font-size: 15px;
+    font-size: medium;
+    margin-top: 5px;
  }
  .date-created{
-    margin-left: -170px;
-    margin-top: 20px;
-    color: #e87d88;
+    margin-left: -180px;
+    margin-top: 30px;
+    color: black;
     font-weight: bold;
  }
  .note-note{
-    margin-top: 10px;
-    font-size: smaller;
+    margin-top: 20px;
+    font-size: small;
     text-align: left;
-    color: #f34165;
+    margin-bottom: 15px;
+    
  }
  .image-div{
     margin-top: 10px;
-    height: 30%;
-    width: 30%;
+    height: 70%;
+    width: 100%;
  }
  .bot-holder{
     width: 36%;
@@ -233,59 +257,50 @@
 .ticket-properties{
     height: 43%;
     padding: 10px;
-    background: rgb(247, 228, 228);
-    overflow-y: scroll;
-    border: 2px solid #e05260;
+    border: 2px solid #FF2E58;
     border-radius: 4px;
 }
 .ticket-properties::-webkit-scrollbar{
     width: 0px;
 }
 .ticket-field-1{
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .ticket-field-1-title{
-    font-size: small;
+    font-size: medium;
     letter-spacing: 0.3px;
     font-weight: 600;
-    color: #e05260
+    color: #FF2E58
 }
 .ticket_field-1-subject{
     margin-top: 7px;
     font-size: smaller;
-    color: #98454d;
     padding-bottom: 4px;
-    border-bottom: #e05260 2px solid;
 }
 .ticket_field-1-subject select{
     border: none;
-    border-top: 2px solid#e87d88;
     width: 100%;
     background: none;
     padding-top: 5px;
-    color: #98454d;
     cursor: pointer;
 }
 .ticket_field-1-subject select:focus{
     outline: none;
-    border: none;
-    border-top: 2px solid#e87d88;
-    color: #98454d;
     cursor: pointer;
-    font-size: smaller;
+    font-size: small;
 }
 .bot-icon-holder{
     z-index: 999;
     height: 57%;
     margin-top: 0%;
-    // background-color: rgb(255, 163, 163);
     border-radius: 4px;
-    border: 2px dashed #e05260;
+    border: 2px solid #FF2E58;
 }
 .bot-image-gif{
-    width: 360px;
-    height: 282px;
+    width: 280px;
+    height: 202px;
     background: none;
+    margin-left: 30px;
 }
 #bot-icon1{
     cursor: pointer;
@@ -293,6 +308,16 @@
 }
 .bot-icon{
     margin-left: -2%;
+}
+.bot-description{
+    color: #FF2E58;
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 20px;
+    margin-left: 10px;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 .div-2-container{
     width: 100%;
@@ -306,30 +331,38 @@
     padding: 20px 40px 20px 20px;
     width: 80%;
     height: 230px;
-    overflow-y: scroll;
 }
 .left-bot-div-2::-webkit-scrollbar{
     width: 0px;
 }
 .welcome-bot{
-    color: #d73656;
+    color: #FF2E58;
     font-weight: bold;
     text-align: left;
-    font-size: 14px;
-    border-bottom: 2px solid #e05260;
-    padding-bottom: 10px;
+    font-size: larger;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #FF2E58;
+}
+.help-description{
+    margin-top: 20px;
+    font-size: medium;
+    margin-bottom: 20px;
+
 }
 .question{
-    margin-top: 10px;
+    margin-bottom: 5px;
     font-size: small;
     font-weight: bold;
     letter-spacing: 0.3px;
     color: #f04769;
-    line-height: 17px;
+    line-height: 12px;
+}
+.question:hover{
+    cursor: pointer;
 }
 .definition{
     margin-top: 5px;
-    color: #98454d;
+    color: #FF2E58;
     font-size: 12px;
     line-height: 12px;
 }
@@ -363,7 +396,7 @@
     border-radius: 4px;
 }
 .confirm2_text{
-    color: #c73f5a;
+    color: #FF2E58;
     line-height: 20px;
     font-size: small;
     font-weight: bold;
@@ -378,13 +411,13 @@
    border: 2px solid #FF2E58;
    color: #FF2E58;
    padding: 3px 20px;
-   font-size: small;
+   font-size: smaller;
    font-weight: bold;
    border-radius: 2px;
    margin-right: 5px;
 }
 .yes_button_click:hover{
-    color: #e05260;
+    color: #FF2E58;
     cursor: pointer;
     background-color: #fff;
 }
@@ -395,11 +428,10 @@
    font-size: small;
    font-weight: bold;
    border-radius: 2px;
-   margin-right: 5px;
-   margin-left: 15px;
+   margin-left: 0px;
 }
 .no_button_click:hover{
-    color: #e05260;
+    color: #FF2E58;
     cursor: pointer;
     background-color: #fff;
 }
@@ -418,30 +450,35 @@
     flex-wrap: wrap;
 }
 .cr_subject{
-    color: #c73f5a;
+    color: #FF2E58;
     font-weight: bold;
-    font-size: smaller;
+    font-size: 14px;
     letter-spacing: 0.4px;
+    margin-left: -10px;
+    margin-top: 5px;
 }
 .arrow{
     color: #FF2E58;
     font-weight: bold;
-    font-size: smaller;
+    font-size: 13px;
     margin-left: 10px;
+    margin-top: 7px;
 }
 .add_cr_button{
-    border: none;
-    border-bottom: 2px solid #FF2E58;
-    color: #e05260;
+    margin-top: 5px;
+    border: 2px solid #FF2E58;
+    color: #FF2E58;
     background: none;
-    padding-bottom: 2px;
+    padding: 2px 10px;
+    font-size: smaller;
 }
 .add_cr_hidden_button{
     border: 2px solid #FF2E58;
-    color: #e05260;
+    color: #FF2E58;
     background: none;
-    padding-bottom: 2px 12px;
+    padding: 2px 12px;
     margin-top: 10px;
+    font-size: x-small;
 }
 .add_cr{
     margin-left: 50px;
@@ -459,29 +496,28 @@
     padding: 10px;
 }
 .cr_desc{
-    font-size: smaller;
+    font-size: small;
     letter-spacing: 0.4px;
     color: #d73656;
 }
 .back_button{
     cursor: pointer;
     border: none;
-    border-bottom: 2px solid #e05260;
-    color: #e05260;
     background: none;
     padding-bottom: 2px;
-    font-size: small;
-    margin-bottom: 30px;
-    margin-left: 190px;
+    font-size: 40px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    margin-left: -20px;
 }
 .back_button:hover{
-    opacity: 0.7;
+    cursor: pointer;
 }
 .back_button2{
     cursor: pointer;
     border: none;
-    border-bottom: 2px solid #e05260;
-    color: #e05260;
+    border-bottom: 2px solid #FF2E58;
+    color: #FF2E58;
     background: none;
     padding-bottom: 2px;
     font-size: small;
