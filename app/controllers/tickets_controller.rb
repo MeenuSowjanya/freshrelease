@@ -116,7 +116,7 @@ class TicketsController < ApplicationController
     if ticket.destroy
       activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1, ticket_id: ticket.id)
       if activity.save
-        ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
+        TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
         puts 'Success'
       end
     end
@@ -133,6 +133,8 @@ class TicketsController < ApplicationController
       'Open Tickets'
     when 'resolved'
       'Resolved Tickets'
+    else
+      'All tickets'
     end
   end
 
@@ -226,6 +228,9 @@ class TicketsController < ApplicationController
     when 'resolved'
       @filtered_array = tickets.where(status_id: 4)
       @resolved = true
+    else
+      @filtered_array = tickets
+      @all = true
     end
     @filtered_array
   end
@@ -293,7 +298,7 @@ class TicketsController < ApplicationController
       @tickets_list.each do |ticket|
         @@ids_array << ticket.id
       end
-    when '0'
+    else
       @tickets_list.each do |ticket|
         @@ids_array.delete(ticket.id)
       end
@@ -311,12 +316,11 @@ class TicketsController < ApplicationController
     when '1'
       @@ids_array << params[:id].to_i
       puts '------------'
-      puts @@ids_array
-    when '0'
+    else
       @@ids_array.delete(params[:id].to_i)
       puts '-------------'
-      puts @@ids_array
     end
+    puts @@ids_array
     redirect_to tickets_path
   end
 
@@ -360,7 +364,7 @@ class TicketsController < ApplicationController
       else
         tickets.order('status_id DESC')
       end
-    when 'Last Modified'
+    else
       if sorting_order == 'Ascending'
         tickets.order('updated_at DESC')
       else
