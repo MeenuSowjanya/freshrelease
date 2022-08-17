@@ -129,7 +129,9 @@
 
 ### 4. Reset password
 <img width="719" alt="image" src="https://user-images.githubusercontent.com/93571047/185216903-32ce8940-c111-4201-991d-d612f548bc05.png">
+
 ##### After receiving this email
+
 * All fields are required
 * Password must contain atleast 6 characters which must be a combination of atleast one lowercase character,one uppercase character,one symbol and one digit
 * Password and Confirm Password must be same 
