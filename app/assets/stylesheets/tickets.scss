@@ -88,7 +88,6 @@
   justify-content: space-between;
   height: 80px;
   background: #fff;
-  display: flex;
   align-items: center;
   position: fixed;
   width: calc(100% - 240px);
@@ -384,7 +383,6 @@ nav .profile-details i{
   justify-content: space-between;
   height: 30px;
   background: #fff;
-  display: flex;
   align-items: center;
   position: fixed;
   left: 240px;
@@ -474,7 +472,6 @@ nav .profile-details i{
     height: 2rem;
     width: 6rem;
     color: #FF2E58;
-    font-weight: bold;
     font-weight: bold;
     border: 2px solid #FF2E58;
     border-radius: 2px;

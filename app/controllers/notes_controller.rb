@@ -46,8 +46,10 @@ class NotesController < ApplicationController
       after_update = { note: note.note }
       activity = Activity.new(user_id: current_user.id, action_id: 6, activity_model_id: 2, ticket_id: note.ticket_id)
       if activity.save
-        note_update_activity = NoteUpdateActivity.new(activity_id: activity.id, ticket_id: note.ticket_id,
-                                                      note_id: note.id, before_update: before_update, after_update: after_update)
+        note_update_activity = NoteUpdateActivity.new(activity_id: activity.id,
+                                                      ticket_id: note.ticket_id,
+                                                      note_id: note.id, before_update: before_update,
+                                                      after_update: after_update)
         redirect_to "/notes/#{return_id}" if note_update_activity.save
       end
     end
@@ -61,7 +63,7 @@ class NotesController < ApplicationController
                               ticket_id: backup_note.ticket_id)
       if activity.save
         NoteCdActvity.new(activity_id: activity.id, ticket_id: backup_note.ticket_id,
-                                             note_id: backup_note.id)
+                          note_id: backup_note.id)
       end
     end
     redirect_to "/notes/#{return_id}"
@@ -110,11 +112,11 @@ class NotesController < ApplicationController
       activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1, ticket_id: ticket.id)
       if activity.save
         puts activity.id
-        ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
-                                                          before_update: before_update, after_update: after_update)
-        if ticket_update_activity.save
-          redirect_to "/notes/#{return_id}"
-        end
+        ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id,
+                                                          ticket_id: ticket.id,
+                                                          before_update: before_update,
+                                                          after_update: after_update)
+        redirect_to "/notes/#{return_id}" if ticket_update_activity.save
       end
     else
       render plain: 'Fail'
@@ -125,7 +127,7 @@ class NotesController < ApplicationController
     ticket = Ticket.find(params[:id])
     ticket.update(status_id: 4)
     ticket.save
-    redirect_to "/notes/#{return_id}" 
+    redirect_to "/notes/#{return_id}"
   end
 
   def return_id
@@ -149,9 +151,7 @@ class NotesController < ApplicationController
         puts activity_id
         puts ticket_clone.id
         ticket_cd_activity = TicketCdActivity.new(activity_id: activity_id, ticket_id: ticket_clone.id)
-        if ticket_cd_activity.save
-          redirect_to "/notes/#{ticket_clone.id}"
-        end
+        redirect_to "/notes/#{ticket_clone.id}" if ticket_cd_activity.save
       end
     else
       render plain: 'False in clone'
