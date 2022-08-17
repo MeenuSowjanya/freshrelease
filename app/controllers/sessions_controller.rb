@@ -3,7 +3,9 @@
 class SessionsController < ApplicationController
   skip_before_action :ensure_user_logged_in
 
-  def new; end
+  def new
+    # Renders sessions/new.html.erb
+  end
 
   def create
     user = User.find_by(email: login_params[:email])
