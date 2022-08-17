@@ -46,6 +46,7 @@
     margin-left: 7px;
     margin-top: 5px;
     font-size: 12px;
+    font-weight: 400;
 }
 .subject_note_ticket{
     margin-top: 0px;
@@ -64,6 +65,7 @@
 .ticket_subject{
    margin-left: 7px;
    margin-top: 7px;
+   font-size: large;
 }
 .subject_note_ticket i{
     font-size: 40px;
@@ -91,7 +93,6 @@
     margin-top: 5px;
     background: none;
     overflow-y: scroll;
-    border-bottom: 2px solid #fff;
 }
 .note-description::placeholder{
     color: #fff;
@@ -101,7 +102,6 @@
 }
 .note-description:focus{
     outline: none;
-    border-bottom: 2px solid #fff;
     font-size: bold;
     font-size: 13px;
     padding-bottom: 10px;
@@ -167,7 +167,10 @@
     flex-wrap: wrap;
     align-items: right;
     text-align: right;
-    border-bottom: 2px solid #ec3358;
+    padding-bottom: 10px;
+ }
+ .activity{
+    text-align: left;
     padding-bottom: 10px;
  }
  .note-delete{
@@ -230,8 +233,8 @@
     font-weight: bold;
  }
  .note-note{
-    margin-top: 10px;
-    font-size: medium;
+    margin-top: 20px;
+    font-size: small;
     text-align: left;
     margin-bottom: 15px;
     

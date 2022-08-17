@@ -19,9 +19,11 @@
         </div>
        <% if @array_returned.length !=0 %>
        <div class="selected_div">
+        <% if @user.role == "admin" %>
         <div class="pickup">
        <%= form_with(url: "/tickets/select/bulk/pickup" , method: "put" ) do |form|%>
        <%= form.submit "Pickup" ,class: "pickup_button" %>
+         <% end %>
          <% end %>
         </div>
           <div class="assigned_to_select">
