@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   put '/tickets/select/bulk/:option', to: 'tickets#option'
   post '/tickets/update/all/select', to: 'tickets#select_all'
   put '/notes/tickets/:id', to: 'notes#update_ticket'
-  get '/notes/destroy/:id', to: 'notes#destroy'
   post '/tickets/clone/:ticket_id', to: 'notes#clone_ticket'
   post '/notes/response/:id', to: 'notes#add_response'
   put '/notes/tickets/close/:id', to: 'notes#close_ticket'

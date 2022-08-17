@@ -2,14 +2,10 @@
 <%= content_for :title, "#{title(page)}" %>
 <% end %>
 <div class="sidebar">
-  <div class="logo_details_container">
-  <a href="/tickets/filter/all" class="logo-details-a">
     <div class="logo-details">
       <i class='bx bx-rocket'></i>
       <span class="logo_name">ZUPP</span>
     </div>
-  </a>
-</div>
       <ul class="nav-links">
         <li>
           <a href="/tickets/filter/all" class="<%= (all or (filtered == false))? 'active':nil%>">
@@ -62,63 +58,39 @@
       </div>
         <% end %>
       <div class="profile-details">
-        <span class="arrow-profile-details" onclick="showAccess()" id="replace_arrow"><i class="fa fa-angle-down" aria-hidden="true" style="cursor: pointer;"></i></span>
         <span class="admin_name"><%= @user.first_name %> <%= @user.last_name %></span>
       </div>
     </nav>
-    
     <div class="home-content">
-      <div style="display: none;" id="access_div_show" class="access_div_show">
-        <p><%= (@user.role=="admin") ? "Hello Admin ! You Have Access to - (Tickets: Create, Edit, Delete, Pickup & Assign to
-         agents)" : "Hello Agent !<br> You Have Access to - (Tickets: Create, Edit, Pickup & Assign to other
-         agents)" %></p>
-       </div>
         <div class="overview-boxes">
-          <% if page == "index" %>
-          <div class="box" id="<%= (all==true or (filtered == false))? 'active':nil%>" onclick="window.location.href='/tickets/filter/all'">
+         <% if page == "index" %>
+          <div class="box" id="<%= (all==true or (filtered == false))? 'active':nil%>">
             <div class="right-side">
-              <div class="i-holder"><i class="fa fa-th-list" aria-hidden="true"></i></div>
               <div class="box-topic">All</div><br>
-              <div class="number"><%= (@user.role == "admin")? (Ticket.all.length) : (user.tickets.all.length) %></div>
+              <div class="number"><%= (user.role == "admin")? (Ticket.all.length) : (user.tickets.all.length) %></div>
             </div>
-            
+            <i class="fa fa-th-list" aria-hidden="true" style="margin-left: 140px;"></i>
           </div>
-          <div class="box" id="<%= (priority)? 'active':nil%>" onclick="window.location.href='/tickets/filter/priority'">
+          <div class="box" id="<%= (priority)? 'active':nil%>">
             <div class="right-side">
-              <div class="i-holder"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
               <div class="box-topic">High priority </div><br>
-              <div class="number" style="margin-top: -22px;"><span style="margin-left: 60px"><%= (@user.role == "admin")? (Ticket.all.where(priority_id: 3).length) : (user.tickets.all.where(priority_id: 3).length) %></span></div>
+              <div class="number"><%= (user.role == "admin")? (Ticket.all.where(priority_id: 3).length) : (user.tickets.all.where(priority_id: 3).length) %></div>
             </div>
-            
+            <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin-left: 60px;"></i>
           </div>
-          <div class="box" id="<%= (open)? 'active':nil%>" onclick="window.location.href='/tickets/filter/open'">
+          <div class="box" id="<%= (open)? 'active':nil%>">
             <div class="right-side">
-              <div class="i-holder"><i class="fa fa-folder-open" aria-hidden="true"></i></div>
               <div class="box-topic">Open</div><br>
-              <div class="number" style="margin-top: -22px;"><span style="margin-left: 60px"><%= (@user.role == "admin")? (Ticket.all.where(status_id: 1).length) : (@user.tickets.all.where(status_id: 1).length) %></span></div>
+              <div class="number"><%= (user.role == "admin")? (Ticket.all.where(status_id: 1).length) : (user.tickets.all.where(status_id: 1).length) %></div>
             </div>
-            
+            <i class="fa fa-folder-open" aria-hidden="true" style="margin-left: 120px;"></i>
           </div>
-          <div class="box" id="<%= (resolved)? 'active':nil%>" onclick="window.location.href='/tickets/filter/resolved'">
+          <div class="box" id="<%= (resolved)? 'active':nil%>">
             <div class="right-side">
-              <div class="i-holder"><i class="fa fa-check-square" aria-hidden="true" style=""></i></div>
               <div class="box-topic">Resolved</div><br>
-              <div class="number" style="margin-top: -22px;"><span style="margin-left: 60px"><%= (@user.role == "admin")? (Ticket.all.where(status_id: 4).length) : (@user.tickets.all.where(status_id: 4).length) %></span></div>
+              <div class="number"><%= (user.role == "admin")? (Ticket.all.where(status_id: 4).length) : (user.tickets.all.where(status_id: 4).length) %></div>
             </div>
-            
+            <i class="fa fa-check-square" aria-hidden="true" style="margin-left: 100px;"></i>
           </div>
         </div>
         <% end %>
-        <script>
-          function showAccess(){
-            div=document.getElementById('access_div_show');
-            if(div.style.display == "none"){
-              div.style.display = "block";
-              document.getElementById('replace_arrow').innerHTML = '<i class="fa fa-angle-up" aria-hidden="true" style="cursor: pointer;">';
-            }
-            else{
-              div.style.display = "none";
-              document.getElementById('replace_arrow').innerHTML = '<i class="fa fa-angle-down" aria-hidden="true" style="cursor: pointer;">';
-            }
-          }
-        </script>

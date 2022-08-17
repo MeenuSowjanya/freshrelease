@@ -27,8 +27,8 @@ class TicketsController < ApplicationController
     @user_org = Organisation.all
     @array_returned = update_array_return
     @filtered_array = (@filtered == true ? filtered_tickets(@tickets_list, @filter) : @tickets_list)
-    @title = (@filtered == true ? title(@filter) : 'All Tickets')
-    @pagy, @tickets = pagy(tickets_sort(@filtered_array, @sort_order, @sorting_order), items: 6)
+    @title = (@filtered == true ? title(@filter) : 'All tickets')
+    @pagy, @tickets = pagy(tickets_sort(@filtered_array, @sort_order, @sorting_order), items: 2)
     @length = (@array_returned.length == @tickets.length)
     reset
   end
@@ -52,7 +52,7 @@ class TicketsController < ApplicationController
                         user_id: current_user.id)
     ticket.screenshots.attach(ticket_params[:screenshots])
     if ticket.save
-      activity = Activity.new(user_id: current_user.id, action_id: 1, activity_model_id: 1, ticket_id: ticket.id)
+      activity = Activity.new(user_id: current_user.id, action_id: 1, activity_model_id: 1)
       if activity.save
         activity_id = activity.id
         puts activity_id
@@ -81,9 +81,9 @@ class TicketsController < ApplicationController
     before_update = { subject: ticket.subject, source: ticket.source,
                       impact: ticket.impact, urgency: ticket.urgency,
                       description: ticket.description, agent: ticket.agent,
-                      user_id: ticket.user_id, priority_id: ticket.priority_id,
-                      status_id: ticket.status_id }
-    @ticket.update(agent: params[:agent], status_id: params[:status_id],
+
+                      user_id: ticket.user_id, priority_id: ticket.priority_id, status_id: ticket.status_id }
+    @ticket.update(subject: params[:subject], agent: params[:agent], status_id: params[:status_id],
                    priority_id: params[:priority_id])
     if @ticket.save
       after_update = { subject: @ticket.subject, source: @ticket.source, impact: @ticket.impact,
@@ -91,7 +91,7 @@ class TicketsController < ApplicationController
                        description: @ticket.description, agent: @ticket.agent,
                        user_id: @ticket.user_id, priority_id: @ticket.priority_id,
                        status_id: @ticket.status_id }
-      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1, ticket_id: ticket.id)
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
       if activity.save
         puts activity.id
         ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
@@ -114,7 +114,7 @@ class TicketsController < ApplicationController
     id = params[:id]
     ticket = Ticket.find(id)
     if ticket.destroy
-      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1, ticket_id: ticket.id)
+      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1)
       if activity.save
         ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
         puts 'Success'
@@ -126,13 +126,13 @@ class TicketsController < ApplicationController
   def title(filter)
     case filter
     when 'all'
-      'All Tickets'
+      'All tickets'
     when 'priority'
-      'High Priority Tickets'
+      'High priority tickets'
     when 'open'
-      'Open Tickets'
+      'Open tickets'
     when 'resolved'
-      'Resolved Tickets'
+      'Resolved tickets'
     end
   end
 
@@ -142,7 +142,7 @@ class TicketsController < ApplicationController
       ticket = Ticket.find(id)
       next unless ticket.destroy
 
-      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1, ticket_id: id)
+      activity = Activity.new(user_id: current_user.id, action_id: 3, activity_model_id: 1)
       if activity.save
         ticket_cd_activity = TicketCdActivity.new(activity_id: activity.id, ticket_id: id)
         puts 'Success'
@@ -252,7 +252,7 @@ class TicketsController < ApplicationController
                        description: @ticket.description, agent: @ticket.agent,
                        user_id: @ticket.user_id, priority_id: @ticket.priority_id,
                        status_id: @ticket.status_id }
-      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1, ticket_id: ticket.id)
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
       next unless activity.save
 
       puts activity.id

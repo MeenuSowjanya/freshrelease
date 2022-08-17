@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_816_122_438) do
+ActiveRecord::Schema.define(version: 20_220_814_154_551) do
   create_table 'actions', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.string 'action'
     t.datetime 'created_at', precision: 6, null: false
@@ -55,10 +55,8 @@ ActiveRecord::Schema.define(version: 20_220_816_122_438) do
     t.datetime 'updated_at', precision: 6, null: false
     t.bigint 'action_id', null: false
     t.bigint 'activity_model_id', null: false
-    t.bigint 'ticket_id', null: false
     t.index ['action_id'], name: 'index_activities_on_action_id'
     t.index ['activity_model_id'], name: 'index_activities_on_activity_model_id'
-    t.index ['ticket_id'], name: 'index_activities_on_ticket_id'
     t.index ['user_id'], name: 'index_activities_on_user_id'
   end
 
@@ -84,30 +82,6 @@ ActiveRecord::Schema.define(version: 20_220_816_122_438) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['user_id'], name: 'index_canned_responses_on_user_id'
-  end
-
-  create_table 'note_cd_actvities', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.bigint 'ticket_id', null: false
-    t.bigint 'note_id', null: false
-    t.bigint 'activity_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['activity_id'], name: 'index_note_cd_actvities_on_activity_id'
-    t.index ['note_id'], name: 'index_note_cd_actvities_on_note_id'
-    t.index ['ticket_id'], name: 'index_note_cd_actvities_on_ticket_id'
-  end
-
-  create_table 'note_update_activities', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.bigint 'activity_id', null: false
-    t.bigint 'ticket_id', null: false
-    t.bigint 'note_id', null: false
-    t.json 'before_update'
-    t.json 'after_update'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['activity_id'], name: 'index_note_update_activities_on_activity_id'
-    t.index ['note_id'], name: 'index_note_update_activities_on_note_id'
-    t.index ['ticket_id'], name: 'index_note_update_activities_on_ticket_id'
   end
 
   create_table 'notes', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
@@ -182,7 +156,7 @@ ActiveRecord::Schema.define(version: 20_220_816_122_438) do
     t.string 'last_name'
     t.string 'email'
     t.string 'password_digest'
-    t.string 'role', default: 'agent'
+    t.string 'role', default: 'customer'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
@@ -195,12 +169,6 @@ ActiveRecord::Schema.define(version: 20_220_816_122_438) do
   add_foreign_key 'agents', 'organisations', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'agents', 'users', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'canned_responses', 'users', on_update: :cascade, on_delete: :cascade
-  add_foreign_key 'note_cd_actvities', 'activities', on_update: :cascade, on_delete: :cascade
-  add_foreign_key 'note_cd_actvities', 'notes', on_update: :cascade, on_delete: :cascade
-  add_foreign_key 'note_cd_actvities', 'tickets', on_update: :cascade, on_delete: :cascade
-  add_foreign_key 'note_update_activities', 'activities'
-  add_foreign_key 'note_update_activities', 'notes', on_update: :cascade, on_delete: :cascade
-  add_foreign_key 'note_update_activities', 'tickets'
   add_foreign_key 'notes', 'tickets', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'notes', 'users', on_update: :cascade, on_delete: :cascade
   add_foreign_key 'ticket_cd_activities', 'activities'
