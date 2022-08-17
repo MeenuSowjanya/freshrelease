@@ -10,6 +10,4 @@ class HomeController < ApplicationController
       render 'index'
     end
   end
-
-  def hello; end
 end
