@@ -12,7 +12,7 @@ class NotesController < ApplicationController
     @notes = @ticket.notes
     @user = User.find(current_user.id)
     @user_org = Organisation.all # Used for editing ticket properties
-    @canned_responses = CannedResponse.all
+    @canned_responses = @user.canned_responses # To list canned responses for bot feature
   end
 
   # Create Method - Add note form
@@ -21,50 +21,23 @@ class NotesController < ApplicationController
     note = Note.new(ticket_id: @@id, user_id: current_user.id, note: note_params[:note]) # Instantiating Note Model
     note.images.attach(note_params[:images])  # Attaching images to the record using Active Storage
     if note.save
-      activity = Activity.new(user_id: current_user.id, action_id: 5, activity_model_id: 2, ticket_id: note.ticket_id)
-      if activity.save
-        activity_id = activity.id
-        note_cd_activity = NoteCdActvity.new(activity_id: activity_id, ticket_id: note.ticket_id, note_id: note.id)
-        if note_cd_activity.save
-          redirect_to "/notes/#{return_id}"
-        else
-          render plain: 'False in cd activity'
-        end
-      else
-        render plain: 'False in activity'
-      end
     else
       flash[:error] = 'Failed to add your note.Something went wrong'
     end
+    redirect_to "/notes/#{return_id}"
   end
 
   def update
     note = Note.find(params[:id])
-    before_update = { note: note.note }
     note.update(note: params[:note])
-    if note.save
-      after_update = { note: note.note }
-      activity = Activity.new(user_id: current_user.id, action_id: 6, activity_model_id: 2, ticket_id: note.ticket_id)
-      if activity.save
-        note_update_activity = NoteUpdateActivity.new(activity_id: activity.id, ticket_id: note.ticket_id,
-                                                      note_id: note.id, before_update: before_update, after_update: after_update)
-        redirect_to "/notes/#{return_id}" if note_update_activity.save
-      end
-    end
+    note.save
+    redirect_to "/notes/#{return_id}"
   end
 
   def destroy
     note = Note.find(params[:id])
-    backup_note = note
-    if note.destroy
-      activity = Activity.new(user_id: current_user.id, action_id: 7, activity_model_id: 2,
-                              ticket_id: backup_note.ticket_id)
-      if activity.save
-        note_cd_activity = NoteCdActvity.new(activity_id: activity.id, ticket_id: backup_note.ticket_id,
-                                             note_id: backup_note.id)
-        puts 'Success'
-      end
-    end
+    note.destroy
+    note.save
     redirect_to "/notes/#{return_id}"
   end
 
@@ -73,18 +46,7 @@ class NotesController < ApplicationController
     current_user
     note = Note.new(ticket_id: @@id, user_id: current_user.id, note: @canned_response.description)
     if note.save
-      activity = Activity.new(user_id: current_user.id, action_id: 5, activity_model_id: 2, ticket_id: note.ticket_id)
-      if activity.save
-        activity_id = activity.id
-        note_cd_activity = NoteCdActvity.new(activity_id: activity_id, ticket_id: note.ticket_id, note_id: note.id)
-        if note_cd_activity.save
-          redirect_to "/notes/#{return_id}"
-        else
-          render plain: 'False in cd activity'
-        end
-      else
-        render plain: 'False in activity'
-      end
+      redirect_to "/notes/#{return_id}"
     else
       render plain: 'False'
     end
@@ -108,7 +70,7 @@ class NotesController < ApplicationController
                        description: @ticket.description, agent: @ticket.agent,
                        user_id: @ticket.user_id, priority_id: @ticket.priority_id,
                        status_id: @ticket.status_id }
-      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1, ticket_id: ticket.id)
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1)
       if activity.save
         puts activity.id
         ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
@@ -130,8 +92,7 @@ class NotesController < ApplicationController
     ticket = Ticket.find(params[:id])
     ticket.update(status_id: 4)
     ticket.save
-    redirect_to "/notes/#{return_id}" 
-    end
+    redirect_to "/notes/#{return_id}"
   end
 
   def return_id
@@ -149,7 +110,7 @@ class NotesController < ApplicationController
     ticket_clone.screenshots.attach(@ticket.screenshots.blobs)
     if ticket_clone.save
       puts ticket_clone.screenshots.attached?
-      activity = Activity.new(user_id: current_user.id, action_id: 4, activity_model_id: 1, ticket_id: ticket_clone.id)
+      activity = Activity.new(user_id: current_user.id, action_id: 4, activity_model_id: 1)
       if activity.save
         activity_id = activity.id
         puts activity_id

@@ -3,7 +3,12 @@
  <br>
   <div class="sales-boxes">
      <div class="recent-sales box">
-       
+       <div class="access">
+         <p class="access_p"><%= (@user.role=="admin") ? "Hello Admin ! You Have Access to - ( Tickets : Create,Edit,Delete,Pickup,Assign to
+          agents )" : "Hello Agent ! You Have Access to - ( Tickets : Create,Edit,Pickup,Assign to other
+          agents )" %></p>
+        </div>
+        <div class="title"><%= @title %></div>
         <div class="bulk_update">
         <div class = "select_all_div">
         <%= form_with(url: "/tickets/update/all/select" , method: "post" ) do |form| %>
@@ -19,11 +24,9 @@
         </div>
        <% if @array_returned.length !=0 %>
        <div class="selected_div">
-        <% if @user.role == "admin" %>
         <div class="pickup">
        <%= form_with(url: "/tickets/select/bulk/pickup" , method: "put" ) do |form|%>
        <%= form.submit "Pickup" ,class: "pickup_button" %>
-         <% end %>
          <% end %>
         </div>
           <div class="assigned_to_select">
@@ -58,14 +61,15 @@
        
        <div class="tickets_div">
         <table class="tickets_table">
-          <tr class="head-tr">
+          <tr>
             <th style="width: 10px;"> </th>
             <th>Subject</th>
             <th>Requester</th>
             <th>Status</th>
             <th>Priority</th>
-            <th>Agent</th>
-            <th>Recent activity</th>
+            <th>Assigned to</th>
+            <th>Description</th>
+            <th>Recent notes</th>
           </tr>
           
           

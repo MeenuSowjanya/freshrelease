@@ -2,9 +2,7 @@
 
 class PasswordResetsController < ApplicationController
   skip_before_action :ensure_user_logged_in
-  def new
-    # Renders password_resets/new.html.erb
-  end
+  def new; end
 
   def create
     @user = User.find_by(email: params[:email])

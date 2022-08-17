@@ -5,15 +5,19 @@
 <% @user_note = User.find(@note.user_id) if(@note != nil)%>
 
 <tr class="ticket_row" >
-    <td style="width: 10px;margin-left: -10px;"> <%= form_with(url: "/tickets/update/#{ticket.id}", method: "post") do |form| %>
+    <td style="width: 10px;"> <%= form_with(url: "/tickets/update/#{ticket.id}", method: "post") do |form| %>
            <%= check_box 'selected', 'result', {onclick: "this.form.submit()", checked: (array_returned.include? ticket.id) ?true:false}, 1, 0 %>
         <% end %>
    </td>
    <%= form_with(url: "/tickets/#{ticket.id}", method: "put") do |form|%>
    <% @subject = length_of_subject(ticket.subject) %>
    <td>
-       <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none; color:black;"><%= @subject %></a>
-     </td>
+       <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none; color:black;"><%= @subject %> ...</a>
+       <span><i class="fa-solid fa-pen" id="toggle_edit_text" onclick="showHideForm('edit_subject<%= count %>')" style="font-size: 10px; margin-left: 10px; cursor: pointer;"></i> </span>
+       <div  class="edit_subject" id="edit_subject<%= count %>">
+           <%= form.text_field "subject", placeholder: ticket.subject,value: ticket.subject,autofocus: "autofocus"  %>
+           <%= form.submit "Continue"%>
+        </div></td>
     <td><%= @requester.first_name %></td>
     <td>
         <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin")?true:false%>
@@ -38,9 +42,15 @@
         <% end %>
     </td>
     <td>
+        <% @description = length_of_subject(ticket.description) %>
+        <%= @description %> ...
+    </td>
+    <td>
     <% if @note != nil%>
     <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
            <p><%= @user_note.first_name %> added a public note</p>
+           <% @date = ((Date.today - Date.parse(@note.created_at.strftime("%F"))).to_s).split("")[0] %>
+           <%= date(@date,@note)%>
     </a>
     <% else %>
     <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
