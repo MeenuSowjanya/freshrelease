@@ -131,7 +131,6 @@ class NotesController < ApplicationController
     ticket.update(status_id: 4)
     ticket.save
     redirect_to "/notes/#{return_id}" 
-    end
   end
 
   def return_id
@@ -157,11 +156,7 @@ class NotesController < ApplicationController
         ticket_cd_activity = TicketCdActivity.new(activity_id: activity_id, ticket_id: ticket_clone.id)
         if ticket_cd_activity.save
           redirect_to "/notes/#{ticket_clone.id}"
-        else
-          render plain: 'False in cd activity'
         end
-      else
-        render plain: 'False in activity'
       end
     else
       render plain: 'False in clone'
