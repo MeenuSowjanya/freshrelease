@@ -20,85 +20,68 @@
 
 .requester_name{
     font-size: smaller;
-    color: #FF2E58;
+    color: #e05260;
     letter-spacing: 0.3px;
     font-weight: bolder;
 }
 .user-details{
-    border: #FF2E58 solid 2px;
+    border: #e05260 solid 2px;
     border-radius: 4px;
     padding: 10px;
     position: sticky;
-    background: #fff;
+    background: rgb(247, 228, 228);
     z-index: 999;
 }
-.description-user-holder{
-    margin-top: 20px;
-    height: 45px;
-    overflow-y: scroll;
-    font-size: small;
-}
-.description-user-holder::-webkit-scrollbar{
-    width: 0px;
-}
 .time-holder-ticket{
-    color: black;
-    margin-left: 7px;
-    margin-top: 5px;
-    font-size: 12px;
-    font-weight: 400;
+    color: #98454d;
+    font-size: x-small;
+    margin-top: 3px;
+    padding-bottom: 4px;
+    border-bottom: #e05260 1px solid;
 }
 .subject_note_ticket{
-    margin-top: 0px;
-    display: flex;
-    flex-wrap: wrap;
-    color: #FF2E58;
-    font-weight: bold;
-    letter-spacing: 0.3px;
-    font-size: medium;
-    height: 100%;
-    overflow-y: scroll;
+    margin-top: 10px;
 }
-.subject_note_ticket::-webkit-scrollbar{
-    width: 0px;
+.subject-ticket-title{
+    font-size: small;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    color: #e05260
 }
 .ticket_subject{
-   margin-left: 7px;
-   margin-top: 7px;
-   font-size: large;
-}
-.subject_note_ticket i{
-    font-size: 40px;
-    margin-right: 10px;
+    margin-top: 5px;
+    font-size: x-small;
+    color: #98454d;
+    padding-bottom: 4px;
+    border-bottom: #e05260 1px solid;
 }
 .add_note_div{
     z-index: 999;
     width: 100%;
-    background: #fb9bae;
+    background: rgb(247, 228, 228);
     margin-top: -20px;
     position: sticky;
-    border: #FF2E58 solid 2px;
+    border: #e05260 solid 2px;
     border-radius: 4px;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    color: #fff;
 }
 .note-description{
     width: 85%;
     height: 3rem;
     padding: 6px;
     border: none;
+    border-bottom: #e87d88 3px solid;
     font-size: smaller;
     margin-top: 5px;
     background: none;
     overflow-y: scroll;
 }
 .note-description::placeholder{
-    color: #fff;
+    color: #e05260;
     font-weight: bold;
     letter-spacing: 0.4px;
-    cursor: crosshair;
 }
 .note-description:focus{
     outline: none;
@@ -112,7 +95,7 @@
  .submit-form{
     background: none;
     border: none;
-    color: #fff;
+    color: #e05260;
     font-weight: bold;
     font-size: 20px;
  }
@@ -127,17 +110,17 @@
     width: 0px;
  }
  .file-field-note{
-    display: none;
+    width: 2px;
  }
  .label-note{
-    color: #FF2E58;
+    color: #e05260;
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
  }
  .recent_note{
     z-index: 600;
-    background-color: #FF2E58;
+    background-color: #e87d88;
     margin-top: -50px;
     height: 80px;
     position: unset;
@@ -155,11 +138,10 @@
     width: 100%;
   }
   .note-container{
-    background: #fff;
+    background: rgb(245, 223, 214);
     width: 100%;
     padding: 20px;
     margin: 20px 0px 40px 0px;
-    border: 2px solid #FF2E58;
   }
  .note-flex{
     width: 100%;
@@ -167,38 +149,34 @@
     flex-wrap: wrap;
     align-items: right;
     text-align: right;
-    padding-bottom: 10px;
- }
- .activity{
-    text-align: left;
+    border-bottom: 2px solid #ec3358;
     padding-bottom: 10px;
  }
  .note-delete{
     margin-left: 97%;
-    margin-top: -51px;
  }
  .note-delete a{
     text-decoration: none;
-    color: #FF2E58;
+    color: #ec3358;
     font-weight: bold;
  }
  .note-edit{
-    color: #FF2E58;
+    color: #ad3c53;
     font-weight: bold;
-    margin-left: 70%;
-    margin-top: -10px;
+    margin-left: 94%;
  }
  .note-edit i{
     cursor: pointer;
+    margin-left: 92%;
     margin-bottom: 12px;
  }
  .edit_note_form{
     margin-top: -51px;
-    margin-left: 40%;
+    margin-left: 50%;
  }
  .edit-note-note{
     background: none;
-    color: #FF2E58;
+    color: #e05260;
     border: hidden;
     border-bottom: #ec3358 2px solid;
     padding: 3px 20px 1px 3px;
@@ -212,37 +190,35 @@
     font-size: smaller;
  }
  .submit-edit-form{
-    border: 2px solid #FF2E58;
-    color: #FF2E58;
+    border: 2px solid #e05260;
+    color: #e05260;
     font-weight: bold;
     font-size: x-small;
     padding: 2px 5px;
     margin-top: 3px;
  }
  .note_creator{
-    color: #FF2E58;
+    color: #98454d;
     font-weight: bold;
     letter-spacing: 0.3px;
-    font-size: medium;
-    margin-top: 5px;
+    font-size: 15px;
  }
  .date-created{
-    margin-left: -180px;
-    margin-top: 30px;
-    color: black;
+    margin-left: -170px;
+    margin-top: 20px;
+    color: #e87d88;
     font-weight: bold;
  }
  .note-note{
-    margin-top: 20px;
-    font-size: small;
+    margin-top: 10px;
+    font-size: smaller;
     text-align: left;
-    margin-bottom: 15px;
-    
+    color: #f34165;
  }
  .image-div{
     margin-top: 10px;
-    height: 70%;
-    width: 100%;
+    height: 30%;
+    width: 30%;
  }
  .bot-holder{
     width: 36%;
@@ -257,50 +233,59 @@
 .ticket-properties{
     height: 43%;
     padding: 10px;
-    border: 2px solid #FF2E58;
+    background: rgb(247, 228, 228);
+    overflow-y: scroll;
+    border: 2px solid #e05260;
     border-radius: 4px;
 }
 .ticket-properties::-webkit-scrollbar{
     width: 0px;
 }
 .ticket-field-1{
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .ticket-field-1-title{
-    font-size: medium;
+    font-size: small;
     letter-spacing: 0.3px;
     font-weight: 600;
-    color: #FF2E58
+    color: #e05260
 }
 .ticket_field-1-subject{
     margin-top: 7px;
     font-size: smaller;
+    color: #98454d;
     padding-bottom: 4px;
+    border-bottom: #e05260 2px solid;
 }
 .ticket_field-1-subject select{
     border: none;
+    border-top: 2px solid#e87d88;
     width: 100%;
     background: none;
     padding-top: 5px;
+    color: #98454d;
     cursor: pointer;
 }
 .ticket_field-1-subject select:focus{
     outline: none;
+    border: none;
+    border-top: 2px solid#e87d88;
+    color: #98454d;
     cursor: pointer;
-    font-size: small;
+    font-size: smaller;
 }
 .bot-icon-holder{
     z-index: 999;
     height: 57%;
     margin-top: 0%;
+    // background-color: rgb(255, 163, 163);
     border-radius: 4px;
-    border: 2px solid #FF2E58;
+    border: 2px dashed #e05260;
 }
 .bot-image-gif{
-    width: 280px;
-    height: 202px;
+    width: 360px;
+    height: 282px;
     background: none;
-    margin-left: 30px;
 }
 #bot-icon1{
     cursor: pointer;
@@ -308,16 +293,6 @@
 }
 .bot-icon{
     margin-left: -2%;
-}
-.bot-description{
-    color: #FF2E58;
-    font-weight: bold;
-    font-size: medium;
-    margin-top: 20px;
-    margin-left: 10px;
-    letter-spacing: 0.4px;
-    margin-bottom: 10px;
-    text-align: center;
 }
 .div-2-container{
     width: 100%;
@@ -331,38 +306,30 @@
     padding: 20px 40px 20px 20px;
     width: 80%;
     height: 230px;
+    overflow-y: scroll;
 }
 .left-bot-div-2::-webkit-scrollbar{
     width: 0px;
 }
 .welcome-bot{
-    color: #FF2E58;
+    color: #d73656;
     font-weight: bold;
     text-align: left;
-    font-size: larger;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #FF2E58;
-}
-.help-description{
-    margin-top: 20px;
-    font-size: medium;
-    margin-bottom: 20px;
-
+    font-size: 14px;
+    border-bottom: 2px solid #e05260;
+    padding-bottom: 10px;
 }
 .question{
-    margin-bottom: 5px;
+    margin-top: 10px;
     font-size: small;
     font-weight: bold;
     letter-spacing: 0.3px;
     color: #f04769;
-    line-height: 12px;
-}
-.question:hover{
-    cursor: pointer;
+    line-height: 17px;
 }
 .definition{
     margin-top: 5px;
-    color: #FF2E58;
+    color: #98454d;
     font-size: 12px;
     line-height: 12px;
 }
@@ -396,7 +363,7 @@
     border-radius: 4px;
 }
 .confirm2_text{
-    color: #FF2E58;
+    color: #c73f5a;
     line-height: 20px;
     font-size: small;
     font-weight: bold;
@@ -411,13 +378,13 @@
    border: 2px solid #FF2E58;
    color: #FF2E58;
    padding: 3px 20px;
-   font-size: smaller;
+   font-size: small;
    font-weight: bold;
    border-radius: 2px;
    margin-right: 5px;
 }
 .yes_button_click:hover{
-    color: #FF2E58;
+    color: #e05260;
     cursor: pointer;
     background-color: #fff;
 }
@@ -428,10 +395,11 @@
    font-size: small;
    font-weight: bold;
    border-radius: 2px;
-   margin-left: 0px;
+   margin-right: 5px;
+   margin-left: 15px;
 }
 .no_button_click:hover{
-    color: #FF2E58;
+    color: #e05260;
     cursor: pointer;
     background-color: #fff;
 }
@@ -450,35 +418,30 @@
     flex-wrap: wrap;
 }
 .cr_subject{
-    color: #FF2E58;
+    color: #c73f5a;
     font-weight: bold;
-    font-size: 14px;
+    font-size: smaller;
     letter-spacing: 0.4px;
-    margin-left: -10px;
-    margin-top: 5px;
 }
 .arrow{
     color: #FF2E58;
     font-weight: bold;
-    font-size: 13px;
+    font-size: smaller;
     margin-left: 10px;
-    margin-top: 7px;
 }
 .add_cr_button{
-    margin-top: 5px;
-    border: 2px solid #FF2E58;
-    color: #FF2E58;
+    border: none;
+    border-bottom: 2px solid #FF2E58;
+    color: #e05260;
     background: none;
-    padding: 2px 10px;
-    font-size: smaller;
+    padding-bottom: 2px;
 }
 .add_cr_hidden_button{
     border: 2px solid #FF2E58;
-    color: #FF2E58;
+    color: #e05260;
     background: none;
-    padding: 2px 12px;
+    padding-bottom: 2px 12px;
     margin-top: 10px;
-    font-size: x-small;
 }
 .add_cr{
     margin-left: 50px;
@@ -496,28 +459,29 @@
     padding: 10px;
 }
 .cr_desc{
-    font-size: small;
+    font-size: smaller;
     letter-spacing: 0.4px;
     color: #d73656;
 }
 .back_button{
     cursor: pointer;
     border: none;
+    border-bottom: 2px solid #e05260;
+    color: #e05260;
     background: none;
     padding-bottom: 2px;
-    font-size: 40px;
-    margin-top: -20px;
-    margin-bottom: 10px;
-    margin-left: -20px;
+    font-size: small;
+    margin-bottom: 30px;
+    margin-left: 190px;
 }
 .back_button:hover{
-    cursor: pointer;
+    opacity: 0.7;
 }
 .back_button2{
     cursor: pointer;
     border: none;
-    border-bottom: 2px solid #FF2E58;
-    color: #FF2E58;
+    border-bottom: 2px solid #e05260;
+    color: #e05260;
     background: none;
     padding-bottom: 2px;
     font-size: small;

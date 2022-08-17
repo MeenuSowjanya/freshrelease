@@ -13,15 +13,15 @@
 }
 .signup_background_image{
    position: fixed;
-   margin-top: -145px;
-   margin-left: 0px;
+   margin-top: -175px;
+   margin-left: -100px;
    width: 1280px;
    height: 900px;
 }
 .signup_background_box{
     position: fixed;
-    margin-left: 325px;
-    margin-top: 30px;
+    margin-left: 255px;
+    margin-top: -35px;
     height: 525px;
     width: 610px;
     background-color: #FFFFFF;
@@ -68,18 +68,10 @@
 .signup_link_to_login_div{
     position: fixed;
     z-index: 999;
-    margin-left: 500px;
-    margin-top: 570px;
+    margin-left: 400px;
+    margin-top: 510px;
     letter-spacing: 0.3px;
     font-weight: 500;
-}
-.link_to_register a:hover{
-    color: #ff486d;
-    text-decoration: underline;
-}
-.signup_link_to_login_div a:hover{
-    color: #ff486d;
-    text-decoration: underline;
 }
 .link_to_register{
     text-decoration: none;
