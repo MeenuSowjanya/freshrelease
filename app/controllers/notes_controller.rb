@@ -131,7 +131,6 @@ class NotesController < ApplicationController
     ticket.update(status_id: 4)
     ticket.save
     redirect_to "/notes/#{return_id}" 
-    end
   end
 
   def return_id
