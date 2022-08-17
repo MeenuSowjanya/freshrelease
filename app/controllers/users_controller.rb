@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    user = User.new
+    # Renders index method
   end
 
   def create

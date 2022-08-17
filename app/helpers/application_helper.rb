@@ -13,7 +13,7 @@ module ApplicationHelper
       end
       return_array << '...'
     end
-    return_subject = return_array.join('')
+    return_array.join('')
   end
 
   def note(ticket)
@@ -25,7 +25,7 @@ module ApplicationHelper
     case page
     when 'index'
       'Zupp | Tickets'
-    when 'form'
+    else
       'Zupp | Create ticket'
     end
   end
