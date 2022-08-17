@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :activities
   VALID_NAME_REGEX = /\A[^0-9`!@#$%\^&*+_=]+\z/.freeze
   VALID_EMAIL_REGEX = /\A(.+)@(.+)$\z/.freeze
-  VALID_PASSWORD_REGEX = /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])
+  VALID_PASSWORD_REGEX = /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/.freeze
   validates :first_name, presence: true, length: { minimum: 3, maximum: 25 }, format: { with: VALID_NAME_REGEX }
   validates :last_name, presence: true, length: { minimum: 3, maximum: 25 }, format: { with: VALID_NAME_REGEX }
   validates :email, presence: true, length: { minimum: 10, maximum: 255 },
