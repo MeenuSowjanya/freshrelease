@@ -39,12 +39,14 @@
     </td>
     <td>
     <% if @note != nil%>
-    <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+    <a href="/activities/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
            <p><%= @user_note.first_name %> added a public note</p>
     </a>
     <% else %>
-    <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
-     No recent notes
+    <a href="/activities/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+      <% @activity_adder = Activity.where(ticket_id: ticket.id).last.user_id %>
+      <% @adder_name = User.find(@activity_adder).first_name %>
+      <p><%= @adder_name %> created this ticket</p>
      </a>
   <% end %>
 </td>
