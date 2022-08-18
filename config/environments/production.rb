@@ -121,4 +121,14 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.action_mailer.default_url_options = { host: 'zupp-ticket-app-test.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    user_name: 'zuppticketingapp@gmail.com',
+    password: 'gxkibmtbxumosznt',
+    address: 'smtp.gmail.com',
+    domain: 'zupp-ticket-app-test.herokuapp.com',
+    port: 5080,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 end

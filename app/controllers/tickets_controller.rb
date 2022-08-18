@@ -216,9 +216,6 @@ class TicketsController < ApplicationController
 
   def filtered_tickets(tickets, filter)
     case filter
-    when 'all'
-      @filtered_array = tickets
-      @all = true
     when 'priority'
       @filtered_array = tickets.where(priority_id: 3)
       @priority = true

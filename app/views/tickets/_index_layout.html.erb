@@ -16,13 +16,13 @@
      </td>
     <td><%= @requester.first_name %></td>
     <td>
-        <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin")?true:false%>
+        <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,ticket.status_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin" or ticket.status_id== 4)?true:false%>
     </td>
     <td>
-        <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin")?true:false %>
+        <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,ticket.priority_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin" or ticket.status_id== 4)?true:false %>
     </td>
     <td>
-        <select name="agent" onchange="this.form.submit()" <%=(@user.role!="admin")?"disabled":nil%>>
+        <select name="agent" onchange="this.form.submit()" <%=(@user.role!="admin" or ticket.status_id== 4)?"disabled":nil%>>
             <% @user_org.each do |org| %>
             <optgroup label = "<%= org.org_name %>">
                 <% org.agents.all.each do |agent| %>
@@ -39,12 +39,14 @@
     </td>
     <td>
     <% if @note != nil%>
-    <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+    <a href="/activities/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
            <p><%= @user_note.first_name %> added a public note</p>
     </a>
     <% else %>
-    <a href="/notes/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
-     No recent notes
+    <a href="/activities/<%=ticket.id%>" data-method="get" style="text-decoration:none;color: black;">
+      <% @activity_adder = Activity.where(ticket_id: ticket.id).last.user_id %>
+      <% @adder_name = User.find(@activity_adder).first_name %>
+      <p><%= @adder_name %> created this ticket</p>
      </a>
   <% end %>
 </td>

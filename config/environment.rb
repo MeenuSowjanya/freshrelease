@@ -10,7 +10,7 @@ ActionMailer::Base.smtp_settings = {
   password: 'gxkibmtbxumosznt',
   address: 'smtp.gmail.com',
   domain: 'zupp-ticket-app-test.herokuapp.com',
-  port: 587,
+  port: 5080,
   authentication: :plain,
   enable_starttls_auto: true
 }

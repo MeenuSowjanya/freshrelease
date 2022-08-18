@@ -21,11 +21,11 @@
        <div class="selected_div">
         <% if @user.role == "admin" %>
         <div class="pickup">
-       <%= form_with(url: "/tickets/select/bulk/pickup" , method: "put" ) do |form|%>
-       <%= form.submit "Pickup" ,class: "pickup_button" %>
-         <% end %>
+         <%= form_with(url: "/tickets/select/bulk/pickup" , method: "put" ) do |form|%>
+         <%= form.submit "Pickup" ,class: "pickup_button" %>
          <% end %>
         </div>
+        <% end %>
           <div class="assigned_to_select">
            <%= form_with(url: "/tickets/select/bulk/assigned_to" , method: "put" ,class: "assigned_to_form" ) do |form|%>
            <select name="agent" class="assigned_to_select_select" onchange="this.form.submit()">
