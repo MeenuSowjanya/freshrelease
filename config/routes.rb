@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   post 'password/reset', to: 'password_resets#create'
   get 'password/reset/edit', to: 'password_resets#edit', as: :password_reset_edit
   patch 'password/reset/edit', to: 'password_resets#update'
+  put '/tickets/reopen/:ticket_id', to: 'notes#reopen'
 end

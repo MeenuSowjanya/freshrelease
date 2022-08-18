@@ -96,19 +96,19 @@
       <div class="ticket-field-1">
         <p class="ticket-field-1-title">Status</p>
         <p class="ticket_field-1-subject">
-          <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,@ticket.status_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin")?true:false%>
+          <%= select_tag 'status_id', options_for_select([["Open",1], ["Pending",2], ["Resolved",3], ["Closed",4]],[@sta.status,@ticket.status_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin" or @ticket.status_id== 4)?true:false%>
         </p>
       </div>
       <div class="ticket-field-1">
         <p class="ticket-field-1-title">Priority</p>
         <p class="ticket_field-1-subject">
-          <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,@ticket.priority_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin")?true:false%>
+          <%= select_tag 'priority_id', options_for_select([["Low",1],["Medium",2],["High",3],["Urgent",4]],[@pro.priority,@ticket.priority_id]),onchange: "this.form.submit()",disabled: (@user.role!="admin" or @ticket.status_id== 4)?true:false%>
         </p>
       </div>
       <div class="ticket-field-1">
         <p class="ticket-field-1-title">Assigned to</p>
         <p class="ticket_field-1-subject">
-          <select name="agent" onchange="this.form.submit()" <%=(@user.role!="admin")?"disabled":nil%>>
+          <select name="agent" onchange="this.form.submit()" <%=(@user.role!="admin" or @ticket.status_id== 4)?"disabled":nil%>>
             <% @user_org.each do |org| %>
             <optgroup label = "<%= org.org_name %>">
                 <% org.agents.all.each do |agent| %>
@@ -142,9 +142,11 @@
             </p>
             <p class="help-description">I can help you</p>
             <div class="contents">
+              <% if @ticket.status_id != 4 %>
               <div class="topic1">
                  <p class="question" onclick="bot_div(2,3)">Close this ticket</p>
               </div>
+              <% end %>
               <div class="topic1">
                 <p class="question" onclick="bot_div(2,4)">Delete this ticket</p> 
              </div>
@@ -154,6 +156,12 @@
            <div class="topic1">
             <p class="question" onclick="window.location.href='/notes/<%=@ticket.id%>'">Show notes</p>
          </div>
+         
+         <% if @ticket.status_id == 4 %>
+         <div class="topic1">
+          <p class="question" onclick="bot_div(2,7)">Reopen this ticket</p>
+       </div>
+       <% end %>
             </div>
           </div>
           <div class="right-bot-div-2" id="div-2-flexes"><%= image_tag "bot-2.gif",class: "bot-image-gif2"%></div>
@@ -196,6 +204,19 @@
               </div>
               <div class="no_button">
                 <%= button_tag "Cancel",class: "no_button_click",onclick: "bot_div(6,2)"%>
+              </div>
+          </div>
+        </div>
+       </div>
+       <div class="bot-icon3" id="bot-icon7" style="display: none;">
+        <div class="alert_box_close">
+            <p class="confirm2_text"> On performing this event ,<br> this ticket will be "REOPENED"</p>
+            <div class="confirm-buttons-div">
+              <div class="yes_button">
+                <%= button_to "Confirm", "/tickets/reopen/#{@ticket.id}",method: :put,class: "yes_button_click" %>
+              </div>
+              <div class="no_button">
+                <%= button_tag "Cancel",class: "no_button_click",onclick: "bot_div(7,2)"%>
               </div>
           </div>
         </div>

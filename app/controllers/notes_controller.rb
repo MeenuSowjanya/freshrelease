@@ -158,6 +158,39 @@ class NotesController < ApplicationController
     end
   end
 
+  def reopen
+    @ticket = Ticket.find(params[:ticket_id])
+    ticket = @ticket
+    before_update = { subject: ticket.subject, source: ticket.source,
+                      impact: ticket.impact, urgency: ticket.urgency,
+                      description: ticket.description, agent: ticket.agent,
+                      user_id: ticket.user_id, priority_id: ticket.priority_id,
+                      status_id: ticket.status_id }
+    @ticket.update(status_id: 1)
+    if @ticket.save
+      after_update = { subject: @ticket.subject, source: @ticket.source, impact: @ticket.impact,
+                       urgency: @ticket.urgency,
+                       description: @ticket.description, agent: @ticket.agent,
+                       user_id: @ticket.user_id, priority_id: @ticket.priority_id,
+                       status_id: @ticket.status_id }
+      activity = Activity.new(user_id: current_user.id, action_id: 2, activity_model_id: 1, ticket_id: ticket.id)
+      if activity.save
+        puts activity.id
+        ticket_update_activity = TicketUpdateActivity.new(activity_id: activity.id, ticket_id: ticket.id,
+                                                          before_update: before_update, after_update: after_update)
+        if ticket_update_activity.save
+          redirect_to "/notes/#{return_id}"
+        else
+          render plain: 'False in update activity'
+        end
+      else
+        render plain: 'False in activity'
+      end
+    else
+      render plain: 'Fail'
+    end
+  end
+
   private
 
   def note_params

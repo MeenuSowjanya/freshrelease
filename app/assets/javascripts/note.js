@@ -29,3 +29,7 @@
        }
         
      }
+     function reopen_form(){
+        document.getElementById("reopen_form").form.submit();
+     }
+     
