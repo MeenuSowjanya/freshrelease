@@ -237,6 +237,7 @@
     * Create canned responses
     * Build an archive or trash and restore tickets or notes
     * Implement Action Cable for Live notes addition
+    * Implement Lazy Loading
     
 #### UI
 ##
