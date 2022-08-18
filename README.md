@@ -236,10 +236,12 @@
     * Include User Management
     * Create canned responses
     * Build an archive or trash and restore tickets or notes
+    * Implement Action Cable for Live notes addition
     
 #### UI
 ##
-   * Toggle to detailed view of next ticket
+    * Toggle to detailed view of next ticket
+    
    
 
    
