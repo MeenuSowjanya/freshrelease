@@ -232,7 +232,13 @@
 
 #### Features
 ##  
-    * Include User Management ( Admins can make 
+    * Include User Management
+    * Create canned responses
+    * Build an archive or trash and restore tickets or notes
+    
+#### UI
+##
+   * Toggle to detailed view of next ticket
    
 
    
