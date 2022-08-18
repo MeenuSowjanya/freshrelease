@@ -207,14 +207,14 @@
 ***
 
 ## Libraries used
-
+##
    * Action Mailer
    * Active Storage
    * Active Support
    
 ***
 ## Gems used
-
+##
    * gem 'pagy'
    * gem 'image_processing'
    * gem 'email_validator'
@@ -225,6 +225,14 @@
    * gem 'bcrypt'
    * gem 'mail_form'
    * gem 'tailwind-css'
+
+***
+
+## Future plans
+
+#### Features
+##  
+    * Include User Management ( Admins can make 
    
 
    
