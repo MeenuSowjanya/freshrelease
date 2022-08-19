@@ -133,11 +133,11 @@
           * List tickets - Pagination
 ###### 'pagy' gem
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185220278-d9ff6ee5-ed6c-445f-9b8b-41f5f23da008.png">
-* Filter tickets
+          * Filter tickets
 <img width="179" alt="image" src="https://user-images.githubusercontent.com/93571047/185219461-2454f257-1683-4ec8-acd1-d4bef1ded2b0.png">
-* Search tickets
+          * Search tickets
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185220081-6522c3c2-29fd-4cf1-b8cc-e911180d248f.png">
-* Sort by and Group edit features
+          * Sort by and Group edit features
 <img width="752" alt="image" src="https://user-images.githubusercontent.com/93571047/185222072-f1aefe82-6ef0-4538-b1e5-b23722ead737.png">
 
 ### 6. Edit ticket properties
