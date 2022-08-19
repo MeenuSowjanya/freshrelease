@@ -51,10 +51,12 @@
     
 ### 2. Replicating 'public_activity' gem
     Problem statement :
-    'public_activity' gem is used to track the Activity log of models. I wished to do the activity log manually. The involvement of many models for tracking the CRUD activities was little complicated to handle.
+    'public_activity' gem is used to track the Activity log of models. I wished to do the activity log manually. 
+     The involvement of many models for tracking the CRUD activities was little complicated to handle.
     
     Solution :
-    I referred the Schema of the 'public_activity' gem and designed an EER Diagram for Create, Delete and Update Activities. Later, I managed to handle many models.
+    I referred the Schema of the 'public_activity' gem and designed an EER Diagram for Create, Delete and Update Activities.
+    Later, I managed to handle many models.
     
     Extra implementation :
     I could also get the log of a Model before updation and after updation and could display the from status and to status.
@@ -75,65 +77,6 @@
 ######
 
 ***
-## More Insights into Different Persona
-#### 1. ADMIN
-###### Can: 
-      * View all tickets
-      * Create new ticket
-      * Edit ticket properties
-      * Delete a ticket
-      * Clone a ticket
-      * Pickup a ticket
-      * Assign a ticket to other agent
-      * Pickup a group of tickets
-      * Assign a group of tickets to other agents
-      * Add notes for a specific ticket
-      * View activity logs of a ticket
-
-###### View all tickets list
-<img width="956" alt="image" src="https://user-images.githubusercontent.com/93571047/185197077-cbb3e433-4ad7-4785-930c-94e6491529ee.png">
-
-###### Edit or delete ticket/s properties
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185199872-4a3e3628-4262-4943-a850-d064c05aab58.png">
-
-###### Create a new ticket
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185200614-337a6419-74fc-45ce-bde8-be8c162573c4.png">
-
-###### View notes, Edit notes, Delete notes, Create a new note
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185204253-baec49de-fb23-44c3-90c6-09600ec92423.png">
-
-###### Access bot for provisions like: Close a ticket, Delete a ticket, Clone a ticket, Add canned responses a note and View activity log
-<img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
-
-<hr>
-
-#### 2. AGENT
-###### Can:
-      * View tickets assigned
-      * Create a new ticket
-      * Clone a ticket
-      * Close a ticket
-      * View notes
-      * Add notes 
-      * Edit notes
-      * Delete notes
-      * View activity log of tickets
-
-###### View assigned tickets
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185207440-2b118531-bd5a-4d91-b2b8-93ea26e2d322.png">
-
-###### Create a new ticket
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185207655-efc3b0f2-6dfb-4351-80b5-ea744ef8cc1c.png">
-
-###### View notes, Edit notes, Delete notes, Create a new note
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185204253-baec49de-fb23-44c3-90c6-09600ec92423.png">
-
-###### Access bot for provisions like: Close a ticket, Delete a ticket, Clone a ticket, Add canned responses a note and View activity log
-<img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
-
-*** 
-***
-
 ## Features covered
 
 ###### Highlight features
@@ -250,8 +193,63 @@
 
 ***
 
+## More Insights into Different Persona
+#### 1. ADMIN
+###### Can: 
+      * View all tickets
+      * Create new ticket
+      * Edit ticket properties
+      * Delete a ticket
+      * Clone a ticket
+      * Pickup a ticket
+      * Assign a ticket to other agent
+      * Pickup a group of tickets
+      * Assign a group of tickets to other agents
+      * Add notes for a specific ticket
+      * View activity logs of a ticket
 
+###### View all tickets list
+<img width="956" alt="image" src="https://user-images.githubusercontent.com/93571047/185197077-cbb3e433-4ad7-4785-930c-94e6491529ee.png">
 
+###### Edit or delete ticket/s properties
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185199872-4a3e3628-4262-4943-a850-d064c05aab58.png">
+
+###### Create a new ticket
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185200614-337a6419-74fc-45ce-bde8-be8c162573c4.png">
+
+###### View notes, Edit notes, Delete notes, Create a new note
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185204253-baec49de-fb23-44c3-90c6-09600ec92423.png">
+
+###### Access bot for provisions like: Close a ticket, Delete a ticket, Clone a ticket, Add canned responses a note and View activity log
+<img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
+
+<hr>
+
+#### 2. AGENT
+###### Can:
+      * View tickets assigned
+      * Create a new ticket
+      * Clone a ticket
+      * Close a ticket
+      * View notes
+      * Add notes 
+      * Edit notes
+      * Delete notes
+      * View activity log of tickets
+
+###### View assigned tickets
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185207440-2b118531-bd5a-4d91-b2b8-93ea26e2d322.png">
+
+###### Create a new ticket
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185207655-efc3b0f2-6dfb-4351-80b5-ea744ef8cc1c.png">
+
+###### View notes, Edit notes, Delete notes, Create a new note
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185204253-baec49de-fb23-44c3-90c6-09600ec92423.png">
+
+###### Access bot for provisions like: Close a ticket, Delete a ticket, Clone a ticket, Add canned responses a note and View activity log
+<img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
+
+*** 
 ## Future plans
 
 #### Features
@@ -265,6 +263,8 @@
 #### UI
 ##
     * Toggle to detailed view of next ticket
+
+
     
    
 
