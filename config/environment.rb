@@ -6,11 +6,10 @@ require_relative 'application'
 # Initialize the Rails application.
 Rails.application.initialize!
 ActionMailer::Base.smtp_settings = {
-  user_name: 'zuppticketingapp@gmail.com',
-  password: 'gxkibmtbxumosznt',
+  user_name: 'zuppticketapp@gmail.com',
+  password: 'ipgkipnhnsvyayqv',
   address: 'smtp.gmail.com',
-  domain: 'zupp-ticket-app-test.herokuapp.com',
-  port: 5080,
+  port: 587,
   authentication: :plain,
   enable_starttls_auto: true
 }
