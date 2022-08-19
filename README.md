@@ -29,13 +29,15 @@
 ***
 
 ## Libraries used
-## * Action Mailer
+###### 
+   * Action Mailer
    * Active Storage
    * Active Support
    
 ***
 ## Gems used
-## * gem 'pagy'
+###### 
+   * gem 'pagy'
    * gem 'image_processing'
    * gem 'email_validator'
    * gem 'rubocop'
