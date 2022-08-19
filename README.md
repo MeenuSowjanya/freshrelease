@@ -29,7 +29,7 @@
 ***
 
 ## Libraries used
-##* Action Mailer
+## * Action Mailer
    * Active Storage
    * Active Support
    
