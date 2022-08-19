@@ -48,6 +48,14 @@
     
     Solution :
     I referred Active Storage module, and found the ".blobs" extension.  It returned the blob version of the attachments.
+    
+### 2. Replicating 'public_activity' gem
+    Problem statement :
+    Cloning content was easy , but cloning the images or the files attached to the parent ticket was tough. 
+    The input field's datatype of new ticket should be in blob, but the return type from the parent ticket was in binary. 
+    
+    Solution :
+    I referred Active Storage module, and found the ".blobs" extension.  It returned the blob version of the attachments.
 ***
 ### To get complete ZOOPER experience of this platform visit [ZUPP](https://zupp-ticket-app-test.herokuapp.com/) and login via *admin* role
 
