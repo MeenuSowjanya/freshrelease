@@ -17,15 +17,6 @@
 
 ##### Here different users get different views of the application, depending upon the roles assigned to them : [ "admin" , "agent"].
 
-### To get complete ZOOPER experience of this platform visit [ZUPP](https://zupp-ticket-app-test.herokuapp.com/) and login via *admin* role
-
-######
-| First Name | Last Name | Email | Password | Role |
-|---- |-----|-------|----|-----|
-| Admin | Admin | admin@gmail.com | Admin@1234 | admin |
-| Agent | Org | agent1@gmail.com | Agent1@1234 | agent |
-######
-
 ***
 
 ## Libraries used
@@ -49,6 +40,14 @@
       * gem 'tailwind-css'
 
 ***
+### To get complete ZOOPER experience of this platform visit [ZUPP](https://zupp-ticket-app-test.herokuapp.com/) and login via *admin* role
+
+######
+| First Name | Last Name | Email | Password | Role |
+|---- |-----|-------|----|-----|
+| Admin | Admin | admin@gmail.com | Admin@1234 | admin |
+| Agent | Org | agent1@gmail.com | Agent1@1234 | agent |
+######
 
 ***
 ## More Insights into Different Persona
