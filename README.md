@@ -141,56 +141,56 @@
 <img width="752" alt="image" src="https://user-images.githubusercontent.com/93571047/185222072-f1aefe82-6ef0-4538-b1e5-b23722ead737.png">
 
 ### 6. Edit ticket properties
-* Admin can only edit the ticket properties
-* Enabled only if the ticket's status is not "closed"
+         * Admin can only edit the ticket properties
+         * Enabled only if the ticket's status is not "closed"
 
 ### 7. Create a ticket
-* All fields are required
-* Values cannot be nil
-* Minimum length of text fields must be 2
-* Attaching multiple files is possible
+         * All fields are required
+         * Values cannot be nil
+         * Minimum length of text fields must be 2
+         * Attaching multiple files is possible
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185222388-94f6c318-3cfa-45a5-b808-d4a955a74212.png">
 
 ### 8. Add note
-* All fileds are required
-* Values cannot be nil
-* Attaching multiple files is possible
-* Enabled only when the ticket's status is not "closed"
+         * All fileds are required
+         * Values cannot be nil
+         * Attaching multiple files is possible
+         * Enabled only when the ticket's status is not "closed"
 <img width="440" alt="image" src="https://user-images.githubusercontent.com/93571047/185222902-d3795efb-6004-47e8-846f-a451079c2453.png">
 
 ### 9. List notes
-* The date and time calculation were did manually in the application helper and called multiple times
+         * The date and time calculation were did manually in the application helper and called multiple times
 <img width="956" alt="image" src="https://user-images.githubusercontent.com/93571047/185223206-32e8eb4c-9e58-4ab3-a5f1-c2d3efc3bcb3.png">
 
 ### 10. Edit notes
-* Allowation of editing the subject of a note is only given.
-* Tracked in activity log
-* Enabled only when the ticket's status is not "closed"
+         * Allowation of editing the subject of a note is only given.
+         * Tracked in Activity Log
+         * Enabled only when the ticket's status is not "closed"
 <img width="471" alt="image" src="https://user-images.githubusercontent.com/93571047/185299391-ddb60024-b96f-4aae-8cf7-d512a68f4898.png">
 
 ### 11. Delete notes
-* Tracked in activity log
-* Did a temporary destroy using trash method and restored the content without ticket id for activity log
+         * Tracked in activity log
+         * Did a temporary destroy using trash method and restored the content without ticket id for activity log
 
 ### 12. View Activity log
-* Replication of 'public_activity' gem in manual
+         * Replication of 'public_activity' gem in manual
 <img width="958" alt="image" src="https://user-images.githubusercontent.com/93571047/185300663-412c1391-63f4-4e65-8ad0-ba2bb53d32cf.png">
 
 ### 13. BOT features
 
-* Close a ticket (Enabled only if the ticket's status is not "closed")
+         * Close a ticket (Enabled only if the ticket's status is not "closed")
 <img width="238" alt="image" src="https://user-images.githubusercontent.com/93571047/185301331-0f26bb8e-f789-4d23-a015-a1a3c2d3a7bc.png">
 
-* Delete a ticket (Enabled only for admin)
+         * Delete a ticket (Enabled only for admin)
 <img width="240" alt="image" src="https://user-images.githubusercontent.com/93571047/185301526-a604fb5d-e4e1-4fc5-bf2c-ac4db45c3224.png">
 
-* Clone a ticket
+         * Clone a ticket
 <img width="238" alt="image" src="https://user-images.githubusercontent.com/93571047/185301607-8143e16c-9852-4256-b9e5-98bb54f973ce.png">
 
-* Add a Canned Response (Belongs to user) (Create own canned responses feature is ON PROGRESS)
+         * Add a Canned Response (Belongs to user) (Create own canned responses feature is ON PROGRESS)
 <img width="242" alt="image" src="https://user-images.githubusercontent.com/93571047/185301776-2dd43e69-b5e6-412c-8182-df022623f78d.png">
 
-* Reopen a ticket (Enabled only if the ticket's status is closed)
+         * Reopen a ticket (Enabled only if the ticket's status is closed)
 <img width="237" alt="image" src="https://user-images.githubusercontent.com/93571047/185302059-c2437f81-ef04-448f-94c2-0ae5bc21aa1f.png">
 
 ***
