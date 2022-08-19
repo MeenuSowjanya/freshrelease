@@ -124,7 +124,9 @@
           * Password must contain atleast 6 characters which must be a combination of atleast one lowercase character,
             one uppercase character,one symbol and one digit
           * Password and Confirm Password must be same 
-          * Password encrypted with a gem - 'bcrypt' 
+          * Password encrypted with a gem - 'bcrypt'
+<img width="884" alt="image" src="https://user-images.githubusercontent.com/93571047/185612024-7701b220-8a1b-4672-b68d-e2e57b6b46c2.png">
+
 
 ### 5. List tickets
           * Admin can view all the tickets created
