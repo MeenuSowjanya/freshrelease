@@ -42,7 +42,7 @@
 ***
 ## Technical Challenges faced and Resolution
 ### 1. Cloning a ticket
-    * Problem statement : * Cloning content was easy , but cloning the images or the files attached to the parent ticket was tough. 
+    **Problem statement :** Cloning content was easy , but cloning the images or the files attached to the parent ticket was tough. 
     The input field's datatype of new ticket should be in binary, but the return type from the parent ticket was in blob. 
     
     Solution :
