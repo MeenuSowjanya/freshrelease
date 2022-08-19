@@ -207,21 +207,8 @@
       * Assign a group of tickets to other agents
       * Add notes for a specific ticket
       * View activity logs of a ticket
+      * Access bot for Deleting a ticket, Closing a ticket, Cloning a ticket, Add Canned Responses, View Activity Log and Reopening a Ticket.
 
-###### View all tickets list
-<img width="956" alt="image" src="https://user-images.githubusercontent.com/93571047/185197077-cbb3e433-4ad7-4785-930c-94e6491529ee.png">
-
-###### Edit or delete ticket/s properties
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185199872-4a3e3628-4262-4943-a850-d064c05aab58.png">
-
-###### Create a new ticket
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185200614-337a6419-74fc-45ce-bde8-be8c162573c4.png">
-
-###### View notes, Edit notes, Delete notes, Create a new note
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185204253-baec49de-fb23-44c3-90c6-09600ec92423.png">
-
-###### Access bot for provisions like: Close a ticket, Delete a ticket, Clone a ticket, Add canned responses a note and View activity log
-<img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
 
 <hr>
 
@@ -236,18 +223,7 @@
       * Edit notes
       * Delete notes
       * View activity log of tickets
-
-###### View assigned tickets
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185207440-2b118531-bd5a-4d91-b2b8-93ea26e2d322.png">
-
-###### Create a new ticket
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185207655-efc3b0f2-6dfb-4351-80b5-ea744ef8cc1c.png">
-
-###### View notes, Edit notes, Delete notes, Create a new note
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185204253-baec49de-fb23-44c3-90c6-09600ec92423.png">
-
-###### Access bot for provisions like: Close a ticket, Delete a ticket, Clone a ticket, Add canned responses a note and View activity log
-<img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
+      * Access bot for Closing a Ticket, Reopening a ticket, Cloning a ticket, Add Canned Responses, View Activity Log.
 
 *** 
 ## Future plans
