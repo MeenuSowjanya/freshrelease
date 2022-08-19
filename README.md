@@ -90,28 +90,29 @@
       * Bot Implementation
       
 ### 1. Sign up
-* All fields are required
-* No fields can be nil
-* First name and Last name must contain atleast 3 characters (Validated with Name Regex Pattern)
-* Email id must be unique
-* Email id must be of the format 'example@gmail.com' (Validated with a gem - 'email_validator')
-* Password must contain atleast 6 characters which must be a combination of atleast one lowercase character,one uppercase character,one symbol and one digit
-* Password and Confirm Password must be same 
-* Password encrypted with a gem - 'bcrypt'
+              * All fields are required
+              * No fields can be nil
+              * First name and Last name must contain atleast 3 characters (Validated with Name Regex Pattern)
+              * Email id must be unique
+              * Email id must be of the format 'example@gmail.com' (Validated with a gem - 'email_validator')
+              * Password must contain atleast 6 characters which must be a combination of atleast one lowercase character,
+                one uppercase character,one symbol and one digit
+              * Password and Confirm Password must be same 
+              * Password encrypted with a gem - 'bcrypt'
 <img width="957" alt="image" src="https://user-images.githubusercontent.com/93571047/185213784-b06b3124-77db-4e96-8392-c935c91a3cf4.png">
 
 <br>
 
 ### 2. Sign in
-* All fields are required
-* Email id and password should be authenticated - ('bcrypt' gem)
+              * All fields are required
+              * Email id and password should be authenticated - ('bcrypt' gem)
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185215157-e5a027c1-9fad-4f0f-a8e8-2e969f4ad26c.png">
 
 ### 3. Forgot password
 ###### If an user forgets his/her password 
-* All field are required
-* Email id entered must be a registered user
-* Link to reset password will be sent to the mail id of the user
+               * All field are required
+               * Email id entered must be a registered user
+               * Link to reset password will be sent to the mail id of the user
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185215815-69becb43-a98a-45f6-9ea1-8579b78ec700.png">
 
 ### 4. Reset password
@@ -119,10 +120,11 @@
 
 ##### After receiving this email
 
-* All fields are required
-* Password must contain atleast 6 characters which must be a combination of atleast one lowercase character,one uppercase character,one symbol and one digit
-* Password and Confirm Password must be same 
-* Password encrypted with a gem - 'bcrypt' 
+               * All fields are required
+               * Password must contain atleast 6 characters which must be a combination of atleast one lowercase character,
+                 one uppercase character,one symbol and one digit
+               * Password and Confirm Password must be same 
+               * Password encrypted with a gem - 'bcrypt' 
 
 ### 5. List tickets
 * Admin can view all the tickets created
@@ -207,7 +209,8 @@
       * Assign a group of tickets to other agents
       * Add notes for a specific ticket
       * View activity logs of a ticket
-      * Access bot for Deleting a ticket, Closing a ticket, Cloning a ticket, Add Canned Responses, View Activity Log and Reopening a Ticket.
+      * Access bot for Deleting a ticket, Closing a ticket, Cloning a ticket, Add Canned Responses, View Activity Log
+        and Reopening a Ticket.
 
 
 <hr>
