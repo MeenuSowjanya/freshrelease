@@ -51,11 +51,19 @@
     
 ### 2. Replicating 'public_activity' gem
     Problem statement :
-    Cloning content was easy , but cloning the images or the files attached to the parent ticket was tough. 
-    The input field's datatype of new ticket should be in blob, but the return type from the parent ticket was in binary. 
+    'public_activity' gem is used to track the Activity log of models. I wished to do the activity log manually. The involvement of many models for tracking the CRUD activities was little complicated to handle.
     
     Solution :
-    I referred Active Storage module, and found the ".blobs" extension.  It returned the blob version of the attachments.
+    I referred the Schema of the 'public_activity' gem and designed an EER Diagram for Create, Delete and Update Activities. Later, I managed to handle many models.
+    
+    Extra implementation :
+    I could also get the log of a Model before updation and after updation and could display the from status and to status.
+    
+    
+***
+## EER Diagram
+![eer_model_zupp](https://user-images.githubusercontent.com/93571047/185210485-fabae1cf-e999-444e-8ecf-02e52b822212.png)
+
 ***
 ### To get complete ZOOPER experience of this platform visit [ZUPP](https://zupp-ticket-app-test.herokuapp.com/) and login via *admin* role
 
@@ -124,11 +132,6 @@
 <img width="959" alt="image" src="https://user-images.githubusercontent.com/93571047/185205397-d5ec1e8d-1ae4-48c5-b818-9f2b2d196c27.png">
 
 *** 
-***
-
-## EER Diagram
-![eer_model_zupp](https://user-images.githubusercontent.com/93571047/185210485-fabae1cf-e999-444e-8ecf-02e52b822212.png)
-
 ***
 
 ## Features covered
