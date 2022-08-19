@@ -30,23 +30,23 @@
 
 ## Libraries used
 ###### 
-   * Action Mailer
-   * Active Storage
-   * Active Support
+      * Action Mailer
+      * Active Storage
+      * Active Support
    
 ***
 ## Gems used
 ###### 
-   * gem 'pagy'
-   * gem 'image_processing'
-   * gem 'email_validator'
-   * gem 'rubocop'
-   * gem 'fontawesome-sass'
-   * gem 'jquery-rails'
-   * gem 'dotenv'
-   * gem 'bcrypt'
-   * gem 'mail_form'
-   * gem 'tailwind-css'
+      * gem 'pagy'
+      * gem 'image_processing'
+      * gem 'email_validator'
+      * gem 'rubocop'
+      * gem 'fontawesome-sass'
+      * gem 'jquery-rails'
+      * gem 'dotenv'
+      * gem 'bcrypt'
+      * gem 'mail_form'
+      * gem 'tailwind-css'
 
 ***
 
