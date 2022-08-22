@@ -19,11 +19,17 @@
 
 ***
 
+## Languages used
+######
+     * Backend - Ruby ( Version-2.6.10 )
+     * Framework - Rails ( Version-6.1.6 )
+     * Database - MySQL ( Verion-0.5 )
+
 ## Libraries(Classes) used
 ###### 
-      * Subsystems of Rails (ActionController , ActiveRecord, ACtionView)
-      * ActionMailer
-      * ActiveStorage
+      * Subsystems of Rails (ActionController , ActiveRecord, ActionView)
+      * ActionMailer ( Rails v-2.2 started supporting )
+      * ActiveStorage ( Rails v-5.2 started supporting )
       * ActiveSupport
    
 ***
