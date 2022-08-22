@@ -12,7 +12,8 @@
 ## Hello🖐 ! Welcome to [ZUPP](https://zupp-ticket-app-test.herokuapp.com/)
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185191429-e28ae864-6110-489a-a004-95ac6cb4c884.png">
 
-##### I am Meenu Sowjanya and this is my project , ZUPP, An Internal Service Management Software from Freshworks to provide a delightful employee experience.
+##### I am Meenu Sowjanya and this is my project , ZUPP, An Internal Service Management Software from Freshworks to provide a delightful employee experience. ( Inspiration - Freshrelease)
+
 ##### This app is built on Rails which supports 2 user persona: **admin** and **agent**.
 
 ##### Here the users, according to their roles, get access or face restrictions to use the features of the project.
