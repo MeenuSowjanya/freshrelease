@@ -80,14 +80,8 @@ class NotesController < ApplicationController
         note_cd_activity = NoteCdActvity.new(activity_id: activity_id, ticket_id: note.ticket_id, note_id: note.id)
         if note_cd_activity.save
           redirect_to "/notes/#{return_id}"
-        else
-          render plain: 'False in cd activity'
         end
-      else
-        render plain: 'False in activity'
       end
-    else
-      render plain: 'False'
     end
   end
 
@@ -118,8 +112,6 @@ class NotesController < ApplicationController
                                                           after_update: after_update)
         redirect_to "/notes/#{return_id}" if ticket_update_activity.save
       end
-    else
-      render plain: 'Fail'
     end
   end
 
