@@ -13,17 +13,18 @@
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/93571047/185191429-e28ae864-6110-489a-a004-95ac6cb4c884.png">
 
 ##### I am Meenu Sowjanya and this is my project , ZUPP, An Internal Service Management Software from Freshworks to provide a delightful employee experience.
-##### This app is built on Rails which supports 2 user persona and roles: **admin** and **agent**.
+##### This app is built on Rails which supports 2 user persona: **admin** and **agent**.
 
-##### Here different users get different views of the application, depending upon the roles assigned to them : [ "admin" , "agent"].
+##### Here the users, according to their roles, get access or face restrictions to use the features of the project.
 
 ***
 
-## Libraries used
+## Libraries(Classes) used
 ###### 
-      * Action Mailer
-      * Active Storage
-      * Active Support
+      * Subsystems of Rails (ActionController , ActiveRecord, ACtionView)
+      * ActionMailer
+      * ActiveStorage
+      * ActiveSupport
    
 ***
 ## Gems used
@@ -37,6 +38,7 @@
       * gem 'dotenv'
       * gem 'bcrypt'
       * gem 'mail_form'
+      * gem 'bootstrap'
       * gem 'tailwind-css' 
 
 ***
