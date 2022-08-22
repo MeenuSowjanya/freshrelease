@@ -61,13 +61,51 @@
     Extra implementation :
     I could also get the log of a Model before updation and after updation and could display the from status and to status.
     
+### 3. Local Storage Images Disappearing 
+    Problem statement :
+    Images stored using Active Storage, started disappearing after 2-3 deploys in production port of Heroku.
+    
+    Solution :
+    I referred Google and found that, as of now, the production has the setting : config.active_storage.service = :local
+    To make it cloud based, the creation of Amazon AWS S3 bucket is mandatory
+    
+    Implementation :
+    Planned to add this in the Future Plans
+    
+### 4. Making a Responsive Website
+    Problem statement :
+    Handling Media Queries was difficult to understand.
+    
+    Solution :
+    I managed with prebuilt Css Responsive Frameworks like 'bootstrap' and 'tailwind-css' as much as I could.
+    
+    Implementation :
+    I made 75% of my website responsive using these frameworks. Planned to make it fully responsive in future.
+    
     
 ***
 ## EER Diagram
 ![eer_model_zupp](https://user-images.githubusercontent.com/93571047/185210485-fabae1cf-e999-444e-8ecf-02e52b822212.png)
 
 ***
-### To get complete ZOOPER experience of this platform visit [ZUPP](https://zupp-ticket-app-test.herokuapp.com/) and login via *admin* role
+## Future plans
+
+#### Features
+##  
+    * Include User Management
+    * Create canned responses
+    * Build an archive or trash and restore tickets or notes
+    * Implement Action Cable for Live notes addition
+    * Implement Lazy Loading
+    * Adding a S3 Bucket for Active Storage
+    
+#### UI
+##
+    * Navigate to detailed view of the next ticket
+    
+***
+
+### To get complete ZUPPer experience of this platform visit [ZUPP](https://zupp-ticket-app-test.herokuapp.com/) and login via *admin* role
 
 ######
 | First Name | Last Name | Email | Password | Role |
@@ -231,19 +269,7 @@
       * Access bot for Closing a Ticket, Reopening a ticket, Cloning a ticket, Add Canned Responses, View Activity Log.
 
 *** 
-## Future plans
 
-#### Features
-##  
-    * Include User Management
-    * Create canned responses
-    * Build an archive or trash and restore tickets or notes
-    * Implement Action Cable for Live notes addition
-    * Implement Lazy Loading
-    
-#### UI
-##
-    * Toggle to detailed view of next ticket
 
 
     
