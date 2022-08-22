@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Gorditas&family=M+PLUS+Rounded+1c:wght@400;500&family=Marko+One&family=Port+Lligat+Sans&display=swap');
 
 
@@ -16,21 +17,21 @@ body{
 .home_about{
     position: fixed;
     margin-left: 29.55665024630542vh;
-    margin-top: -390px;
-    width: 1200px;
-    height: 1200px;
+    margin-top: -24.375rem;
+    width: 75rem;
+    height: 75rem;
     background-color: #FF2E58;
-    border-radius: 1200px 0px 1200px 1200px;
+    border-radius: 75rem 0px 75rem 75rem;
 }
 .home_vector_image-1{
     position: absolute;
     background-image: url('home_background.png');
     background-repeat: no-repeat;
-    height: 700px;
-    width: 1200px;
+    height: 43.75rem;
+    width: 75rem;
     z-index: 999;
-    margin-left: -100px;
-    margin-top: -100px;
+    margin-left: -6.25rem;
+    margin-top: -6.25rem;
     object-fit: cover;
     animation: float 7s ease-out infinite;
 }
@@ -42,45 +43,45 @@ body{
 .home_signin{
     position: fixed;
     z-index: 999;
-    height: 200px;
-    width: 200px;
-    margin-left: 1150px;
-    margin-top: -10px;
+    height: 12.5rem;
+    width: 12.5rem;
+    margin-left: 71.875rem;
+    margin-top: -0.625rem;
 }
 .signin_user_icon{
-    margin-left: -100px;
+    margin-left: -6.25rem;
 }
 
 #signin_user_icon{
-    margin-top: -40px;
+    margin-top: -2.5rem;
 }
 .home_user_icon{
-    height: 30px;
-    width: 30px;
+    height: 1.875rem;
+    width: 1.875rem;
 }
 .home_text{
     position: relative;
     height: auto;
     width: auto;
     z-index: 999;
-    left: -50px;
+    left: -3.125rem;
 }
 .home_title{
-    margin-left: 630px;
-    margin-top: 165px;
+    margin-left: 39.375rem;
+    margin-top: 10.3125rem;
 }
 .home_description{
     position: fixed;
     height: auto;
     width: auto;
     z-index: 999;
-    margin-left: 570px;
-    padding-top: 5px;
+    margin-left: 35.625rem;
+    padding-top: 0.3125rem;
     
     font-style: normal;
     font-weight: 400;
-    font-size: 22.1058px;
-    line-height: 35px;
+    font-size: 1.3816125rem;
+    line-height: 2.1875rem;
     text-align: right;
     color: #FFFFFF;
 }
@@ -89,19 +90,19 @@ body{
     height: auto;
     width: auto;
     z-index: 999;
-    margin-left: 671px;
-    margin-top: 352px;
+    margin-left: 41.9375rem;
+    margin-top: 22rem;
 }
 .home_register_button{
     position: relative;
-    top: -35px;
+    top: -2.1875rem;
     background-color: #FF2E58;
     color: #FFFFFF;
-    border: 2px solid #FFFFFF;
+    border: 0.125rem solid #FFFFFF;
     border-radius: 8px;
-    padding: 12px 40px 12px 40px;
+    padding: 0.75rem 2.5rem 0.75rem 2.5rem;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.125rem;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -117,8 +118,8 @@ body{
     position: relative;
     justify-content: baseline;
     // flex-direction: column;
-    left: 458px;
-    top: 306px;
+    left: 25.3125rem;
+    top: 19.125rem;
 }
 .container1{
     display: flex;
@@ -126,20 +127,20 @@ body{
     position: relative;
     justify-content: baseline;
     // flex-direction: column;
-    left: 473px;
-    top: 306px;
+    left: 29.5625rem;
+    top: 19.125rem;
 }
 // .container span{
 //     font-size: 3em;
 // }
 .animation{
     position: relative;
-    top: -56px;
+    top: -3.5rem;
     text-align: center;
     // text-transform: uppercase;
     font-family: 'Port Lligat Sans', sans-serif;
-    font-size: 30px;
-    letter-spacing: 1px;
+    font-size: 1.875rem;
+    letter-spacing: 0.0625rem;
     color: black;
     display: inline-block;
     animation: fadeIn 1.5s forwards;
@@ -152,6 +153,8 @@ transition-timing-function: cubic-bezier(0.785,0.135,0.15,0.86);
     display: inline-block;
     animation: firstspan 1.5s forwards cubic-bezier(0.785,0.135,0.15,0.86);
     // background: #222;
+    left: 3.2rem;
+    margin-right: 3.2rem;
     z-index: 1;
     color: #3e3d3d;
     position: relative;
@@ -174,7 +177,7 @@ transition-timing-function: cubic-bezier(0.785,0.135,0.15,0.86);
 }
 .second{
     position: relative;
-    top: -5px;
+    top: -0.3125rem;
     color: white;
     font-weight: 100;
     z-index: -1;
@@ -196,8 +199,8 @@ transition-timing-function: cubic-bezier(0.785,0.135,0.15,0.86);
     // left: 430px;
     display: flex;
     line-height: 1.2;
-    top: 114px;
-    margin-left: 400px;
+    top: 7.125rem;
+    margin-left: 25rem;
     /* left: 0px; */
     /* z-index: -1;/* z-index: -1; */
 }
@@ -285,4 +288,9 @@ transition-timing-function: cubic-bezier(0.785,0.135,0.15,0.86);
     100%{
         transform: translateX(0%);
     }
+}
+
+@media  (max-width: 600px){
+ 
+   
 }
