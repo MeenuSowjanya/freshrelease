@@ -13,38 +13,38 @@
 }
 .signup_background_image{
    position: fixed;
-   margin-top: -145px;
+   margin-top: -9.0625rem;
    margin-left: 0px;
-   width: 1280px;
-   height: 900px;
+   width: 80rem;
+   height: 56.25rem;
 }
 .signup_background_box{
     position: fixed;
-    margin-left: 325px;
-    margin-top: 30px;
-    height: 525px;
-    width: 610px;
+    margin-left: 20.3125rem;
+    margin-top: 1.875rem;
+    height: 32.8125rem;
+    width: 38.125rem;
     background-color: #FFFFFF;
-    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+    box-shadow: 8px 8px 1.25rem rgba(0, 0, 0, 0.1);
+    border-radius: 1.25rem;
     z-index: 999;
 }
 .signup_title{
-    margin-left: 55px;
-    margin-top: 30px;
-    margin-bottom: 27px;
-    font-size: 30px;
+    margin-left: 3.4375rem;
+    margin-top: 1.875rem;
+    margin-bottom: 1.6875rem;
+    font-size: 1.875rem;
     font-weight: bold;
 }
 .signup_UsersNew{
-    margin-left: 55px;  
+    margin-left: 3.4375rem;  
 }
 .signup_Form-input{
-    padding: 12px 15px 12px 22px;
-    margin-bottom: 25px;
-    width: 495px;
-    border-radius: 5px;
-    border: 2px solid rgb(163, 163, 163);
+    padding: 0.75rem 0.9375rem 0.75rem 1.375rem;
+    margin-bottom: 1.5625rem;
+    width: 30.9375rem;
+    border-radius: 0.3125rem;
+    border: 0.125rem solid rgb(163, 163, 163);
 }
 .signup_Form-input::placeholder{
     font-weight: 600;
@@ -56,8 +56,8 @@
     background-color: #FF2E58;
     color: #FFFFFF;
     border: none;
-    padding: 15px 0px;
-    width: 495px;
+    padding: 0.9375rem 0px;
+    width: 30.9375rem;
     border-radius: 6px;
     font-weight: 800;
 }
@@ -95,15 +95,15 @@
     margin-left: -45px;
     margin-top: 16px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 400;
     letter-spacing: 0.3px;
     color: rgb(184, 184, 184);
 }
 .signup-Flash-error{
-    margin-left: 55px;
-    margin-top: -20px;
-    font-size: 12px;
+    margin-left: 3.4375rem;
+    margin-top: -1.25rem;
+    font-size: 0.75rem;
     margin-bottom: 5px;
     color: red;
 }
